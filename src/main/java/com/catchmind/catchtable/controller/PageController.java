@@ -44,17 +44,17 @@ public class PageController {
 
     @GetMapping("/login")
     public ModelAndView login() {
-        return new ModelAndView("/login");
+        return new ModelAndView("login");
     }
 
     @GetMapping("/login/error")
     public ModelAndView loginFail() {
-        return new ModelAndView("/loginFail");
+        return new ModelAndView("loginFail");
     }
 
     @GetMapping("join")
     public ModelAndView join() {
-        return new ModelAndView("/join");
+        return new ModelAndView("join");
     }
 
     @PostMapping("/join")
@@ -86,7 +86,7 @@ public class PageController {
     // 입점문의 페이지
     @GetMapping("pending")
     public ModelAndView inquiry (){
-        return new ModelAndView("/inquiry");
+        return new ModelAndView("inquiry");
     }
 
     // 입점문의 등록
@@ -99,7 +99,7 @@ public class PageController {
 
     @GetMapping("/findPassword")
     public ModelAndView findPw () {
-        return new ModelAndView("/findPw");
+        return new ModelAndView("findPw");
     }
     @PostMapping("/findPassword")
     @ResponseBody
@@ -111,14 +111,14 @@ public class PageController {
     @GetMapping("/resetPassword/{prHp}")
     public ModelAndView resetPw (@PathVariable String prHp, Model model){
         model.addAttribute("prHp",prHp);
-        return new ModelAndView("/resetPassword");
+        return new ModelAndView("resetPassword");
     }
     @PostMapping("/resetPassword")
     public String resetPassword (@RequestParam("prHp")String prHp,
                                  ProfileRequest request){
         System.out.println("🐓🐓🐓🐓🐓🐓🐓🐓🐓  "+request.prHp());
         profileLogicService.updatePassword(prHp, request.toDto());
-        return "/login";
+        return "login";
     }
 
 
