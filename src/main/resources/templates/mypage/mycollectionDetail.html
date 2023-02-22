@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+  <div th:replace="fragment/link :: link"/>
+  <link rel="stylesheet" href="/css/mypage.css">
+  <link rel="stylesheet" href="/css/collection_detail.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<style>
+  .headerCategory {
+    padding: 6px 0;
+  }
+</style>
+<body>
+<div id="root">
+  <!--  header 시작-->
+  <header id="header">
+    ㅎㄷㅎㄷ
+  </header>
+  <!--header 끝-->
+  <!--  mypageHeader-->
+  <div th:replace="fragment/mypage_header :: mypage_header"/>
+  <!--  /mypageHeader-->
+  <div class="css-luwwab eug5r8l1 wrapper">
+    <div th:replace="fragment/mypage_aside :: mypage_aside"/>
+    <div class="css-171zbec eug5r8l0">
+      <div class="css-j0lifa ed9qr673" style="padding: 0;">
+        <input id="colIdx" type="hidden" name="colIdx" th:value="${myCollection.colIdx}">
+        <div>
+          <section class="section pt-24 container gutter-sm">
+            <h2 class="collection-top-title private" th:text="${myCollection.colTitle}">스시오마카세</h2>
+          </section>
+        </div>
+        <div style="display: flex">
+          <a class="btn btn-lg btn-outline full-width mb-8" style="width: 115px;"
+             th:href="@{'/mypage/collection/detail/'+${myCollection.colIdx}+'/modify'}">
+            <span>컬렉션 수정하기</span>
+          </a>
+          <button type="button" style="width: 115px;margin-left: 12px;" class="btn btn-lg btn-outline full-width mb-8" onclick="colDel()">
+            <span>컬렉션 삭제하기</span>
+          </button>
+          <a class="btn btn-lg btn-outline full-width mb-8" style="width: 115px;margin-left: 12px;" th:href="@{'/mypage/collection/saveList/'+${profile.prIdx}+'/'+${myCollection.colIdx()}}">
+            <span>레스토랑 추가하기</span>
+          </a>
+        </div>
+      </div>
+      <div class="my-list-detail-top" style="padding-left: 21px;">
+        <dl>
+          <dt><strong>[[${profile.prName}]]의 컬렉션</strong></dt>
+        </dl>
+        <p class="excerpt" th:text="${myCollection.colContent()}">스시가 맛있는 오마카세!</p>
+      </div>
+      <div class="saved-restaurant-list">
+        <div id="collection-detail-infinity-scroll" style="padding-left: 21px;">
+          <div id="collection-detail-infinity-scroll_0" ata-dummy="187" th:each="list: ${list}">
+            <div class="saved-restaurant-list-item">
+              <div class="restaurant-info">
+                  <th:block th:if="${list.bistroDetailDto.bistroInfoDto.photoDto.savedPath != null and list.bistroDetailDto.bistroInfoDto.photoDto.orgNm == null and list.bistroDetailDto.bistroInfoDto.photoDto.savedNm == null}">
+                    <a class="tb" th:href="'/shop/'+${list.resAdminDto.resaBisName}" >
+                      <img class="img" th:src="${list.bistroDetailDto.bistroInfoDto.photoDto.savedPath}" alt="">
+                    </a>
+                  </th:block>
+                  <th:block th:unless="${list.bistroDetailDto.bistroInfoDto.photoDto.savedPath != null and list.bistroDetailDto.bistroInfoDto.photoDto.orgNm == null and list.bistroDetailDto.bistroInfoDto.photoDto.savedNm == null}">
+                    <a class="tb" th:href="'/shop/'+${list.resAdminDto.resaBisName}">
+                      <img class="img" th:src="'/photo/'+${list.bistroDetailDto.bistroInfoDto.photoDto.savedNm}" alt="">
+                    </a>
+                  </th:block>
+                <a href="#" class="detail">
+                  <input type="hidden" id="saveIdx" name="saveIdx" th:value="${list.saveIdx}">
+                  <h4 class="name" th:text="${list.resAdminDto.resaBisName}">스시쿤 정자점</h4>
+                  <p class="excerpt" th:text="${list.bistroDetailDto.bistroInfoDto.bisDesc}">정자동 미들급 스시 오마카세 맛</p>
+                  <div class="restaurant-meta">
+                    <div class="rating">
+                      <span class="star">4.6</span>
+                      <span class="count">(572)</span>
+                    </div>
+                    <span class="tags">[[${list.bistroDetailDto.bistroInfoDto.bisCategory}]] • [[${list.bistroDetailDto.bistroInfoDto.bisRegion}]]</span>
+                    <span class="price">점심&nbsp;[[${list.bistroDetailDto.bistroInfoDto.bisLunch}]]&nbsp;저녁&nbsp;[[${list.bistroDetailDto.bistroInfoDto.bisDinner}]]</span>
+                  </div>
+                </a>
+                <button onclick="delColRes()" class="btn-bookmark active" style="margin-top: 37px;">북마크</button>
+              </div>
+              <div class="restaurant-meta mb-30"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:replace="fragment/footer :: footer"/>
+</div>
+<script src="/js/myCollection_mod.js"></script>
+<script src="/js/myCollection_del.js"></script>
+<script src="/js/myCollection_res_del.js"></script>
+</body>
+</html>

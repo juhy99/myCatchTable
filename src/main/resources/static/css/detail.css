@@ -1,0 +1,363 @@
+.restaurant-reservation-detail .cancel-msg p {
+    color: #666;
+    line-height: 20px;
+}
+
+.restaurant-reservation-detail .cancel-msg h6 {
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.restaurant-reservation-detail .cancel-msg {
+    margin-bottom: 14px;
+}
+
+.restaurant-reservation-detail .reservation-info+* {
+    margin-top: 20px;
+}
+.restaurant-reservation-detail hr {
+    margin: 15px 0;
+}
+
+hr.hairline {
+    height: 1px;
+}
+hr {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: #e8e8e8;
+}
+
+.restaurant-reservation-detail .reservation-info dl dd {
+    margin-left: auto;
+    font-weight: 700;
+    text-align: right;
+}
+.restaurant-reservation-detail .reservation-info dl dt {
+    color: #666;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.restaurant-reservation-detail .reservation-info dl {
+    display: flex;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.restaurant-reservation-detail .options>div {
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+}
+
+.restaurant-reservation-detail .options {
+    display: flex;
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    word-break: break-word;
+    line-height: normal;
+}
+
+.restaurant-reservation-detail .detail-box-header .type {
+    font-size: 13px;
+    color: #666;
+}
+
+.restaurant-reservation-detail .detail-box-header .name a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 30px;
+}
+
+.restaurant-reservation-detail .detail-box-header .name {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+.reservation-status span.cancel {
+    color: #ff3d00;
+    background-color: #ffebe5;
+}
+.reservation-status span {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 4px 12px;
+}
+
+.reservation-status {
+    margin-bottom: 12px;
+    font-size: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.restaurant-reservation-detail .detail-box-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.restaurant-reservation-detail .detail-box .box {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 14%), 0 0 3px 0 rgb(0 0 0 / 8%);
+    background-color: #fff;
+}
+
+.restaurant-reservation-detail .detail-box {
+    padding: 0 20px;
+}
+.p-10 {
+    padding: 10px!important;
+}
+
+.section.bg-gray {
+    background-color: #f1f1f1;
+}
+.section {
+    box-sizing: border-box;
+}
+.mb-30 {
+    margin-bottom: 30px!important;
+}
+.mb-30 {
+    margin-bottom: 30px!important;
+}
+.reservation-info-summary dl+dl {
+    margin-top: 15px;
+}
+.reservation-info-summary dl {
+    display: flex;
+    line-height: 23px;
+}
+.section .section-header-v {
+    display: block;
+}
+.section .section-header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.container.gutter-sm {
+    padding: 0 20px;
+}
+.container {
+    padding: 0 30px;
+}
+hr.separator {
+    height: 8px;
+    background-image: linear-gradient(to bottom,#e4e4e4,#f9f9f9 60%);
+    background: #f9f9f9;
+    background: #ececec!important;
+}
+.mt-30 {
+    margin-top: 30px!important;
+}
+.mb-30 {
+    margin-bottom: 30px!important;
+}
+.mt-30 {
+    margin-top: 30px!important;
+}
+.mb-30 {
+    margin-bottom: 30px!important;
+}
+.well p {
+    font-size: 14px;
+    line-height: 1.4285714286em;
+}
+.color-gray {
+    color: #666!important;
+}
+.font-12 {
+    font-size: 12px!important;
+}
+.well {
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    padding: 15px 20px;
+}
+.section .section-header .section-title.section-title-sm {
+    font-size: 18px;
+}
+.section .section-header .section-title {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0;
+    align-items: center;
+    display: flex;
+    letter-spacing: 0;
+    min-width: 1px;
+}
+.section .section-header-v {
+    display: block;
+}
+
+.section .section-header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.btn.full-width .label.arrow {
+    padding-right: 12px;
+}
+.btn.full-width .label {
+    position: relative;
+    display: block;
+}
+.btn.full-width {
+    width: 100%;
+    display: block;
+}
+.btn-lg, .btn-md {
+    line-height: 46px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 20px;
+    position: relative;
+    border: 1px solid #666;
+    border-radius: 6px;
+    background: #fff;
+}
+.btn {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: #000;
+}
+.btn-centered {
+    text-align: center;
+}
+.hLhZKP .addr .btn-copy {
+    font-weight: 500;
+    font-size: 12px;
+    text-decoration: underline;
+    color: rgb(102, 102, 102);
+    line-height: 16px;
+    display: flex;
+    margin-bottom: 8px;
+}
+.hLhZKP .addr p {
+    position: relative;
+    font-size: 16px;
+    line-height: 1.6;
+}
+.hLhZKP .addr {
+    padding: 20px 20px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.hLhZKP .map img {
+    display: block;
+    width: auto;
+}
+a {
+    color: #000;
+}
+a {
+    color: #000;
+    text-decoration: none;
+}
+.hLhZKP .addr {
+    padding: 20px 20px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.hLhZKP {
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    margin: 0px -20px 20px;
+}
+.hLhZKP .map .icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.hLhZKP .map {
+    position: relative;
+    background: rgb(204, 204, 204);
+    display: block;
+    height: 240px;
+}
+.desc-blocks .desc-block dl dd {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.color-gray {
+    color: #666!important;
+}
+.desc-blocks .desc-block dl dt {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.desc-blocks .desc-block:last-child {
+    margin-bottom: 0;
+}
+
+.desc-blocks .desc-block {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.restaurant-reservation-detail .options>div.people:before {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHZpZXdCb3g9IjAgMCA0NCA0NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0yOC44OTA0IDE2LjUwMDJDMjguODkwNCAyMC4zMDYzIDI1LjgwNDkgMjMuMzkxOCAyMS45OTg3IDIzLjM5MThDMTguMTkyNSAyMy4zOTE4IDE1LjEwNyAyMC4zMDYzIDE1LjEwNyAxNi41MDAyQzE1LjEwNyAxMi42OTQgMTguMTkyNSA5LjYwODUgMjEuOTk4NyA5LjYwODVDMjUuODA0OSA5LjYwODUgMjguODkwNCAxMi42OTQgMjguODkwNCAxNi41MDAyWiIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICAgIDxwYXRoIGQ9Ik03LjM1ODE0IDM1LjA3OTJDNy44MTE0OCAzMC4yNjA4IDExLjg2NzkgMjYuNDkwMyAxNi44MDQ5IDI2LjQ5MDNIMjcuMTkzOEMzMi4xMzA4IDI2LjQ5MDMgMzYuMTg3MiAzMC4yNjA4IDM2LjY0MDYgMzUuMDc5Mkg3LjM1ODE0WiIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KPC9zdmc+Cg==);
+}
+.restaurant-reservation-detail .options>div:before {
+    background: 50% 50% no-repeat;
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto 4px;
+    content: "";
+}
+
+.restaurant-reservation-detail .options>div.time:before {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHZpZXdCb3g9IjAgMCA0NCA0NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0zNi42ODI3IDIxLjk5OThDMzYuNjgyNyAzMC4xMDkyIDMwLjEwODcgMzYuNjgzMiAyMS45OTk0IDM2LjY4MzJDMTMuODkgMzYuNjgzMiA3LjMxNjAyIDMwLjEwOTIgNy4zMTYwMiAyMS45OTk4QzcuMzE2MDIgMTMuODkwNSAxMy44OSA3LjMxNjUgMjEuOTk5NCA3LjMxNjVDMzAuMTA4NyA3LjMxNjUgMzYuNjgyNyAxMy44OTA1IDM2LjY4MjcgMjEuOTk5OFoiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgICA8cGF0aCBkPSJNMjEuMDg0IDEyLjgzMzVWMjIuOTE2OEgzMS4xNjczIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=);
+}
+.restaurant-reservation-detail .options>div:before {
+    background: 50% 50% no-repeat;
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto 4px;
+    content: "";
+}
+
+.restaurant-reservation-detail .options>div.date:before {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHZpZXdCb3g9IjAgMCA0NCA0NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxyZWN0IHg9IjguMjMzOTgiIHk9IjEwLjU2ODkiIHdpZHRoPSIyNy41MzMzIiBoZWlnaHQ9IjI0LjczOTciIHJ4PSI1LjEiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgICA8cmVjdCB4PSI5LjE0Mjk3IiB5PSIxNy45ODE4IiB3aWR0aD0iMjUuNzE0NyIgaGVpZ2h0PSIwLjgyNSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIwLjgyNSIvPgogICAgPHJlY3QgeD0iMTUuNzIxMSIgeT0iNy4yODc1IiB3aWR0aD0iMC44MjUiIGhlaWdodD0iNi43ODMzMyIgcng9IjAuNDEyNSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIwLjgyNSIvPgogICAgPHJlY3QgeD0iMjcuNTk0MSIgeT0iNy4yODc1IiB3aWR0aD0iMC44MjUwMDIiIGhlaWdodD0iNi43ODMzMyIgcng9IjAuNDEyNTAxIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjAuODI1MDAyIi8+Cjwvc3ZnPgo=);
+}
+
+.restaurant-reservation-detail .options>div:before {
+    background: 50% 50% no-repeat;
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto 4px;
+    content: "";
+}
+

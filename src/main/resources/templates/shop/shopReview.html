@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="shortcut icon" href="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp/img/app/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('progress').each(function () {
+                var max = $(this).val();
+
+            });
+        });
+    </script>
+
+    <style>
+        body {
+            scrollbar-color: white;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow-x: hidden;
+        }
+
+        .header-wrap {
+            top: -6.5px;
+            right: 8px;
+        }
+
+        .page_nation {
+            display: flex;
+            justify-content: center;
+        }
+
+        .page_nation a {
+            display: block;
+            margin: 0 3px;
+            float: left;
+            border: 1px solid #e6e6e6;
+            width: 35px;
+            height: 35px;
+            line-height: 34px;
+            text-align: center;
+            background-color: #fff;
+            font-size: 18px;
+            color: #999999;
+            text-decoration: none;
+        }
+
+        .page_nation a.page-prev {
+            background: url("/images/icon.svg") no-repeat center center;
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            margin-left: 7px;
+            background-size: 10px;
+        }
+
+        .page_nation a.page-next {
+            background: url("/images/icon.svg") no-repeat center center;
+            margin-left: 7px;
+            background-size: 10px;
+        }
+
+        .active {
+            background-color: rgb(236 78 39) !important;
+            color: #fff !important;
+            border: 1px solid rgb(236 78 39) !important;
+        }
+
+        .page_nation a.page-disabled {
+            pointer-events: none;
+        }
+
+        select {
+            width: 100%;
+            height: 100%;
+            padding: 0 28px 0 10px;
+            font-size: 15px;
+            border: 0;
+            -webkit-appearance: none; /* for chrome */
+            -moz-appearance: none; /*for firefox*/
+            appearance: none;
+            box-sizing: border-box;
+            /*background:transparent!important;*/
+            appearance: none;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgxNlYxNkgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGM0QwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTYuMTM3IDQuNjYzTDkuODEgOC4zMzcgNi4xMzcgMTIuMDEiIHRyYW5zZm9ybT0icm90YXRlKDkwIDcuOTczIDguMzM3KSIvPgogICAgPC9nPgo8L3N2Zz4K') no-repeat right 10px center;
+        }
+
+        select::-ms-expand {
+            display: none; /*for IE10,11*/
+        }
+
+
+        a.btn-layerClose {
+            display: inline-block;
+            height: 25px;
+            padding: 10px 160px 10px 135px;
+            /* border: 1px solid rgb(198, 198, 198); */
+            /* background-color: #fff; */
+            font-size: 20px;
+            /* color: #000; */
+            background: #ff3d00;
+            border-color: #ff3d00;
+            color: #fff;
+            border-radius: 5px;
+            line-height: 25px;
+        }
+
+        .info-icon-div-1 {
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgxNlYxNkgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGM0QwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTYuMTM3IDQuNjYzTDkuODEgOC4zMzcgNi4xMzcgMTIuMDEiIHRyYW5zZm9ybT0icm90YXRlKDkwIDcuOTczIDguMzM3KSIvPgogICAgPC9nPgo8L3N2Zz4K') no-repeat right 10px center;
+            width: 90px;
+        }
+
+        .review_sort {
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            margin: 40px;
+        }
+
+        .pop-layer {
+            padding: 50px;
+        }
+
+        #btn_check {
+            position: fixed;
+            margin-left: 15px;
+        }
+
+        /*프로그래스 바*/
+        #skills {
+            width: 90%;
+        }
+
+        #skills span {
+            /*top: -30px;*/
+            /*left: 2%;*/
+            /*position: relative;*/
+            font-size: 12px;
+        }
+
+        progress {
+            background-color: gray;
+            border: 0;
+            height: 3px;
+            width: 93%;
+            margin: 8px;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: #f5f5f5;
+        }
+
+        progress::-webkit-progress-value {
+            background-color: #000;
+        }
+
+        progress::-moz-progress-bar {
+            background-color: red;
+        }
+
+        .right_bar {
+            color: #bfbfbf;
+        }
+
+        .modal.modal-overlay {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            z-index: 1;
+            position: fixed;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modal .modal-window {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            width: 300px;
+            height: 200px;
+            position: relative;
+            top: -100px;
+            padding: 10px;
+        }
+
+        .modal .title {
+            padding-left: 10px;
+            display: inline;
+            /*text-shadow: 1px 1px 2px gray;*/
+            color: black;
+        }
+
+        .modal .title h2 {
+            display: inline;
+        }
+
+        .modal .close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            /*text-shadow: 1px 1px 2px gray;*/
+            color: black;
+        }
+
+        .modal .content {
+            margin-top: 30px;
+            color: black;
+        }
+
+        .comment__review {
+            display: none;
+        }
+
+        .__block {
+            display: block;
+            overflow: hidden;
+            transition: height ease-out 1s 0s;
+        }
+
+        .__my-review-post .__photos .swiper-slide {
+            width: 255px;
+        }
+
+        .__my-review-post .__photos .swiper-slide img {
+            display: block;
+            width: 250px;
+            height: 235px;
+            object-fit: cover;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+<div id="root">
+    <header id="header1">
+        ㅎㄷㅎㄷ
+    </header>
+    <div class="wrapper" id="wrapperDiv">
+        <div class="wrapper">
+            <header id="header" class="opaque">
+                <div class="container">
+                    <div class="header-left-1">
+                        <h1 class="page-title" style="padding-right: 4px;" th:text="${resaBisName}">텍사스 데 브라질
+                            센트럴시티점</h1>
+                    </div>
+                </div>
+            </header>
+            <main id="main">
+                <section class="section mb-40">
+                    <div class="container gutter-sm">
+                        <div class="review-rating-summary review-rating-summary-splitview">
+                            <div class="average">
+                                <h5><span th:text="|${progress.revCnt()}개 리뷰 별점 평균|">183개 리뷰 별점 평균</span></h5>
+                                <div class="score" th:text="${progress.avgScore()}"><strong>4.5</strong></div>
+                            </div>
+
+                            <section id="skills">
+                                <p>
+                                    <span class="left_bar">5점</span>
+                                    <span class="bar"><progress th:value="${progress.score5()}"
+                                                                th:max="${progress.scoreSum()}"></progress></span>
+                                    <span class="right_bar" th:text="${progress.score5()}">55</span>
+                                </p>
+                                <p>
+                                    <span class="left_bar">4점</span>
+                                    <span class="bar"><progress th:value="${progress.score4()}"
+                                                                th:max="${progress.scoreSum()}"></progress></span>
+                                    <span class="right_bar" th:text="${progress.score4()}">55</span>
+                                </p>
+                                <p>
+                                    <span class="left_bar">3점</span>
+                                    <span class="bar"><progress th:value="${progress.score3()}"
+                                                                th:max="${progress.scoreSum()}"></progress></span>
+                                    <span class="right_bar" th:text="${progress.score3()}">55</span>
+                                </p>
+                                <p>
+                                    <span class="left_bar">2점</span>
+                                    <span class="bar"><progress th:value="${progress.score2()}"
+                                                                th:max="${progress.scoreSum()}"></progress></span>
+                                    <span class="right_bar" th:text="${progress.score2()}">55</span>
+                                </p>
+                                <p>
+                                    <span class="left_bar">1점</span>
+                                    <span class="bar"><progress th:value="${progress.score1()}"
+                                                                th:max="${progress.scoreSum()}"></progress></span>
+                                    <span class="right_bar" th:text="${progress.score1()}">55</span>
+                                </p>
+
+                            </section>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section mb-20">
+                    <div class="container gutter-sm">
+                        <div class="section-header">
+                            <div class="utils">
+                                <div class="info-icon-div-1">
+                                    <a href="#layer2" th:if="${filtername!=null}" id="btn-example" class="info-icon-div"
+                                       th:text="${filtername}">최근 등록순</a>
+                                    <a href="#layer2" th:unless="${filtername!=null}" id="btn-example"
+                                       class="info-icon-div">최근 등록순</a>
+                                </div>
+                                <div class="dim-layer">
+                                    <div class="dimBg"></div>
+                                    <div id="layer2" class="pop-layer">
+                                        <div class="pop-container">
+                                            <div class="pop-conts">
+                                                <div class="drawer-box">
+                                                    <div class="review_sort">
+                                                        <a th:href="|/shop/review/${resaBisName}?sort=regDate|"
+                                                           class="btn_recent">최근 등록순
+                                                            <img class="btn_recent" th:if="${sort=='regDate'}"
+                                                                 id="btn_check"
+                                                                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgyMFYyMEgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGM0QwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTMuNyA4TDguNyAxMyAxNi43IDUiLz4KICAgIDwvZz4KPC9zdmc+Cg==">
+                                                            <img class="btn_recent"
+                                                                 th:if="${sort!='regDate'&&sort!='revScoreGood'&&sort!='revScoreBad'}"
+                                                                 id="btn_check"
+                                                                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgyMFYyMEgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGM0QwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTMuNyA4TDguNyAxMyAxNi43IDUiLz4KICAgIDwvZz4KPC9zdmc+Cg==">
+                                                        </a>
+                                                    </div>
+                                                    <div class="review_sort">
+                                                        <a th:href="|/shop/review/${resaBisName}?sort=highScore|"
+                                                           class="btn_good">별점 높은순
+                                                            <img class="btn_good" th:if="${sort=='highScore'}"
+                                                                 id="btn_check"
+                                                                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgyMFYyMEgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGM0QwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTMuNyA4TDguNyAxMyAxNi43IDUiLz4KICAgIDwvZz4KPC9zdmc+Cg==">
+
+                                                        </a>
+                                                    </div>
+                                                    <div class="review_sort">
+                                                        <a th:href="|/shop/review/${resaBisName}?sort=lowScore|"
+                                                           class="btn_bad">별점 낮은순
+                                                            <img class="btn_bad" th:if="${sort=='lowScore'}"
+                                                                 id="btn_check"
+                                                                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgyMFYyMEgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGM0QwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTMuNyA4TDguNyAxMyAxNi43IDUiLz4KICAgIDwvZz4KPC9zdmc+Cg==">
+                                                        </a>
+                                                    </div>
+                                                    <div class="btn-r">
+                                                        <a href="" class="btn-layerClose"
+                                                           style="padding:  10px 140px 10px 140px;">확인</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <hr class="hairline full-width mb-0">
+                        <div class="__my-review-list ml--20 mr--20">
+                            <div id="shopReviewListScroll">
+                                <div id="shopReviewListScroll_0" data-dummy="495.6363830566406" style=""
+                                     th:each="review:${reviews}">
+                                    <article class="__my-review-post" style="overflow-x: hidden;">
+                                        <div class="__header" style="padding-right: 0;">
+                                            <div class="__user-info"><a class="profile">
+                                                <div class="profile-pic">
+                                                    <img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/noimg/profile_default_v2.png"
+                                                         alt="" class="img"></div>
+                                                <h4 class="name username"><span class="txt"
+                                                                                th:text="${review.profileDto().prNick()}">박건</span>
+                                                </h4>
+                                            </a></div>
+                                            <div class="__review-meta __review-meta--with-rating"><a href="#"
+                                                                                                     class="ebold __rating "
+                                                                                                     th:text="${review.revScore}">4.5
+                                                <i class="__arrow">
+                                                    <svg width="16"
+                                                         height="16" viewBox="0 0 16 16" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4.94 5.72667L8 8.78L11.06 5.72667L12 6.66667L8 10.6667L4 6.66667L4.94 5.72667Z"
+                                                              fill="black"></path>
+                                                    </svg>
+                                                </i></a>
+                                                <span class="__date"
+                                                      th:text="${#temporals.format(review.regDate, 'yyyy년 MM월 dd일')}">2022.12.15</span>
+                                            </div>
+                                        </div>
+                                        <div class="__body" style="position: relative; padding: 0px 16px;">
+                                            <div id="shopReviewCardImgList_1272868" class="v-scroll">
+                                                <div class="v-scroll-inner">
+                                                    <div id="shopReviewCardImgList_1272868" class="__photos"
+                                                         style="display: flex; flex-wrap: nowrap;">
+                                                        <div th:each="photo : ${review.photo}">
+                                                            <div class="swiper-slide"
+                                                                 style="margin-right: 8px;">
+                                                                <th:block
+                                                                        th:if="${photo.savedPath != null and photo.savedNm == null and photo.orgNm == null}">
+                                                                    <img th:src="${photo.savedPath}" alt="">
+                                                                </th:block>
+                                                                <th:block
+                                                                        th:unless="${photo.savedPath != null and photo.savedNm == null and photo.orgNm == null}">
+                                                                    <img th:src="'/photo/'+${photo.savedNm}" alt="">
+                                                                </th:block>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="__review-post">
+                                                <p class="review-content " th:text="${review.revContent}" style="white-space: pre-line;margin-top: 14px;"></p>
+                                            </div>
+                                            <div class="__d-flex __v-center" style="justify-content: space-between;">
+                                                <div class="__post-meta" style="margin-left: -15px;">
+                                                    <div th:class="'heart'+${review.revIdx}">
+                                                    </div>
+                                                    <div th:class="'comment'+${review.revIdx}">
+                                                    </div>
+                                                </div>
+                                                <div class="__review-meta"><a class="__more"
+                                                                              th:onclick="reportReview([[${review.revIdx}]], [[${review.resIdx}]], [[${review.isReview}]])">MORE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                                댓글 시작-->
+                                        <main id="main" th:class="comment__review"
+                                              th:id="'showCom'+${review.revIdx}"
+                                              style="margin-top: 15px;padding-bottom: 24px;">
+                                            <article class="timeline-post-item" id="timeline-posts">
+                                                <div class="__comments">
+                                                    <div class="container gutter-sm">
+                                                        <div class="__comment-list __comment-detail-list">
+                                                            <div>
+                                                                <article
+                                                                        th:class="'__comment-item comDiv'+${review.revIdx}"
+                                                                        style="padding: 16px 20px 0px;">
+
+                                                                </article>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                            <form class="__comment-form">
+                                                <div class="__box"><input type="text"
+                                                                          placeholder="리뷰에 따뜻한 댓글을 달아주세요."
+                                                                          name="content" th:class="'newContent'
+                                                                              +${review.revIdx}"
+                                                                          value=""
+                                                                          style="font-family: auto; min-width: 150px;margin-right: 28px;margin-left: 16px;">
+                                                    <button type="button"
+                                                            th:onclick="newCom([[${review.revIdx}]],[[${prIdx}]])">
+                                                        등록
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </main>
+                                        <!--                                                댓글 끝-->
+                                        <hr class="hairline">
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--페이징 처리-->
+                    <div class="page_wrap">
+                        <div class="page_nation" aria-label="Page navigation example" style="margin-top: 24px;">
+                            <a th:href="@{/shop/review/${resaBisName}(sort=${sort},page=${reviews.number - 1})}"
+                               th:class="'page-prev' + (${reviews.number} <= 0 ? ' page-disabled':'')"></a>
+                            <span th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}"
+                           th:href="@{/shop/review/${resaBisName}(sort=${sort},page=${pageNumber})}"
+                           th:class="(${pageNumber} == ${reviews.number} ? 'active' : '')">1</a></span>
+                            <a th:href="@{/shop/review/${resaBisName}(sort=${sort},page=${reviews.number + 1})}"
+                               th:class="'page-next' +
+                    (${reviews.number} >= ${reviews.totalPages - 1} ? ' page-disabled':'')"></a>
+                        </div>
+                    </div>
+                    <!--페이징 끝-->
+                </section>
+            </main>
+        </div>
+    </div>
+    <!--리뷰신고-->
+    <div th:each="review : ${reviews}">
+        <div th:class="'modal revs' +${review.revIdx} + ' modal-overlay'">
+            <div class="modal-window">
+                <div th:class="'close-area' + ' close'+${review.revIdx}" th:onclick="closeModal([[${review.revIdx}]])">X
+                </div>
+                <div class="content">
+                    <div class="drawer-box">
+                        <div class="drawer-box-header mb--20" style="padding: 0 20px 27px 0">
+                            <h2 th:class="'drawer-box-title ml-10 isRev'+${review.revIdx}" style="margin-bottom: 10px;">
+                                해당 리뷰를 신고하시겠습니까?
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="drawer-box-footer">
+                        <div class="btn-group">
+                            <button th:class="'btn btn-lg btn-red btn' + ${review.revIdx}" type="button"
+                                    style="width: 100%">
+                                신고하기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comReport">
+
+    </div>
+
+    <!--footer-->
+    <div th:replace="fragment/footer :: footer"/>
+    <!--/footer-->
+</div>
+</body>
+<script type="text/javascript" src="/js/script.js"></script>
+<script src="/js/reviewHeartComm.js"></script>
+<script src="/js/report.js"></script>
+</html>

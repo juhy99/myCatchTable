@@ -1,0 +1,1206 @@
+#root,
+body,
+html {
+    height: 100%;
+    width: 100%;
+}
+
+a, address, article, aside, b, body, center, code, dd, del, details, div, dl, dt, em, embed, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, label, li, mark, menu, nav, object, ol, p, pre, q, s, section, small, span, strong, sub, summary, table, tbody, td, th, thead, time, tr, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+* {
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -.05em;
+}
+
+body {
+    line-height: 1;
+}
+
+html {
+    font-family: "-apple-system",BlinkMacSystemFont,"Apple SD Gothic Neo",Inter,Lato,"Noto Sans KR","Spoqa Han Sans","Segoe UI",sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    word-break: keep-all;
+    -webkit-text-size-adjust: none;
+}
+
+.wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+    /* background: #fff; */
+    width: auto;
+    position: relative;
+    background: #fff;
+    min-height: 100%;
+    /* box-shadow: 0 0 20px rgb(0 0 0 / 5%); */
+}
+
+#header {
+    /* position: sticky; */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    opacity: 1;
+    visibility: visible;
+}
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section {
+    display: block;
+}
+
+#header .container {
+    margin: 0 auto;
+    max-width: 480px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    height: 48px;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #fff;
+    justify-content: center;
+}
+
+.container {
+    padding: 0 30px;
+}
+
+/* #header .header-left {
+    
+} */
+
+/* #header .header-left .btn-back {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTEuMzkzMSAxMC4yMTk3QzExLjY4NiA5LjkyNjc4IDEyLjE2MDkgOS45MjY3OCAxMi40NTM4IDEwLjIxOTdDMTIuNzQ2NyAxMC41MTI2IDEyLjc0NjcgMTAuOTg3NCAxMi40NTM4IDExLjI4MDNMOC41MzQwOSAxNS4ySDI1LjM0NjhDMjUuNzYxIDE1LjIgMjYuMDk2OCAxNS41MzU4IDI2LjA5NjggMTUuOTVDMjYuMDk2OCAxNi4zNjQyIDI1Ljc2MSAxNi43IDI1LjM0NjggMTYuN0g4LjU4NzIzTDEyLjQ1MzggMjAuNTY2NUMxMi43NDY3IDIwLjg1OTQgMTIuNzQ2NyAyMS4zMzQzIDEyLjQ1MzggMjEuNjI3MkMxMi4xNjA5IDIxLjkyMDEgMTEuNjg2IDIxLjkyMDEgMTEuMzkzMSAyMS42MjcyTDYuMjE5NjcgMTYuNDUzOEM1LjkyNjc4IDE2LjE2MDkgNS45MjY3OCAxNS42ODYgNi4yMTk2NyAxNS4zOTMxTDExLjM5MzEgMTAuMjE5N1oiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=) 50% 50% no-repeat;
+    width: 32px;
+    height: 32px;
+    display: block;
+    text-indent: -999em;
+    overflow: hidden;
+    margin-right: 6px;
+    flex: none;
+} */
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    background: 0 0;
+    color: #000;
+}
+
+#header .header-left .page-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 2px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    display: flex;
+    align-items: center;
+}
+
+.css-rb0i47 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgb(51, 51, 51);
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    line-height: 17px;
+    text-align: right;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    word-break: break-word;
+    line-height: normal;
+}
+
+#main {
+    padding-bottom: 48px;
+}
+
+.section {
+    box-sizing: border-box;
+}
+
+.container.gutter-sm {
+    padding: 0 20px;
+}
+
+.mb-32 {
+    margin-bottom: 32px!important;
+}
+
+.css-1pjgd36 {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+
+
+
+
+
+.form-block .form-block-header {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.form-block .form-block-header .form-block-title {
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 500;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.color-red {
+    color: #ff3d00!important;
+}
+
+.section .confirm-box .__select-textarea textarea, .section .form-input {
+    padding: 12px;
+}
+
+.form-input {
+    background: #f9f9f9;
+    font-size: 14px;
+    border-radius: 8px;
+    display: block;
+    width: 100%;
+    padding: 16px;
+    line-height: 21px;
+}
+
+input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: #000;
+    margin: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 0;
+    font-weight: 500;
+    letter-spacing: -.05em;
+}
+
+.mt-10 {
+    margin-top: 10px!important;
+}
+
+.font-12 {
+    font-size: 12px!important;
+}
+
+.color-gray {
+    color: #666!important;
+}
+
+.form-block .form-block-header .__q {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjExLjUiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNFOEU4RTgiLz4KICAgIDxwYXRoIGQ9Ik0xMS4wMTExIDE0LjYwNjlDMTEuMDExMSAxMy45MTY5IDExLjA4NjYgMTMuMzY3NCAxMS4yMzc1IDEyLjk1ODNDMTEuMzg4NSAxMi41NDkzIDExLjY2MzcgMTIuMTQ3NiAxMi4wNjMzIDExLjc1MzRDMTIuNDY3MyAxMS4zNTQyIDEyLjczNTggMTEuMDMxNCAxMi44NjkgMTAuNzg0OUMxMy4wMDIyIDEwLjUzMzYgMTMuMDY4OCAxMC4yNjk5IDEzLjA2ODggOS45OTM5NUMxMy4wNjg4IDkuMTYxMDcgMTIuNzIyNSA4Ljc0NDYyIDEyLjAzIDguNzQ0NjJDMTEuNzAxNCA4Ljc0NDYyIDExLjQzNzMgOC44NTc5NyAxMS4yMzc1IDkuMDg0NjhDMTEuMDQyMiA5LjMwNjQ1IDEwLjk0MDEgOS42MTQ0NyAxMC45MzEyIDEwLjAwODdIOUM5LjAwODg4IDkuMDY3NDMgOS4yODE5MSA4LjMzMDY1IDkuODE5MDkgNy43OTgzOUMxMC4zNjA3IDcuMjY2MTMgMTEuMDk3NyA3IDEyLjAzIDdDMTIuOTcxMSA3IDEzLjcwMTQgNy4yNTM4MSAxNC4yMjA5IDcuNzYxNDJDMTQuNzQwMyA4LjI2NDExIDE1IDguOTc2MjUgMTUgOS44OTc4NUMxNSAxMC4zMTY4IDE0LjkxNTYgMTAuNzEzNSAxNC43NDY5IDExLjA4OEMxNC41NzgyIDExLjQ1NzcgMTQuMjgzIDExLjg2OTIgMTMuODYxMyAxMi4zMjI2TDEzLjMyMTkgMTIuODkxOEMxMi45ODQ1IDEzLjI1MTYgMTIuNzkxMyAxMy42NzI5IDEyLjc0MjUgMTQuMTU1OUwxMi43MTU5IDE0LjYwNjlIMTEuMDExMVpNMTAuODE4IDE2Ljg3NjNDMTAuODE4IDE2LjU0NjEgMTAuOTE3OSAxNi4yNzUxIDExLjExNzYgMTYuMDYzMkMxMS4zMjE5IDE1Ljg0NjMgMTEuNTgxNiAxNS43Mzc5IDExLjg5NjggMTUuNzM3OUMxMi4yMTIgMTUuNzM3OSAxMi40Njk1IDE1Ljg0NjMgMTIuNjY5MyAxNi4wNjMyQzEyLjg3MzUgMTYuMjc1MSAxMi45NzU2IDE2LjU0NjEgMTIuOTc1NiAxNi44NzYzQzEyLjk3NTYgMTcuMjAxNiAxMi44NzU3IDE3LjQ3MDIgMTIuNjc1OSAxNy42ODIxQzEyLjQ4MDYgMTcuODk0IDEyLjIyMDkgMTggMTEuODk2OCAxOEMxMS41NzI3IDE4IDExLjMxMDggMTcuODk0IDExLjExMSAxNy42ODIxQzEwLjkxNTYgMTcuNDcwMiAxMC44MTggMTcuMjAxNiAxMC44MTggMTYuODc2M1oiIGZpbGw9IiM2NjY2NjYiLz4KPC9zdmc+Cg==) 50% 50% no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    text-indent: -999em;
+    overflow: hidden;
+    display: block;
+}
+
+.ml-10 {
+    margin-left: 10px!important;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a {
+    color: #000;
+}
+
+.mb-10 {
+    margin-bottom: 10px!important;
+}
+
+.input-control-with-btn {
+    display: flex;
+}
+
+.input-control-with-btn input {
+    flex: 1;
+}
+
+.btn.full-width {
+    width: 100%;
+    display: block;
+}
+
+.btn-lg.btn-red, .btn-md.btn-red {
+    background: #ff3d00;
+    border-color: #ff3d00;
+    color: #fff;
+}
+
+.btn-lg.disabled, .btn-lg[disabled], .btn-md.disabled, .btn-md[disabled] {
+    color: #c8c8c8;
+    background: #f1f1f1;
+    border-color: #f1f1f1;
+}
+
+.input-control-with-btn button {
+    margin-left: 8px;
+}
+
+.btn {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: #000;
+}
+
+.btn-lg, .btn-md {
+    line-height: 46px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 20px;
+    position: relative;
+    border: 1px solid #666;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.pl-0 {
+    padding-left: 0!important;
+}
+
+.pr-0 {
+    padding-right: 0!important;
+}
+
+.w-104 {
+    width: 104px!important;
+    max-width: 104px!important;
+}
+
+.input-control {
+    position: relative;
+}
+
+input[type=password] {
+    font-family: inherit;
+}
+
+element.style {
+    color: rgb(102, 102, 102);
+}
+
+/* .mb-20 {
+    margin-bottom: 20px!important;      연동하기 삭제
+} */
+
+.label-checkbox {
+    display: flex;
+    position: relative;
+}
+
+.form-checkbox {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    display: inline-block;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuMTUiIHJ4PSI2Ii8+CiAgICAgICAgPHBhdGggc3Ryb2tlPSIjRkZGIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMS41IiBkPSJNNSA5LjgwM0w4LjQ3NiAxMyAxNSA3Ii8+CiAgICA8L2c+Cjwvc3ZnPgo=) 50% 50% no-repeat;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+}
+
+.label-checkbox .label.strong {
+    word-break: break-all;
+    color: #000;
+}
+
+.label-checkbox .label {
+    display: block;
+    margin-left: 8px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* .section.bg-gray {
+    background-color: #f1f1f1;      예약 연동
+} */
+
+/* .pb-30 {
+    padding-bottom: 30px!important; 예약 연동
+}
+
+.pt-30 {
+    padding-top: 30px!important;
+} */
+
+/* .font-10 {
+    font-size: 10px!important;      예약 연동
+} */
+
+/* .plain-txt {
+    line-height: 1.5714285714em!important; 예약 연동
+} */
+
+ol, ul {
+    list-style: none;
+}
+
+ul.list li {
+    display: flex;
+}
+
+/* .mb-5 {
+    margin-bottom: 5px!important;   예약 연동
+} */
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+ul.list li:before {
+    content: "·";
+    width: 0.7em;
+    min-width: 0.7em;
+}
+
+.font-15 {
+    font-size: 15px!important;
+}
+
+.ebold {
+    font-weight: 700!important;
+}
+
+.label-checkbox .label:after {
+    position: absolute;
+    content: "";
+    background: rgba(0,0,0,0);
+    top: -8px;
+    left: -6px;
+    right: -6px;
+    bottom: -8px;
+}
+
+.container.gutter-sm hr.hairline.compact {
+    margin-right: 0;
+}
+
+.container.gutter-sm hr.hairline {
+    margin-right: -20px;
+}
+
+.container hr.hairline.compact {
+    margin-right: 0;
+}
+
+.container hr.hairline {
+    margin-right: -30px;
+}
+
+hr.hairline {
+    height: 1px;
+}
+
+.mt-15 {
+    margin-top: 15px!important;
+}
+
+.mb-15 {
+    margin-bottom: 15px!important;
+}
+
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
+
+hr {
+    border: 0;
+    /* margin: 0; */
+    padding: 0;
+    background: #e8e8e8;
+}
+
+.label-checkbox-with-btn {
+    display: flex;
+    align-items: center;
+}
+
+.font-14 {
+    font-size: 14px!important;
+}
+
+.label-checkbox-with-btn a.__view {
+    display: block;
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik05IDZMMTYgMTJMOSAxOCIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K) 50% 50% no-repeat;
+    width: 24px;
+    height: 24px;
+    text-indent: -999em;
+    overflow: hidden;
+}
+
+.label-checkbox-with-btn a {
+    margin-left: auto;
+    position: relative;
+}
+
+.checkbox-inline-group.a-center {
+    justify-content: center;
+}
+
+.checkbox-inline-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: -15px;
+}
+
+.checkbox-inline-group .label-checkbox:last-child {
+    margin-right: 0;
+}
+
+.checkbox-inline-group.a-center .label-checkbox {
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.checkbox-inline-group .label-checkbox {
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.checkbox-inline-group .label-checkbox .label {
+    color: #000;
+    margin-left: 5px;
+}
+
+.mt-40 {
+    margin-top: 40px!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+html {
+    font-family: "-apple-system", BlinkMacSystemFont, "Apple SD Gothic Neo", Inter, Lato, "Noto Sans KR", "Spoqa Han Sans", "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    word-break: keep-all;
+    -webkit-text-size-adjust: none;
+}
+
+#main {
+    padding-bottom: 48px;
+}
+
+element.style {
+    padding-top: 9px;
+}
+
+/* 위치 */
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+/*
+h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+}
+
+button:disabled {
+    background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3));
+    color: -internal-light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
+    border-color: -internal-light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));
+}
+
+h4 {
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 회원가입(컬리 ver.) */
+.css-o5dw7d {
+    margin-top: 55px;       /* 추가 */
+    margin-bottom: 50px;
+    font-size: 28px;
+    line-height: 35px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -1px;
+    color: rgb(51, 51, 51);
+}
+
+*, :after, :before, legend, td, th {
+    padding: 0;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+    /* margin: 0; */
+}
+
+body {
+    margin: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #fff;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body, button, input, select, textarea {
+    font-size: 14px;
+    color: #333;
+}
+
+html {
+    line-height: 1.15;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    touch-action: manipulation;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+html, button, input, select, textarea {
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+}
+
+.css-mhmtvt {
+    width: 640px;
+    margin: 0px auto;
+}
+
+.css-rb0i47 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgb(51, 51, 51);
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    line-height: 17px;
+    text-align: right;
+}
+
+.css-qq9ke6 {
+    /* color: rgb(238, 106, 123); */
+    color: #ff3d00;
+}
+
+.css-y8aj3r {
+    padding: 0px;
+}
+
+.css-1pjgd36 {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.css-1y8737n {
+    width: 139px;
+    padding-top: 12px;
+}
+
+.form-block .form-block-header .form-block-title {
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 500;
+}
+
+.css-1obgjqh {
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+    line-height: 20px;
+}
+
+.css-82a6rk {
+    flex: 1 1 0%;
+}
+
+.css-jmalg {
+    padding-bottom: 0px;
+}
+
+.css-176lya2 {
+    position: relative;
+    height: 48px;
+}
+
+.css-176lya2.password-block{
+    margin-bottom: -20px;
+}
+
+.under-name-block{
+    margin-bottom: -5px;
+}
+
+.css-1bkd15f {
+    width: 100%;
+    height: 46px;
+    padding: 0px 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.css-1w0ksfz {
+    width: 120px;
+    margin-left: 8px;
+}
+
+.css-1w0ksfz > button {
+    height: 44px;
+    border-radius: 3px;
+}
+/* display: block;
+padding: 0px 10px;
+text-align: center;
+overflow: hidden;
+width: 100%;
+height: 52px;
+border-radius: 3px;
+color: rgb(95, 0, 128);
+background-color: rgb(255, 255, 255);
+border: 1px solid rgb(95, 0, 128); */
+.css-ufulao {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 52px;
+    border-radius: 3px;
+    color: white;
+    background-color: #ff3d00;    
+    border-color: #ff3d00;
+    color: #ff3d00;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ff3d00;
+}
+
+.css-1w0ksfz > button > span {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.css-ymwvow {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+button, select {
+    text-transform: none;
+}
+
+button[disabled], input[disabled] {
+    cursor: default;
+    border-color: rgb(221, 221, 221);
+    color: rgb(221, 221, 221);
+}
+
+button[disabled].css-18m884r {
+    color: white
+}
+
+.css-14wodj6 {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.css-z9g6s0 {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 12px 0px 9px;
+}
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+/* radio 버튼 사라지는 원인 */
+/* .css-1pes2r6 {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(0px, 0px, 0px, 0px);
+} */
+
+.css-14wodj6 > label > span {
+    font-size: 14px;
+}
+
+.css-198i9ca {
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid rgb(221, 221, 221);
+}
+
+.css-1dahn5m {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.css-mgd87h {
+    position: relative;
+    font-size: 16px;
+    margin-left: 12px;
+}
+
+/* 임시차단 */
+/* .css-5xw1m2 {
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    background-color: #ff3d00;
+} */
+
+/* radio 버튼 */
+[type=radio]{
+    vertical-align: middle;
+    appearance: none;
+    border: max(2px, 0.1em) solid rgb(221, 221, 221);
+    border-radius: 50%;
+    width: 1.25em;
+    height: 1.25em;
+    transition: border 0.5s ease-in-out;
+}
+
+/* radio 버튼 */
+[type="radio"]:checked {
+    /* min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    background-color: #ff3d00; */
+
+    /* border: 0.4em solid tomato; */
+    border: 0.4em solid #ff3d00;
+}
+
+
+
+/* 이용약관 버튼 */
+/* input[type="checkbox"] {
+    display:none;
+} */
+
+/* 살릴 것 */
+input[type="checkbox"] {
+    vertical-align: middle;
+    appearance: none;
+    border: max(2px, 0.1em) solid rgb(221, 221, 221);
+    border-radius: 50%;
+    width: 1.25em;
+    height: 1.25em;
+    transition: border 0.5s ease-in-out;
+}
+
+input[type="checkbox"] + label span.css-0 {
+    overflow: hidden;
+    position: absolute;
+    font-size: 0;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+/* 살릴 것 */
+input[type="checkbox"]:checked {
+    border: 0.4em solid #ff3d00;
+}
+
+/* 살릴 것 */
+input[type="checkbox"].active {
+    border: 0.4em solid #ff3d00;
+}
+
+/* input[type="checkbox"]:checked + label span.css-0 {
+    background: url('../images/checkbox_round_orange.png') no-repeat;
+} */
+
+span.TermsLining {
+    padding-left: 15px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.css-termsalign {
+    display: flex;
+    align-items: center;
+}
+
+.css-1vic0rk {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: white;
+}
+
+.css-18n8lnw {
+    height: 44px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 3px;
+    padding: 0px 15px;
+}
+
+.css-1dkwuq4 {
+    padding-bottom: 0px;
+}
+
+.css-xsmgyi {
+    position: relative;
+    height: 40px;
+}
+
+.css-1dkwuq4 input {
+    text-align: center;
+    font-size: 14px;
+    border: none;
+}
+
+.css-1368454 {
+    width: 100%;
+    height: 40px;
+    padding: 0px 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 38px;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.css-5lnvt6 {
+    height: 100%;
+}
+
+.css-1eo0fey {
+    padding: 10px 0px;
+    border-bottom: 1px solid rgb(51, 51, 51);
+}
+
+.css-2yzr8b {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 0px 10px 20px;
+}
+
+.css-ov2xfu:first-of-type {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 12px;
+}
+
+.css-ov2xfu {
+    display: flex;
+    padding: 8px 0px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.css-qihf5m {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    vertical-align: top;
+    line-height: normal;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+
+
+/* .css-agvwxo {
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0px, 0px, 0px, 0px);
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+} */
+
+
+
+.css-1wfsi82 {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
+
+img, legend {
+    border: 0;
+    vertical-align: top;
+}
+
+.css-nygcgj {
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    padding-top: 4px;
+    padding-left: 36px;
+}
+
+.css-s5xdrg {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.css-18r9a6u {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    vertical-align: top;
+    line-height: normal;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    font-size: 14px;
+}
+
+canvas, img, video {
+    max-width: 100%;
+}
+
+.css-g5xq45 {
+    padding-left: 5px;
+    color: rgb(153, 153, 153);
+}
+
+.css-7chi73 {
+    padding-right: 22px;
+    padding-bottom: 1px;
+    color: #ff3d00;
+    letter-spacing: 0px;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+.css-ob6kg2 {
+    display: flex;
+    padding: 8px 0px;
+    flex-direction: column;
+}
+
+.css-1qsjbts {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 24px;
+}
+
+.css-jllwfz {
+    padding: 14px 50px 9px 0px; /* padding: 14px 80px 9px 0px; */
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    vertical-align: top;
+    line-height: normal;
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    bottom: 3px;
+}
+
+.css-e4ph5f {
+    margin-left: 36px;
+    padding-left: 16px;
+    background: url(https://res.kurly.com/pc/service/common/2006/ico_sub_dot.svg) 0px 0px / 16px 20px no-repeat;
+    font-size: 12px;
+    color: #ff3d00;
+    line-height: 18px;
+    letter-spacing: -0.5px;
+}
+
+.css-137ca2h {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-top: 1px solid rgb(247, 247, 247);
+    padding: 40px 0px;
+}
+
+.css-18m884r {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 240px;
+    height: 56px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: #ff3d00;
+    border: 0px none;
+}

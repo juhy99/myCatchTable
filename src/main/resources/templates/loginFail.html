@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <link rel="stylesheet" href="/css/login_tel.css">
+    <link rel="stylesheet" href="/images/kakao_button.svg">
+    <link rel="stylesheet" href="/images/kakao_button_gainsboro.svg">
+</head>
+<body>
+<div id="root">
+    <!--header 시작-->
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!--header 끝-->
+    <div class="wrapper">
+        <main id="main">
+            <form method="post" id="frm" action="/loginOk" class="container">
+                <section class="signin-wrapper" style="height: auto;">
+                    <div class="__inner">
+                        <div class="css-o5dw7d">
+                            로그인
+                        </div>
+                        <div class="input-control mb-30">
+                            <input type="text" class="form-input form-input-underline" id="prHp" name="prHp"
+                                   placeholder="휴대폰 번호 or 닉네임" autocomplete="off" value="">
+                        </div>
+                        <div class="input-control mb-30">
+                            <input type="password" id="prUserpw" name="prUserpw" class="form-input form-input-underline"
+                                   placeholder="비밀번호" autocomplete="off" value="">
+                            <button type="button" class="hide-password ">패스워드보이기</button>
+                        </div>
+                        <div id="signin-extra-block" style="display: flex; justify-content: space-between;">
+                            <div class="signin-extra mt-35 mb-35">
+                                <p style="color: red; margin-top: -36px;" >아이디 혹은 비밀번호를 확인하세요</p>
+                            </div>
+                            <div style="display: flex;">
+                                <div class="signin-extra mt-35 mb-35" >
+                                    <a href="join" class="color-gray underline">회원가입</a>
+                                </div>
+                                <div class="signin-extra mt-35 mb-35">
+                                    <a href="/findPassword" class="color-gray underline">비밀번호 찾기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="sticky-bottom-btns pb-68 display-none-with-aos-keyboard login-btn">
+                    <a id="loginBtn" class="btn btn-lg btn-red full-width login-btn">
+                        <strong class="bold">로그인</strong>
+                    </a>
+                </div>
+            </form>
+            <!--            <div class="sticky-bottom-btns pb-68 display-none-with-aos-keyboard kakao-btn">-->
+            <!--                <button id="kakao-btn" class="btn btn-lg btn-yellow full-width kakao-btn">-->
+            <!--                    <strong class="bold kakao-btn"><img id="kakao-balloon"-->
+            <!--                                                        src="https://catchtable.co.kr/web-static/static_webapp_v2/img/login/kakao_button.svg"-->
+            <!--                                                        alt="">카카오로 시작하기</strong>-->
+            <!--                </button>-->
+            <!--            </div>-->
+        </main>
+    </div>
+    <!-- footer 시작 -->
+    <div th:replace="fragment/footer :: footer"/>
+    <!-- footer 끝 -->
+</div>
+<script src="/js/login.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/collection_detail.css">
+
+<body class="disable-user-select">
+<div id="root">
+    <!-- header 시작 -->
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!-- header 끝 -->
+    <div style="background-color : #FEF7EA;">
+        <a href="#" class="__banner">
+            <img src="/images//mydining_banner.png"
+                 style="display: block; width: 100%; box-shadow: 0 0 20px rgb(0 0 0 / 5%); margin-bottom: 34px;">
+        </a>
+    </div>
+    <div class="wrapper">
+        <main id="main">
+            <div class="mb-30">
+            </div>
+            <section class="section mb-30">
+                <div class="container gutter-sm">
+                    <div class="tag-radio-group mt--10">
+                        <label><input type="radio" name="type" value=""><span class="label">빈자리 알림</span></label>
+                        <label><input type="radio" name="type" value="" checked=""><span class="label">예약 오픈 알림</span></label>
+                        <label><input type="radio" name="type" value=""><span class="label">내 알림</span></label>
+                    </div>
+                </div>
+                <div class="container gutter-sm mt-24">
+                    <div class="section-header">
+                        <h3 class="section-title section-title-sm">총 1건</h3>
+                        <div class="utils"><a href="#" class="btn-sort desc">예약일자</a></div>
+                    </div>
+                    <div class="section-body">
+                        <div class="my-dining-list">
+                            <div class="section-body">
+                                <div class="mypage-reservation-list">
+                                    <div class="my-dining-list">
+                                        <div id="myReservationDoneListScroll">
+                                            <div th:replace="fragment/mydining_content :: mydining_content"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <!-- footer 시작 -->
+    <div th:replace="fragment/footer :: footer"/>
+    <!-- footer 끝 -->
+</div>
+</body>
+</html>

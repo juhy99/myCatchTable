@@ -1,0 +1,55 @@
+<!-- 식당 메뉴 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${resaBisName}"></title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/st_menu.css">
+</head>
+<style>
+    .headerCategory {
+        padding: 17px 0;
+    }
+</style>
+<body>
+<!--header-->
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+<!--/header-->
+<div id="root">
+    <div class="wrapper">
+        <main id="main">
+            <div class="menu-content shadow" >
+                <div class="menu-header">
+                    <h1 class="page-title" th:text = "${resaBisName}">텍사스 데 브라질 센트럴시티점</h1>
+                </div>
+                <h3 class="menu">메뉴</h3>
+                <hr class="menu-hr">
+                <div class="menu-list" th:each = "menus : ${menu}">
+                    <div class="menu-info">
+                        <div class="menu-info-main" >
+                            <!-- <img class="menu-img" src="./image/example.jpg"> -->
+                            <h4 class="menu-name" th:text = "${menus.meName()}"><strong>평일_런치</strong></h4>
+                        </div>
+                        <span class="price" th:text =  "${menus.mePrice()}">53,000원</span>
+                    </div>
+                </div>
+                    <div class="container gutter-sm pt-20 mb-30">
+                        <p class="font-12 mb-6">* 메뉴와 가격은 레스토랑 사정에 따라 달라질 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+<!--footer-->
+<div th:replace="fragment/footer :: footer"/>
+<!--/footer-->
+</div>
+</body>
+<!-- * -->
+<script src="/js/header.js"></script>
+</html>

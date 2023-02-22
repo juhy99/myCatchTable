@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+    body {
+        scrollbar-color: white;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        overflow-x: hidden;
+    }
+    .header-wrap {
+        top: -6.5px;
+        right: 8px;
+    }
+</style>
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!--    <div th:replace="fragment/timeline_header :: timeline_header"/>-->
+    <div class="css-luwwab eug5r8l1">
+        <div class="css-833hqy ecbxmj4">
+            <div class="css-1v4whg ecbxmj3">컬렉션</div>
+            <div th:replace="fragment/timeline-aside :: timeline-aside"/>
+        </div>
+        <div class="css-171zbec eug5r8l0">
+            <div class="css-j0lifa ed9qr673">
+                <div class="css-fhxb3m ed9qr672">
+                    <h2 class="css-1268zpe ed9qr671">[[${prNick}]]님의 컬렉션 보기</h2>
+                </div>
+            </div>
+
+            <main id="main">
+                <div class="wrapper" id="profileReviewListScroll">
+                    <main id="main">
+                        <section class="section section-overflow-hidden">
+                        </section>
+                        <section class="section container gutter-sm">
+                            <div class="section-header mt-24" style="justify-content: space-between;">
+                                <h3 class="section-title font-16">컬렉션
+                                    <span th:text="${#lists.size(collections)}" class="count"></span>
+                                </h3>
+                            </div>
+                            <div style="display: flex;flex-wrap: wrap;">
+                                <div class="__mypage-collection-list" th:each="collection : ${collections}"
+                                     style="margin-right: 25px;margin-bottom: 20px;">
+                                    <div class="collection-list-item-sm" style="display: block;width: 233px;">
+                                        <div class="collection-slides-sm" style="display: block">
+                                            <div class="collection-list-item-sm">
+                                                <a th:href="'/timeline/collection/'+${timelineIdx}+'/detail/'+${collection.colIdx}">
+                                                    <div class="collection-list-item-in">
+                                                        <img class="img"
+                                                             src="https://d1il53drs2cmia.cloudfront.net/resources/img/noimg/noimgv2.jpg"
+                                                             alt="">
+                                                        <div class="__meta">
+                                                            <h4 class="__title">
+                                                                <strong th:text="${prNick}">나</strong>의 컬렉션
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="collection__meta">
+                                                        <h4 class="__title" th:text="${collection.colTitle}">
+                                                            스시오마카세!
+                                                        </h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <th:block th:if="${collections.isEmpty()}">
+                                <div class="collection-slides-sm">
+                                    <div class="nodata font-16 mb-36">공개된 컬렉션이 없습니다.</div>
+                                </div>
+                            </th:block>
+
+
+                        </section>
+                    </main>
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+<script type="text/javascript" src="/js/script.js"></script>
+</html>

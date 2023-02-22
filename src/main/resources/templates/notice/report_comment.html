@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/collection_detail.css" />
+    <link rel="stylesheet" href="/css/notice.css">
+</head>
+<style>
+    .headerCategory {
+        padding: 6px 0;
+    }
+</style>
+<body class="disable-user-select">
+
+<div id="root">
+    <!-- header 시작 -->
+    <header id="header1">
+        ㅎㄷㅎㄷ
+    </header>
+    <!-- header 끝 -->
+    <div class="wrapper">
+        <div class="css-2b29tl eug5r8l2">
+            <div class="css-luwwab eug5r8l1">
+                <div class="css-833hqy ecbxmj4">
+                    <div class="css-1v4whg ecbxmj3">공지사항</div>
+                    <!-- aside 시작 -->
+                    <div th:replace="fragment/notice_aside :: notice_aside"/>
+                    <!-- aside 끝 -->
+                </div>
+                <div class="css-171zbec eug5r8l0">
+                    <div class="css-j0lifa ed9qr673">
+                        <div class="css-fhxb3m ed9qr672">
+                            <h2 class="css-1268zpe ed9qr671">댓글 신고</h2>
+                            <!-- <span class="css-a3vgo2 ed9qr670">캐치 테이블의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span> -->
+                        </div>
+                    </div>
+                    <header id="header" class="opaque_1">
+                        <div class="header-right">
+                    </header>
+                    <form action="/report/comment" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="decNick" th:value="${comment.getProfile().getPrNick()}"/>
+                    <input type="hidden" name="comIdx" th:value="${comment.getComIdx()}">
+                    <input type="hidden" name="revIdx" th:value="${comment.getReview().getRevIdx()}">
+                    <input type="hidden" name="prIdx" th:value="${prIdx}"/>
+                        <main id="main">
+                        <section class="section pt-20">
+                            <div class="container gutter-sm">
+                                <div class="form-block mb-15">
+                                    <br>
+                                    <h3 class="form-block-title font-16 mb-10 bold">
+                                        수정 항목
+                                    </h3>
+                                    <div class="form-block-body">
+                                        <div class="checkbox-group">
+                                            <label class="label-checkbox">
+                                                <input type="checkbox" class="form-checkbox" name="decTitle" value="신뢰하기 어려운 홍보성 댓글">
+                                                <span class="label strong">신뢰하기 어려운 홍보성 댓글</span>
+                                            </label>
+                                            <label class="label-checkbox">
+                                                <input type="checkbox" class="form-checkbox" name="decTitle" value="음란성,욕설 등 부적절한 내용">
+                                                <span class="label strong">음란성,욕설 등 부적절한 내용</span>
+                                            </label>
+                                            <label class="label-checkbox">
+                                                <input type="checkbox" class="form-checkbox" name="decTitle" value="허위사실 또는 비방이 포함">
+                                                <span class="label strong">허위사실 또는 비방이 포함</span>
+                                            </label>
+                                            <label class="label-checkbox">
+                                                <input type="checkbox" class="form-checkbox" name="decTitle" value="저작권 침해 혹은 개인정보 유출">
+                                                <span class="label strong">저작권 침해 혹은 개인정보 유출</span>
+                                            </label>
+                                            <label class="label-checkbox">
+                                                <input type="checkbox" class="form-checkbox" name="decTitle" value="리뷰와 관계없는 댓글">
+                                                <span class="label strong">리뷰와 관계없는 댓글</span>
+                                            </label>
+                                            <label class="label-checkbox">
+                                                <input type="checkbox" class="form-checkbox" name="decTitle" value="기타 (상세 내용으로 작성해주세요)">
+                                                <span class="label strong">기타 (상세 내용으로 작성해주세요)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-block mb-15">
+                                    <div class="form-block-header">
+                                        <h3 class="form-block-title">상세 내용</h3>
+                                    </div>
+                                    <div class="form-block-body">
+                                                <textarea rows="8" class="form-input autogrow" name="decContent"
+                                                          placeholder="타당한 사유가 없는 허위 신고 시 이용에 제한이 가해질 수 있으므로, 신중하게 제보해 주세요. 신고된 내용은 7일 이내의 검수과정을 거친 후 적용됩니다."></textarea>
+                                    </div>
+                                </div>
+                                <div class="sticky-bottom-btns">
+                                    <button class="btn btn-lg btn-outline">취소</button>
+                                    <button class="btn btn-lg btn-red" type="submit">등록하기</button>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+<script src="/js/notice.js"></script>>
+<script src="/js/script.js"></script>
+</html>

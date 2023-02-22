@@ -1,0 +1,46 @@
+<div th:fragment ="review_write">
+    <div class="review">
+        <div class="review-header">
+            <div class="review-title">리뷰 작성<span style="color:rgb(255, 61, 0)"> *</span>
+            </div>
+            <p class="descrption">레스토랑과 관련된 사진을 업로드 해주세요.</p>
+            <p class="descrption">초상권 침해 사진의 경우 삭제할 수 있습니다.</p></div>
+    </div>
+    <form>
+        <div class="review-main">
+        <textarea name="" id="review-content" class="review-content" cols="30" rows="10"
+                  placeholder="레스토랑과 유저들에게 도움이 되는 따뜻한 리뷰를 작성해주세요." style="width: 98%;"></textarea>
+            <div class="review-content">
+                <div class="upload-wrapper">
+                    <div class="upload">
+                        <div class="photo">
+                            <input type="file" accept="image/*" id="images" class="hidden">
+                            <div class="image-wrapper">
+                                <label for="images"><img
+                                        style="width:30px; height:30px; cursor: pointer; margin-top: 8px;"
+                                        src="/images/image.svg" alt=""></label>
+                                <p class="upload-description">업로드</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="star-wrapper">
+                    <div class="star-header">평균 별점</div>
+                    <div class="star">
+                        ★★★★★
+                        <span class="star">★★★★★</span>
+                        <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="review-footer">
+            <div class="review-footer-revisit">
+                <button class="review-footer-revisit" type="button">✔ 재방문 할래요</button>
+            </div>
+            <div class="review-footer-register">
+                <button class="review-footer-register">✔ 등록</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        select {
+            width: 100%;
+            height: 100%;
+            padding: 0 28px 0 10px;
+            font-size: 15px;
+            border: 0;
+            -webkit-appearance: none; /* for chrome */
+            -moz-appearance: none; /*for firefox*/
+            appearance: none;
+            box-sizing: border-box;
+            /*background:transparent!important;*/
+            appearance: none;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgxNlYxNkgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGM0QwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTYuMTM3IDQuNjYzTDkuODEgOC4zMzcgNi4xMzcgMTIuMDEiIHRyYW5zZm9ybT0icm90YXRlKDkwIDcuOTczIDguMzM3KSIvPgogICAgPC9nPgo8L3N2Zz4K') no-repeat right 10px center;
+        }
+
+
+        .header-wrap {
+            top: -6.5px;
+            right: 8px;
+        }
+
+        .page_nation {
+            display: flex;
+            justify-content: center;
+        }
+
+        .page_nation a {
+            display: block;
+            margin: 0 3px;
+            float: left;
+            border: 1px solid #e6e6e6;
+            width: 35px;
+            height: 35px;
+            line-height: 34px;
+            text-align: center;
+            background-color: #fff;
+            font-size: 18px;
+            color: #999999;
+            text-decoration: none;
+        }
+
+        .page_nation a.page-prev {
+            background: url("/images/icon.svg") no-repeat center center;
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            margin-left: 7px;
+            background-size: 10px;
+        }
+
+        .page_nation a.page-next {
+            background: url("/images/icon.svg") no-repeat center center;
+            margin-left: 7px;
+            background-size: 10px;
+        }
+
+        .active {
+            background-color: rgb(236 78 39) !important;
+            color: #fff !important;
+            border: 1px solid rgb(236 78 39) !important;
+        }
+
+        .page_nation a.page-disabled {
+            pointer-events: none;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <div class="wrapper">
+        <main id="main" style="padding-bottom: 0px;">
+            <div class="search-header __autohide" style="background: none; top: 48px;">
+                <div class="__search-result-header mb-20">
+                    <div class="__total-count">
+                        <strong th:text="|총 ${list.getTotalElements()}개|">104</strong>의 레스토랑
+                    </div>
+                </div>
+                <section class="section">
+                    <div class="container gutter-sm">
+                        <div class="saved-restaurant-list">
+                            <div style="padding-bottom: 10px;">
+                                <div id="searchList_">
+                                    <div id="searchList__0" data-dummy="40">
+                                        <div th:each="list : ${list}">
+                                            <div class="saved-restaurant-list-item" style="padding-bottom: 40px;">
+                                                <div class="restaurant-info">
+                                                    <div class="tb">
+                                                        <a th:href="'/shop/'+${list.resAdmin.resaBisName}">
+                                                            <div class="tb">
+                                                                <th:block
+                                                                        th:if="${list.photo.savedPath != null and list.photo.orgNm == null and list.photo.savedNm == null}">
+                                                                    <a th:href="'/shop/'+${list.resAdmin.resaBisName}">
+                                                                        <img class="img"
+                                                                             th:src="${list.photo.savedPath}">
+                                                                    </a>
+                                                                </th:block>
+                                                                <th:block
+                                                                        th:unless="${list.photo.savedPath != null and list.photo.orgNm == null and list.photo.savedNm == null}">
+                                                                    <a th:href="'/shop/'+${list.resAdmin.resaBisName}">
+                                                                        <img class="img"
+                                                                             th:src="'/photo/'+${list.photo.savedNm}">
+                                                                    </a>
+                                                                </th:block>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div id="toast"></div>
+                                                    <div class="detail">
+                                                        <div class="detail-header">
+                                                            <div class="txt">
+                                                                <a th:href="'/shop/'+${list.resAdmin.resaBisName}">
+                                                                    <h4 class="name"
+                                                                        th:text="${list.resAdmin.resaBisName}">
+                                                                        한우물</h4>
+                                                                </a>
+                                                                <p class="excerpt" th:text="${list.bisDesc}">이태원 퀴논길에
+                                                                    위치한 한우
+                                                                    컴팩트 그릴링 코스 전문점</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="restaurant-meta">
+                                                            <div class="__d-flex mb-6">
+                                                                <!--                                                            <div class="rating">-->
+                                                                <!--                                                                <span class="star">4.6</span>&nbsp;-->
+                                                                <!--                                                                <span class="count">(580)</span>-->
+                                                                <!--                                                            </div>-->
+                                                            </div>
+                                                            <span class="tags"
+                                                                  th:text=" ${list.bisCategory}">한식 • 이태원</span>
+                                                            <span class="price"
+                                                                  th:text="|${list.bisLunch} • ${list.bisDinner}|"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page_wrap">
+                        <div class="page_nation" aria-label="Page navigation example">
+                            <a th:href="@{/shop/search/list(resaBisName=${resaBisName},page=${list.number - 1})}"
+                               th:class="'page-prev' + (${list.number} <= 0 ? ' page-disabled':'')"></a>
+                            <span th:each="pageNumber : ${paginationBarNumbers}">
+                                <a th:text="${pageNumber + 1}"
+                                   th:href="@{/shop/search/list(resaBisName=${resaBisName},page=${pageNumber})}"
+                                   th:class="(${pageNumber} == ${list.number} ? 'active' : '')">1</a>
+                                </span>
+                            <a th:href="@{/shop/search/list(resaBisName=${resaBisName},page=${list.number + 1})}"
+                               th:class="'page-next'+(${list.number} >= ${totalpage - 1} ? ' page-disabled':'')"></a>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </main>
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+<!--<script type="text/javascript" src="/js/script.js"></script>-->
+<script src="/js/shopBlock.js"></script>
+</html>

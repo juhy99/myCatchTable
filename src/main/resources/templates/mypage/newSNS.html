@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www,ultraq.net.na/thymeleaf/layout"
+      layout:decorate="~{layouts/default}" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+</head>
+<style>
+    .headerCategory {
+        padding: 6px 0;
+    }
+</style>
+<body>
+<div id="root">
+    <!-- header 시작 -->
+    <header id="header1">
+        ㅎㄷㅎㄷ
+    </header>
+    <div th:replace="fragment/mypage_header :: mypage_header"/>
+    <!-- header 끝 -->
+    <!--    <form id="join-form" role="form"> &lt;!&ndash;method="post" onsubmit="return sendit()"> th:action="@{/join}"&ndash;&gt;-->
+    <div class="css-luwwab eug5r8l1 wrapper">
+        <div th:replace="fragment/mypage_aside :: mypage_aside"/>
+        <div class="css-171zbec eug5r8l0">
+
+            <div class="css-j0lifa ed9qr673">
+                <div class="css-fhxb3m ed9qr672">
+                    <h2 class="css-1268zpe ed9qr671">나의 SNS</h2>
+                </div>
+            </div>
+            <main id="main">
+                <form id="join-form" role="form" method="post" th:action="@{/mypage/newSNS}">
+                    <input type="hidden" id="prIdx" th:value="${prIdx}">
+                    <div class="my-account">
+                        <div class="pb-10 pt-10">
+                            <div class="container gutter-sm">
+
+                                <!--                            sns입력 시작-->
+                                <div class="form-block mb-24">
+                                    <div style="position: relative;"><i
+                                            style="display: block; position: absolute; top: 50%; transform: translateY(-50%); left: 10px;"><img
+                                            src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons/insta.svg"
+                                            style="height: 20px; width: 20px;"></i>
+                                        <input class="form-input" th:value="${insAddr != null} ? ${insAddr} : ''" placeholder="인스타그램 주소를 입력해주세요"
+                                               id="sns_Ins" name="snsAddr" style="padding-left: 40px;">
+                                        <input type="hidden" name="snsType" value="INSTAGRAM">
+
+                                    </div>
+                                </div>
+
+                                <div class="form-block mb-24">
+                                    <div style="position: relative;"><i
+                                            style="display: block; position: absolute; top: 50%; transform: translateY(-50%); left: 10px;"><img
+                                            src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons/twitter.svg"
+                                            style="height: 20px; width: 20px;"></i>
+                                        <input th:value="${twtAddr != null} ? ${twtAddr} : ''" placeholder="트위터 주소를 입력해주세요"
+                                               class="form-input" id="sns_twi" name="snsAddr" style="padding-left: 40px;">
+                                        <input type="hidden" name="snsType" value="TWITTER">
+                                    </div>
+                                </div>
+
+                                <div class="form-block mb-24">
+                                    <div style="position: relative;"><i
+                                            style="display: block; position: absolute; top: 50%; transform: translateY(-50%); left: 10px;"><img
+                                            src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons/youtube.svg"
+                                            style="height: 20px; width: 20px;"></i>
+                                        <input th:value="${youtubeAddr != null} ? ${youtubeAddr} : ''"  placeholder="유튜브 주소를 입력해주세요" class="form-input" id="sns_you" name="snsAddr" style="padding-left: 40px;" >
+                                        <input type="hidden" name="snsType" value="YOUTUBE">
+                                    </div>
+                                </div>
+
+                                <div class="form-block mb-24">
+                                    <div style="position: relative;"><i
+                                            style="display: block; position: absolute; top: 50%; transform: translateY(-50%); left: 10px;"><img
+                                            src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons/blog.svg"
+                                            style="height: 20px; width: 20px;"></i>
+                                        <input th:value="${blogAddr != null} ? ${blogAddr} : ''" placeholder="블로그 주소를 입력해주세요" class="form-input"
+                                               id="sns_blog" name="snsAddr" style="padding-left: 40px;">
+                                        <input type="hidden" name="snsType" value="BLOG">
+                                    </div>
+                                </div>
+                                <!--sns 입력 끝-->
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-60"></div>
+                    <div class="sticky-bottom-btns">
+                        <button class="btn btn-lg btn-red" type="submit">저장</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+    <!--    </form>-->
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<style>
+    .headerCategory {
+        padding: 6px 0;
+    }
+</style>
+<style>
+    .modal.modal-overlay {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+        z-index: 1;
+        position: fixed;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .modal .modal-window {
+        background: white;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: 300px;
+        height: 200px;
+        position: relative;
+        top: -100px;
+        padding: 10px;
+    }
+
+    .modal .title {
+        padding-left: 10px;
+        display: inline;
+        /*text-shadow: 1px 1px 2px gray;*/
+        color: black;
+    }
+
+    .modal .title h2 {
+        display: inline;
+    }
+
+    .modal .close-area {
+        display: inline;
+        float: right;
+        padding-right: 10px;
+        cursor: pointer;
+        /*text-shadow: 1px 1px 2px gray;*/
+        color: black;
+    }
+
+    .modal .content {
+        margin-top: 30px;
+        color: black;
+    }
+
+    .comment__review {
+        display: none;
+    }
+
+    .__block {
+        display: block;
+        overflow: hidden;
+        transition: height ease-out 1s 0s;
+    }
+
+    .small-header {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!--  mypageHeader-->
+    <div th:replace="fragment/mypage_header :: mypage_header"/>
+    <!--  /mypageHeader-->
+    <div class="css-luwwab eug5r8l1 wrapper">
+
+        <div th:replace="fragment/mypage_aside :: mypage_aside"/>
+
+        <div class="css-171zbec eug5r8l0">
+            <div class="css-j0lifa ed9qr673">
+                <div class="css-fhxb3m ed9qr672">
+                    <h2 class="css-1268zpe ed9qr671">나의 리뷰</h2>
+                </div>
+            </div>
+
+            <main id="main">
+                <section class="section mb-20">
+                    <div class="container gutter-sm" style="padding: 0;">
+                        <div class="section-body">
+                            <div class="__my-review-list ml--20 mr--20">
+                                <div id="shopReviewListScroll">
+                                    <div id="shopReviewListScroll_0" data-dummy="495.6363830566406" style="">
+                                        <article class="__my-review-post"
+                                                 style="overflow-x: hidden; margin-left: -15px;"
+                                                 th:each="review : ${reviews}">
+                                            <div class="__header">
+                                                <div class="__user-info"
+                                                     style="justify-content: space-between;">
+                                                    <a class="profile"
+                                                       th:href="'/timeline/profile/' + ${review.profileDto.prIdx}">
+                                                        <div class="profile-pic">
+                                                            <img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/noimg/profile_default_v2.png"
+                                                                 alt="" class="img"></div>
+                                                        <h4 class="name username">
+                                                            <span class="txt"
+                                                                  th:text="${review.profileDto.prNick}">박건</span>
+                                                        </h4>
+                                                    </a>
+                                                    <div class="header-right">
+                                                        <div th:onclick="reportReview([[${review.revIdx}]], [[${review.resIdx}]], [[${review.isReview}]],[[${prIdx}]])"
+                                                             class="__more-profile" id="btn-example">MORE
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="__body" style="position: relative; padding: 0px 16px;">
+                                                <div id="shopReviewCardImgList_1272868" class="v-scroll" style="padding: 0">
+                                                    <div class="v-scroll-inner">
+                                                        <div id="shopReviewCardImgList_1272868" class="__photos"
+                                                             style="display: flex; flex-wrap: nowrap;">
+                                                            <div th:each="photo : ${review.photo}">
+                                                                <div class="swiper-slide"
+                                                                     style="margin-right: 8px;">
+                                                                    <th:block
+                                                                            th:if="${photo.savedPath != null and photo.savedNm == null and photo.orgNm == null}">
+                                                                        <img th:src="${photo.savedPath}" alt="">
+                                                                    </th:block>
+                                                                    <th:block
+                                                                            th:unless="${photo.savedPath != null and photo.savedNm == null and photo.orgNm == null}">
+                                                                        <img th:src="'/photo/'+${photo.savedNm}" alt="">
+                                                                    </th:block>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="timeline-post-content">
+                                                    <div class="__post-meta"
+                                                         style="display: flex; justify-content: space-between;">
+                                                        <div class="__rating" th:text="${review.revScore}">5.0</div>
+                                                        <th:block th:if="${review.updateDate != null}">
+                                                            <div th:text="${#temporals.format(review.updateDate, 'yyyy년 MM월 dd일')}"></div>
+                                                        </th:block>
+                                                        <th:block th:unless="${review.updateDate != null}">
+                                                            <div th:text="${#temporals.format(review.regDate, 'yyyy년 MM월 dd일')}"></div>
+                                                        </th:block>
+
+                                                    </div>
+                                                    <h3 class="__title"></h3>
+                                                    <div class="__content" style="font-size: 1.2em">
+                                                        <p id="__content0_1422474" th:text="${review.revContent}" style="white-space: pre-line;">
+                                                            대박.... 리모델링 하기 전부터 회사 회식 할때 마다 왔었는데 바뀌고 나선 처음 !! 너무 맛있어요 ㅜㅠ
+                                                            분위기도 좋고 친절 하고 .. 심지어 집근처... 자주 갈듯요!!
+                                                        </p>
+                                                    </div>
+                                                    <div class="restaurant-info" style="padding: 15px;">
+                                                        <div class="__info" style="font-size: 1em;">
+                                                            <a th:href="'/shop/'+${review.resAdminDto.resaBisName}">
+                                                                <h4 class="__name">
+                                                                    <span th:text="${review.resAdminDto.resaBisName}">미래회관 한남</span>
+                                                                </h4>
+                                                                <div class="__meta"
+                                                                     th:text="${review.resAdminDto.resaRegion}">돼지고기구이 •
+                                                                    한남
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons/icon_arrow/arrow_left_black.svg"
+                                                             alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="timeline-post-footer">
+                                                    <div class="__post-meta">
+                                                        <div th:class="'heart'+${review.revIdx}">
+                                                        </div>
+                                                        <div th:class="'comment'+${review.revIdx}">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--                                                댓글 시작-->
+                                            <main id="main" th:class="comment__review"
+                                                  th:id="'showCom'+${review.revIdx}"
+                                                  style="margin-top: 15px;padding-bottom: 24px;">
+                                                <article class="timeline-post-item" id="timeline-posts">
+                                                    <div class="__comments">
+                                                        <div class="container gutter-sm">
+                                                            <div class="__comment-list __comment-detail-list">
+                                                                <div>
+                                                                    <article
+                                                                            th:class="'__comment-item comDiv'+${review.revIdx}"
+                                                                            style="padding: 16px 20px 0px;">
+
+                                                                    </article>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                <form class="__comment-form">
+                                                    <div class="__box"><input type="text"
+                                                                              placeholder="리뷰에 따뜻한 댓글을 달아주세요."
+                                                                              name="content" th:class="'newContent'
+                                                                              +${review.revIdx}"
+                                                                              value=""
+                                                                              style="font-family: auto; min-width: 150px;margin-right: 28px;margin-left: 16px;">
+                                                        <button type="button"
+                                                                th:onclick="newCom([[${review.revIdx}]],[[${prIdx}]])">
+                                                            등록
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </main>
+                                            <!--                                                댓글 끝-->
+                                            <hr class="hairline">
+
+
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+        </div>
+    </div>
+    <!--리뷰신고-->
+    <div th:each="review : ${reviews}">
+        <div th:class="'modal revs' +${review.revIdx} + ' modal-overlay'">
+            <div class="modal-window">
+                <div th:class="'close-area' + ' close'+${review.revIdx}" th:onclick="closeModal([[${review.revIdx}]])">X
+                </div>
+                <div class="content">
+                    <div class="drawer-box">
+                        <div class="drawer-box-header mb--20" style="padding: 0 20px 27px 0">
+                            <h2 th:class="'drawer-box-title ml-10 isRev'+${review.revIdx}" style="margin-bottom: 10px;">
+                                해당 리뷰를 신고하시겠습니까?
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="drawer-box-footer">
+                        <div class="btn-group">
+                            <button th:class="'btn btn-lg btn-red btn' + ${review.revIdx}" type="button"
+                                    style="width: 100%">
+                                신고하기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comReport"></div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+<script type="text/javascript" defer src="/js/reviewHeartComm.js"></script>
+<script type="text/javascript" defer src="/js/report.js"></script>
+</body>
+</html>
+

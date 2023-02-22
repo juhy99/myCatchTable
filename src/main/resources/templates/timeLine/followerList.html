@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+    body {
+        scrollbar-color: white;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        overflow-x: hidden;
+    }
+    .header-wrap {
+        top: -6.5px;
+        right: 8px;
+    }
+</style>
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+<!--    <div th:replace="fragment/timeline_header :: timeline_header"/>-->
+    <div class="css-luwwab eug5r8l1">
+        <div class="css-833hqy ecbxmj4">
+            <div class="css-1v4whg ecbxmj3">팔로워</div>
+            <div th:replace="fragment/timeline-aside :: timeline-aside"/>
+        </div>
+        <div class="css-171zbec eug5r8l0">
+            <div class="css-j0lifa ed9qr673">
+                <div class="css-fhxb3m ed9qr672">
+                    <h2 class="css-1268zpe ed9qr671">[[${profile.prNick}]]님의 팔로워 리스트 보기</h2>
+                </div>
+            </div>
+
+            <main id="main">
+                <div class="wrapper" id="profileReviewListScroll">
+                    <!-- </header> -->
+
+                    <main id="main">
+                        <div id="review">
+                            <section class="section section-overflow-hidden">
+                                <div class="container gutter-sm">
+                                    <div class="section-header pt-20 pb-20 mb-0">
+                                        <h4 class="font-16">
+                                            <strong class="ebold" th:text="${profile.prNick}">빠나나</strong> 님의 팔로워
+                                            <span style="font-size: 16px; color: rgb(153, 153, 153); margin-left: 4px;">[[${#lists.size(followers)}]]명</span>
+                                        </h4>
+                                    </div>
+                                    <hr class="hairline full-width">
+                                    <div class="__mypage-following-list" th:each="list : ${followers}">
+                                        <div class="__following-item">
+                                            <div class="mypage-profile" style="margin-bottom: 0px;">
+                                                <div class="profile-pic">
+                                                    <div class="img"
+                                                         style="background-image: url(&quot;https://catchtable.co.kr/web-static/static_webapp_v2/img/noimg/profile_default_v2.png&quot;); border: 0px;"></div>
+                                                </div>
+                                                <a th:href="'/timeline/profile/'+${list.prIdx}">
+                                                    <div class="mypage-profile-meta"><h4 class="name username"><span
+                                                            class="txt" th:text="${list.prNick}">hjkjhy</span></h4>
+                                                        <p class="__desc" th:text="${list.prIntro}"></p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <th:block th:if="${prIdx != list.prIdx}">
+                                                <div th:class="'following' + ${list.prIdx}">
+                                                    <input type="hidden" class="is-follow" th:value="${list.isFollow}">
+                                                    <input type="hidden" class="size" th:value="${followers.size()}">
+                                                    <input type="hidden" class="pr-idx" th:value="${prIdx}">
+                                                    <input type="hidden" class="list-pridx" th:value="${list.prIdx}">
+                                                </div>
+                                            </th:block>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </main>
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+</div>
+<div th:replace="fragment/footer :: footer"/>
+</body>
+<script type="text/javascript" src="/js/follower.js"></script>
+</html>

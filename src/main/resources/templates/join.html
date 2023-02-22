@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www,ultraq.net.na/thymeleaf/layout"
+      layout:decorate="~{layouts/default}" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <link rel="stylesheet" href="/css/regist_hp.css">
+    <script src="/js/jquery-3.1.1.min.js"></script>
+</head>
+<style>
+    .modal-overlay {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+        z-index: 1;
+        position: fixed;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-tap-highlight-color: transparent;
+    }
+    .modal-window {
+        background: white;
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        width: 400px;
+        height: 325px;
+        position: relative;
+        top: -100px;
+        padding: 10px;
+    }
+    .title {
+        padding-left: 10px;
+        display: inline;
+        /*text-shadow: 1px 1px 2px gray;*/
+        color: black;
+
+    }
+    .title h2 {
+        display: inline;
+    }
+    .close-area {
+        display: inline;
+        float: right;
+        padding-right: 10px;
+        cursor: pointer;
+        /*text-shadow: 1px 1px 2px gray;*/
+        color: black;
+    }
+
+    .content {
+        margin-top: 20px;
+        /*padding: 0px 10px;*/
+        /*text-shadow: 1px 1px 2px gray;*/
+        color: black;
+    }
+</style>
+<body>
+<div id="root">
+    <!-- header 시작 -->
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!-- header 끝 -->
+    <form id="join-form" role="form" method="post" onsubmit="return sendit()" action="/join">  <!--  th:action="@{/join}" -->
+        <!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
+        <div class="wrapper" style="">
+
+            <div class="css-pculus e1ovi4141">
+                <div class="css-o5dw7d e1ovi4140">회원가입</div>
+
+                <div class="css-mhmtvt e15so55l1">
+                    <div class="css-rb0i47 e1yyjjij1"><span class="css-qq9ke6 e1yyjjij0">*</span> 필수입력사항</div>
+                    <div class="css-y8aj3r eo6ykj40">
+                        <!-- 이름 시작 -->
+                        <div class="css-1pjgd36 e744wfw6">
+                            <div class="css-1y8737n e744wfw5"><label class="css-1obgjqh e744wfw4" for="prName">이름<span
+                                    class="css-qq9ke6 e744wfw0">*</span></label></div>
+                            <div class="css-82a6rk e744wfw3">
+                                <div class="css-jmalg e1uzxhvi6">
+                                    <div class="css-176lya2 e1uzxhvi3 under-name-block">
+                                        <input data-testid="input-box" id="prName" name="prName"
+                                               placeholder="이름을 입력해 주세요" type="text"
+                                               class="css-1bkd15f e1uzxhvi2" value=""> <!-- required 삭제 -->
+                                    </div>
+                                    <p class="font-12 color-gray mt-10">레스토랑을 예약할 때 사용할 이름이므로 꼭 실명을 사용해 주세요.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 이름 끝 -->
+                        <!-- 휴대폰 번호 -->
+                        <div class="css-1pjgd36 e744wfw6">
+                            <div class="css-1y8737n e744wfw5">
+                                <label class="css-1obgjqh e744wfw4" for="prHp">휴대폰 번호<span
+                                        class="css-qq9ke6 e744wfw0">*</span></label>
+                            </div>
+                            <div class="css-82a6rk e744wfw3">
+                                <div class="css-jmalg e1uzxhvi6">
+                                    <div class="css-176lya2 e1uzxhvi3">
+                                        <input data-testid="input-box" id="prHp" name="prHp" placeholder="숫자만 입력해주세요"
+                                               type="tel" class="css-1bkd15f e1uzxhvi2" value=""> <!-- required 삭제 -->
+                                    </div>
+                                    <p class="font-12 color-gray mt-10">하이픈(-)을 제외한 숫자만 입력해 주세요.</p>
+                                </div>
+                            </div>
+                            <!--                            <div class="css-1w0ksfz e744wfw2">-->
+                            <!--                                <button class="css-ufulao e4nu7ef3" type="button" disabled="">-->
+                            <!--                                    <span class="css-ymwvow e4nu7ef1">인증번호 요청</span>-->
+                            <!--                                </button>-->
+                            <!--                            </div>-->
+                        </div>
+                        <!-- 휴대폰 번호 끝 -->
+                        <!-- 비밀번호 -->
+                        <div class="css-1pjgd36 e744wfw6">
+                            <div class="css-1y8737n e744wfw5">
+                                <label class="css-1obgjqh e744wfw4" for="prUserpw">비밀번호<span
+                                        class="css-qq9ke6 e744wfw0">*</span></label>
+                            </div>
+                            <div class="css-82a6rk e744wfw3">
+                                <div class="css-jmalg e1uzxhvi6">
+                                    <div class="css-176lya2 e1uzxhvi3 password-block">
+                                        <input data-testid="input-box" id="prUserpw" name="prUserpw"
+                                               placeholder="비밀번호를 입력해주세요" type="password" autocomplete="off"
+                                               class="css-1bkd15f e1uzxhvi2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 비밀번호 끝 -->
+                        <!-- 비밀번호 확인 -->
+                        <div class="css-1pjgd36 e744wfw6">
+                            <div class="css-1y8737n e744wfw5">
+                                <label class="css-1obgjqh e744wfw4"><span class="css-qq9ke6 e744wfw0"></span>
+                                </label>
+                            </div>
+                            <div class="css-82a6rk e744wfw3">
+                                <div class="css-jmalg e1uzxhvi6">
+                                    <div class="css-176lya2 e1uzxhvi3 under-name-block">
+                                        <input data-testid="input-box" id="passwordConfirm" name="passwordConfirm"
+                                               placeholder="비밀번호를 한번 더 입력해주세요" type="password" autocomplete="off"
+                                               class="css-1bkd15f e1uzxhvi2">
+                                    </div>
+                                    <p class="font-12 mt-10" style="color: rgb(102, 102, 102);">비밀번호는 영문, 숫자, 특수문자를 각각 하나 이상 반드시 사용하여 8-20자리로 설정해주세요.</p>
+                                    <!-- 영문, 숫자, 특수문자 중 2종류 이상을 조합하여 8-20자리로 설정해주세요. -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 비밀번호 확인 끝 -->
+                        <!-- 닉네임 -->
+                        <div class="css-1pjgd36 e744wfw6">
+                            <div class="css-1y8737n e744wfw5">
+                                <label class="css-1obgjqh e744wfw4" th:for="prNick">닉네임<span class="css-qq9ke6 e744wfw0">*</span></label>
+                            </div>
+                            <!-- 중복확인 -->
+                            <div class="css-82a6rk e744wfw3">
+                                <div class="css-jmalg e1uzxhvi6">
+                                    <div class="css-176lya2 e1uzxhvi3">
+                                        <input data-testid="input-box" id="prNick" name="prNick" placeholder="닉네임을 입력해 주세요"
+                                               type="text" class="css-1bkd15f e1uzxhvi2 nick_input" check_result="fail"> <!-- required 삭제 -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="css-1w0ksfz e744wfw2">
+                                <button onclick="double_check()" class="css-ufulao e4nu7ef3 checkBtn" id="checkBtn" type="button">
+                                    <input type="hidden" id="checked_nick" name="checked_nick" value="">
+                                    <span class="css-ymwvow e4nu7ef1 checked_nick_btn">중복확인</span>
+                                </button>
+
+                            </div>
+                            <!-- 중복확인 -->
+                        </div>
+                        <p id="idCheckResult"></p>
+                        <!-- 닉네임 끝 -->
+                        <!-- 성별 -->
+                        <div class="css-1pjgd36 e744wfw6">
+                            <div class="css-1y8737n e744wfw5">
+                                <label class="css-1obgjqh e744wfw4">성별</label>
+                            </div>
+                            <div class="css-82a6rk e744wfw3">
+                                <div class="css-14wodj6 es1pbny0">
+                                    <label class="css-z9g6s0 et8nqc33" for="gender-man">
+                                        <input data-testid="radio-MALE" id="gender-man" name="prGender" type="radio"
+                                               class="css-1pes2r6 et8nqc32" value="남자">
+                                        <span aria-labelledby="gender-man" class="css-mgd87h et8nqc31">남자</span>
+                                    </label>
+
+                                    <label class="css-z9g6s0 et8nqc33" for="gender-woman">
+                                        <input data-testid="radio-FEMALE" id="gender-woman" name="prGender" type="radio"
+                                               class="css-1pes2r6 et8nqc32" value="여자">
+                                        <span aria-labelledby="gender-woman" class="css-mgd87h et8nqc31">여자</span>
+                                    </label>
+
+                                    <label class="css-z9g6s0 et8nqc33" for="gender-none">
+                                        <input data-testid="radio-NONE" id="gender-none" name="prGender" type="radio"
+                                               class="css-1pes2r6 et8nqc32" value="선택안함" checked>
+                                        <span aria-labelledby="gender-none" class="css-mgd87h et8nqc31">선택안함</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 성별 끝 -->
+                        <!-- 생년월일 -->
+                        <div class="css-1pjgd36 e744wfw6">
+                            <div class="css-1y8737n e744wfw5">
+                                <label class="css-1obgjqh e744wfw4">생년월일<span class="css-qq9ke6 e744wfw0">*</span></label>
+                            </div>
+                            <div class="css-82a6rk e744wfw3">
+                                <div class="css-18n8lnw e1ke3ehm1">
+                                    <div class="css-1dkwuq4 e1uzxhvi6">
+                                        <div height="40" class="css-xsmgyi e1uzxhvi3">
+                                            <input data-testid="input-box" name="prBirth" id="birthY" placeholder="YYYY" type="text"
+                                                   height="40" class="css-1368454 e1uzxhvi2">
+                                        </div>
+                                    </div>
+                                    <span class="css-5lnvt6 e1ke3ehm0"></span>
+                                    <div class="css-1dkwuq4 e1uzxhvi6">
+                                        <div height="40" class="css-xsmgyi e1uzxhvi3">
+                                            <input data-testid="input-box" name="prBirth" id="birthM" placeholder="MM" type="text"
+                                                   height="40" class="css-1368454 e1uzxhvi2">
+                                        </div>
+                                    </div>
+                                    <span class="css-5lnvt6 e1ke3ehm0"></span>
+                                    <div class="css-1dkwuq4 e1uzxhvi6">
+                                        <div height="40" class="css-xsmgyi e1uzxhvi3">
+                                            <input data-testid="input-box" name="prBirth" id="birthD" placeholder="DD" type="text"
+                                                   height="40" class="css-1368454 e1uzxhvi2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="css-1w0ksfz e744wfw2"></div>
+                        </div>
+                        <!-- 생년월일 끝 -->
+                        <!-- 활동지역 시작-->
+                        <div class="css-1pjgd36 e744wfw6">
+                            <div class="css-1y8737n e744wfw5">
+                                <label for="prRegion" class="css-1obgjqh e744wfw4">활동지역</label>
+                            </div>
+                            <div class="css-82a6rk e744wfw3">
+                                <div class="css-1waqr6j e1uzxhvi6">
+                                    <div class="css-176lya2 e1uzxhvi3">
+                                        <input data-testid="input-box" id="prRegion" name="prRegion" type="text"
+                                               class="css-1bkd15f e1uzxhvi2" placeholder="활동지역을 입력해 주세요">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="css-1w0ksfz e744wfw2"></div>
+                        </div>
+                        <!-- 활동지역 끝 -->
+                        <!--                        자기소개 시작 -->
+                        <div class="css-1pjgd36 e744wfw6">
+                            <div class="css-1y8737n e744wfw5">
+                                <label class="css-1obgjqh e744wfw4">자기소개</label>
+                            </div>
+                            <div class="css-82a6rk e744wfw3">
+                                <div class="css-jmalg e1uzxhvi6">
+                                    <div class="css-176lya2 e1uzxhvi3">
+                                        <input data-testid="input-box" id="prIntro" name="prIntro" placeholder="자기소개 시작"
+                                               type="textbox" class="css-1bkd15f e1uzxhvi2">
+                                    </div><!-- **닉네임 id, name 수정 필요 -->
+                                </div>
+                            </div>
+                        </div>
+                        <!--                        자기소개 끝 -->
+                    </div>
+
+                    <div class="css-1eo0fey e1j7jtti0"></div>
+                    <div class="css-y8aj3r e1k9oeg10">
+                        <div class="css-2yzr8b e744wfw6">
+                            <div class="css-1y8737n e744wfw5"><label class="css-1obgjqh e744wfw4">이용약관동의<span
+                                    class="css-qq9ke6 e744wfw0">*</span></label>
+                            </div>
+                            <div class="css-82a6rk e744wfw3">
+                                <!-- 전체 동의 -->
+                                <div class="css-ov2xfu e1sjmfnv7 terms__check__all">
+                                    <div class="css-termsalign">
+                                        <input id="TermsAgreeAll" type="checkbox" class="css-agvwxo e1dcessg2" name="checkAll">
+                                        <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0"> -->
+                                        <label class="css-qihf5m e1dcessg3" for="TermsAgreeAll">
+                                            <span class="css-0 e1dcessg1"></span><span class="TermsLining">이용자 약관 전체 동의</span>
+                                            <!-- <span class="css-0 e1dcessg1">전체
+                                                동의합니다.</span> -->
+                                        </label>
+                                    </div>
+                                    <p class="css-nygcgj e1sjmfnv6">선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</p>
+                                </div>
+                                <!-- 전체 동의-->
+                                <!-- 첫번째 약관 (value 추가, required 추가)-->
+                                <div class="css-ov2xfu e1sjmfnv7 ">
+                                    <div class="css-s5xdrg e1sjmfnv4 input__check">
+                                        <input id="RequiredSignupAge" type="checkbox" name="agreement" class="css-agvwxo e1dcessg2" value="RequiredSignupAge"> <!-- required 삭제 -->
+                                        <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0"> -->
+                                        <label class="css-18r9a6u e1dcessg3" for="RequiredSignupAge"> <!-- required 삭제 -->
+                                            <span class="css-0 e1dcessg1"></span><span class="TermsLining">[필수] 만 14세 이상입니다.</span>
+                                        </label>
+                                        <!-- <span class="css-g5xq45 e1sjmfnv5">(필수)</span> -->
+                                    </div>
+                                </div>
+                                <!-- 첫번째 약관 끝 -->
+                                <!-- 두번째 약관 (value 추가, required 추가, name 추가) -->
+                                <div class="css-ov2xfu e1sjmfnv7">
+                                    <div class="css-s5xdrg e1sjmfnv4 input__check">
+                                        <input id="RequiredTermsCondition" type="checkbox" name="agreement" class="css-agvwxo e1dcessg2" value="RequiredTermsCondition">
+                                        <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0"> -->
+                                        <label class="css-18r9a6u e1dcessg3" for="RequiredTermsCondition">
+                                            <span class="css-0 e1dcessg1"></span><span class="TermsLining">[필수] 캐치테이블 이용 약관 동의</span>
+                                        </label>
+                                        <!-- <span class="css-g5xq45 e1sjmfnv5">(필수)</span> -->
+                                    </div>
+                                    <a class="css-7chi73 e1sjmfnv3 btn-modal" id="btn-modal">약관보기</a>
+                                </div>
+                                <!-- 두번째 약관 끝 -->
+                                <!-- 세번째 약관 -->
+                                <div class="css-ov2xfu e1sjmfnv7">
+                                    <div class="css-s5xdrg e1sjmfnv4 input__check">
+                                        <input id="RequiredTermsOfPrivacy" type="checkbox" name="agreement" class="css-agvwxo e1dcessg2" value="RequiredTermsOfPrivacy">
+                                        <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0"> -->
+                                        <label class="css-18r9a6u e1dcessg3" for="RequiredTermsOfPrivacy">
+                                            <span class="css-0 e1dcessg1"></span><span class="TermsLining">[필수] 개인정보 수집 및 이용 약관 동의</span>
+                                        </label>
+                                        <!-- <span class="css-g5xq45 e1sjmfnv5">(필수)</span> -->
+                                    </div>
+                                    <a href="" class="css-7chi73 e1sjmfnv3">약관보기</a>
+                                </div>
+                                <!-- 세번째 약관 끝 -->
+                                <!-- 네번째 약관 -->
+                                <div class="css-ov2xfu e1sjmfnv7">
+                                    <div class="css-s5xdrg e1sjmfnv4 input__check">
+                                        <input id="RequiredTermsOfPrivacyPersonal" type="checkbox" name="agreement" class="css-agvwxo e1dcessg2" value="RequiredTermsOfPrivacyPersonal">
+                                        <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0"> -->
+                                        <label class="css-18r9a6u e1dcessg3" for="RequiredTermsOfPrivacyPersonal">
+                                            <span class="css-0 e1dcessg1"></span><span class="TermsLining">[필수] 개인정보 제3자 제공 동의</span>
+                                        </label>
+                                        <!-- <span class="css-g5xq45 e1sjmfnv5">(필수)</span> -->
+                                    </div>
+                                    <a href="" class="css-7chi73 e1sjmfnv3">약관보기</a>
+                                </div>
+                                <!-- 네번째 약관 끝 -->
+
+                                <!-- 다섯번째 약관(선택) -->
+                                <div class="css-ov2xfu e1sjmfnv7">
+                                    <div class="css-s5xdrg e1sjmfnv4 input__check">
+                                        <input id="OptionalTermsOfPrivacy" type="checkbox" name="agreement" class="css-agvwxo e1dcessg2" value="OptionalTermsOfPrivacy">
+                                        <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0"> -->
+                                        <label class="css-18r9a6u e1dcessg3" for="OptionalTermsOfPrivacy">
+                                            <span class="css-0 e1dcessg1"></span><span class="TermsLining">[선택] 개인정보 제공 동의</span>
+                                        </label>
+                                        <!-- <span class="css-g5xq45 e1sjmfnv5">(선택)</span> -->
+                                    </div>
+                                    <a class="css-7chi73 e1sjmfnv3" id="btn-modal2">약관보기</a>
+                                </div>
+                                <!-- 다섯번째 약관(선택) 끝 -->
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="css-137ca2h e1utgeno0">
+                        <button class="css-18m884r e4nu7ef3" id="submit-button" name="submit-button" type="submit" width="240"
+                                height="56" radius="3" diabled=""><span class="css-ymwvow e4nu7ef1 submit-button-span">시작하기</span></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <!-- footer 시작 -->
+    <div th:replace="fragment/footer :: footer"/>
+    <!-- footer 끝 -->
+</div>
+<!--캐치테이블 이용약관 동의 모달-->
+<div id="modal" class="modal-overlay">
+    <div class="modal-window" style="margin-top: 168px;height: 73%;">
+        <div class="title">
+            <h2 class="drawer-box-title ml-10" style="font-size: 19px;">서비스 이용약관</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content" style="margin-top: 5px;">
+            <div class="drawer-box">
+                <div class="wrapper">
+                    <main id="main" style="padding: 0">
+                        <div class="pt-10">
+                            <iframe src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/html/PolicyService_20210919.html" id="iframe" style="width: 100%; height: 610px;"></iframe>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--캐치테이블 이용약관 동의 모달-->
+<!--개인정보 수집 및 이용 약관 동의 모달-->
+<div id="modal2" class="modal-overlay">
+    <div class="modal-window" style="margin-top: 168px;height: 46%;">
+        <div class="title">
+            <h2 class="drawer-box-title ml-10" style="font-size: 19px;">개인정보 제공 동의</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content" style="margin-top: 5px;">
+            <div class="drawer-box">
+                <div class="wrapper">
+                    <main id="main">
+                        <section class="section pt-20 pb-20" style="height: 50px;">
+                            <div class="container gutter-sm">
+                                <p class="font-14 plain-txt">1. 개인정보를 제공받는 자 : 주식회사 와드<br>
+                                    <br>2. 제공하는 기본 개인정보 항목 : 레스토랑명, 방문 날짜, 방문 시간, 방문 인원, 방문 결과<br>
+                                    <br>3. 개인정보를 제공받는 자의 이용목적 : 캐치테이블 App에서 예약 히스토리 연동 및 관리<br>
+                                    <br>4. 개인정보를 제공받는 자의 개인정보 보유 및 이용 기간 : 캐치테이블 App 회원탈퇴 시 위 또는 개인정보 이용 목적 달성 시까지 이용합니다.<br>
+                                    <br>5. 동의 거부권 등에 대한 고지 : 정보주체는 개인정보 동의를 거부할 권리가 있으나, 이 경우 히스토리 관리 기능 이용이 제한될 수 있습니다.<br>
+                                    <br>
+                                </p>
+                            </div>
+                        </section>
+                        <hr class="space-40">
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--개인정보 수집 및 이용 약관 동의 모달-->
+
+
+</div>
+
+</body>
+<script src="/js/join.js"></script>
+<script src="/js/join_ok.js"></script>
+<script src="/js/joinModal.js"></script>
+</html>

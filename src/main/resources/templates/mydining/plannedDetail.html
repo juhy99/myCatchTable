@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/detail.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <!--  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b5d757c54c1d945c4c71d8f3f60e1a69&amp;autoload=false&amp;libraries=services,clusterer" async=""></script>-->
+
+    <style data-styled="active" data-styled-version="5.1.1"></style>
+
+    <!--  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b5d757c54c1d945c4c71d8f3f60e1a69&amp;autoload=false&amp;libraries=services,clusterer" async=""></script>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f813af5669862c77201e5b06934d8538&libraries=services"
+    ></script>
+</head>
+<style>
+    #modal.modal-overlay {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+        z-index: 1;
+        position: fixed;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    #modal .modal-window {
+        background: white;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: 400px;
+        height: 325px;
+        position: relative;
+        top: -100px;
+        padding: 10px;
+    }
+
+    #modal .title {
+        padding-left: 10px;
+        display: inline;
+        /*text-shadow: 1px 1px 2px gray;*/
+        color: black;
+
+    }
+
+    #modal .title h2 {
+        display: inline;
+    }
+
+    #modal .close-area {
+        display: inline;
+        float: right;
+        padding-right: 10px;
+        cursor: pointer;
+        /*text-shadow: 1px 1px 2px gray;*/
+        color: black;
+    }
+
+    #modal .content {
+        margin-top: 20px;
+        /*padding: 0px 10px;*/
+        /*text-shadow: 1px 1px 2px gray;*/
+        color: black;
+    }
+
+    .headerCategory {
+        padding: 6px 0;
+    }
+
+</style>
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <div class="wrapper">
+        <main id="main">
+            <section class="section bg-gray mb-30" style="background-color: white;">
+                <div class="restaurant-reservation-detail">
+                    <div class="detail-box p-10">
+                        <div class="box">
+                            <div class="detail-box-header">
+                                <div class="reservation-status">
+                                    <span class="cancel" th:text="${detail.resStatus()}"></span>
+                                </div>
+                                <h2 class="name">
+                                    <a href="/ct/shop/Y2F0Y2hfMCtRcEsrMGd5ZUloTGszSitWY2xhdz09"
+                                       th:text="${detail.resAdminDto().resaBisName()}"></a
+                                    >
+                                </h2>
+                                <div style="display: flex;justify-content: center">
+                                    <h3 class="type">[[${detail.bistroInfoDto.bisCategory}]] •
+                                        [[${detail.bistroInfoDto.bisRegion}]]</h3>
+                                </div>
+                            </div>
+                            <div class="detail-box-body">
+                                <div class="options">
+                                    <div class="date">
+                                        <span>[[${detail.resMonth}]]월 [[${detail.resDay}]]일</span>
+                                    </div>
+                                    <div class="time">
+                                        <span>[[${detail.resTime}]]시</span>
+                                    </div>
+                                    <div class="people">
+                                        <span>[[${detail.resPerson}]]명</span>
+                                    </div>
+                                </div>
+                                <hr class="hairline"/>
+                                <div>
+                                    <div style="text-align: right;">
+                                        <button><a
+                                                th:href="@{'/reservation/update/'+${detail.resAdminDto().resaBisName()}+'/'+${detail.resIdx}}">예약변경</a>
+                                        </button>
+                                        <span style="border-right: 1px solid #ded7d7;height: 12px;
+    margin: 0 10px;
+    display: inline-block;">
+                    <span style="border-right: 1px solid #ded7d7;height: 12px;
+    margin: 0 10px;
+    display: inline-block;"></span>
+                    <button id="btn-modal">예약취소</button>
+                                    </div>
+                                </div>
+                                <!--                <div class="reservation-info">-->
+                                <!--                  <div>-->
+                                <!--                    <div class="reservation-info">-->
+                                <!--                      <dl>-->
+                                <!--                        <dt>예약 일시</dt>-->
+                                <!--                        <dd>-->
+                                <!--                          <span th:text="${#temporals.month(detail.regDate())}"></span>-->
+                                <!--                          <span>.</span>-->
+                                <!--                          <span th:text="${#temporals.day(detail.regDate())}"></span>-->
+                                <!--                          <span>(</span><span th:text="${#temporals.dayOfWeekNameShort(detail.regDate())}"></span><span>)</span>&nbsp-->
+                                <!--                          <span th:text="${#temporals.hour(detail.regDate())}"></span><span>:</span><span th:text="${#temporals.minute(detail.regDate())}"></span>-->
+                                <!--&lt;!&ndash;                          12.08(목) 오후 8:06&ndash;&gt;-->
+                                <!--                        </dd>-->
+                                <!--                      </dl>-->
+                                <!--                    </div>-->
+                                <!--                  </div>-->
+                                <!--                </div>-->
+                                <!--                <hr class="hairline" />-->
+                                <!--                <div>-->
+                                <!--                  <div class="cancel-msg">-->
+                                <!--                    <h6>예약이 완료되었습니다.</h6>-->
+                                <!--                    <p>-->
+                                <!--                      변경사항을 미리 알려 주셔서 감사합니다. 다음에 다시-->
+                                <!--                      찾아주세요 :)-->
+                                <!--                    </p>-->
+                                <!--                  </div>-->
+                                <!--                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="container gutter-sm">
+                    <div class="section-header section-header-v">
+                        <h3 class="section-title section-title-sm">예약 정보</h3>
+                    </div>
+                    <div class="section-body">
+                        <div class="reservation-info-summary">
+                            <dl>
+                                <dt style="margin-right: 28px;">예약자</dt>
+                                <dd style="word-break: break-all" th:text="${detail.prName()}">전지혜</dd>
+                            </dl>
+                            <!--              <dl>-->
+                            <!--                <dt>예약경로</dt>-->
+                            <!--                <dd>캐치테이블 앱</dd>-->
+                            <!--              </dl>-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator mt-30 mb-30"/>
+            <section class="section">
+                <div class="container gutter-sm">
+                    <div class="section-header section-header-v">
+                        <h3 class="section-title section-title-sm">레스토랑 유의사항</h3>
+                    </div>
+                    <div class="section-body">
+                        <div class="well">
+                            <p class="font-12 color-gray" th:text="${detail.bistroDetailDto().bdCaution()}">
+                                <!--                예약은 전날 까지 가능하며, 좌석은 직원들이 안내 해드릴-->
+                                <!--                겁니다.<br />공연은 매주 목,금,토 19:30~21:00 진행하니 예약 시-->
+                                <!--                참고 부탁 드리겠습니다.-->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator mt-24"/>
+            <section class="section pt-30 pb-20">
+                <div class="container gutter-sm">
+                    <div class="section-header">
+                        <h3 class="section-title">위치정보</h3>
+                    </div>
+                    <div class="section-body">
+                        <div class="sc-gsnTZi hLhZKP">
+                            <div
+                                    class="map"
+                                    id="map"
+                                    style="
+                  height: 240px;
+                  overflow: hidden;
+                  background: url('https://t1.daumcdn.net/mapjsapi/images/2x/bg_tile.png');
+                "
+                            >
+
+                                <!--                <div-->
+                                <!--                        style="-->
+                                <!--                    cursor: auto;-->
+                                <!--                    position: absolute;-->
+                                <!--                    z-index: 2;-->
+                                <!--                    left: 0px;-->
+                                <!--                    top: 0px;-->
+                                <!--                  "-->
+                                <!--                ></div>-->
+                            </div>
+                            <div class="addr">
+                                <!--                <a class="btn-copy">매장주소 복사하기</a>-->
+                                <p th:text="${detail.bistroDetailDto().bdAddr()}">서울특별시 중구 세종대로 135 코리아나호텔 2층</p>
+                            </div>
+                        </div>
+                        <!--            <div class="btn-centered">-->
+                        <!--              <a href="#" class="btn full-width btn-lg"-->
+                        <!--                ><strong class="label arrow">레스토랑 길찾기</strong></a-->
+                        <!--              >-->
+                        <!--            </div>-->
+                    </div>
+                </div>
+            </section>
+            <hr class="separator"/>
+            <section class="section pt-30 pb-25">
+                <div class="container gutter-sm">
+                    <div class="section-header">
+                        <h3 class="section-title">상세정보</h3>
+                    </div>
+                    <div class="section-body">
+                        <div class="desc-blocks" style="word-break: break-word">
+                            <div class="desc-block">
+                                <dl>
+                                    <dt>전화번호</dt>
+                                    <dd th:text="${detail.bistroDetailDto().bdHp()}">02-2171-7830</dd>
+                                </dl>
+                                <!--                <div class="action">-->
+                                <!--                  <a class="btn-call"><span>전화하기</span></a>-->
+                                <!--                </div>-->
+                            </div>
+                            <div class="desc-block">
+                                <dl>
+                                    <dt><a class="__toggle">매장 소개</a></dt>
+                                    <dd class="color-gray" th:text="${detail.bistroDetailDto().bdIntro()}">
+                                        <!--                    안녕하세요 호텔 코리아나 피아 라운지입니다.<br />아늑한-->
+                                        <!--                    라운지에서 라이브 재즈 공연과 함께 이탈리안 음식을 이용-->
+                                        <!--                    가능하니<br />많은 이용 부탁드리겠습니다.-->
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="desc-block">
+                                <dl>
+                                    <dt><a class="__toggle">영업시간</a></dt>
+                                    <dd class="color-gray" th:text="${detail.bistroDetailDto().bdHour()}">
+                                        월-토 18:00~23:00 디너 브레이크타임 없이 운영<br/>(라스트오더
+                                        20:30)<br/>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="desc-block">
+                                <dl>
+                                    <dt><a class="__toggle">정기 휴무</a></dt>
+                                    <dd class="color-gray" th:text="${detail.bistroDetailDto().bdHoliday()}">매주 일요일은 정기
+                                        휴무입니다.
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="desc-block">
+                                <dl>
+                                    <dt><a class="__toggle">안내 및 유의사항</a></dt>
+                                    <dd class="color-gray" th:text="${detail.bistroDetailDto().bdCaution()}">
+                                        예약은 전날 까지 가능하며, 좌석은 직원들이 안내 해드릴
+                                        겁니다.<br/>공연은 매주 목,금,토 19:30~21:00 진행하니 예약
+                                        시 참고 부탁 드리겠습니다.
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="space-40"></div>
+        </main>
+    </div>
+
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+<div id="modal" class="modal-overlay">
+    <div class="modal-window">
+        <!--    <div class="title">-->
+        <!--      <h2 class="drawer-box-title ml-10">예약을 취소하시겠어요?</h2>-->
+        <!--    </div>-->
+        <div class="close-area">X</div>
+        <div class="content">
+            <div class="drawer-box">
+                <div class="drawer-box-header mb--20" style="padding: 0 20px 27px 0;">
+                    <h2 class="drawer-box-title ml-10">예약을 취소하시겠어요?</h2>
+                </div>
+                <div class="drawer-box-body" style="padding: 20px 0;">
+                    <div class="p-10 pt-20 pb-20">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th class="pt-5 pb-5 font-14 color-gray">레스토랑</th>
+                                <td class="pt-5 pb-5 pl-15 font-16" th:text="${detail.resAdminDto().resaBisName()}">
+                                    라비옥
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="pt-5 pb-5 font-14 color-gray">예약일시</th>
+                                <td class="pt-5 pb-5 pl-15 font-16">[[${detail.resMonth}]]월 [[${detail.resDay}]]일
+                                    [[${detail.resTime}]]시 [[${detail.resPerson}]]명
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr class="hairline weak mt-5 mb-25 ml--20 mr--20" style="margin-top: 20px;">
+                </div>
+                <div class="drawer-box-footer">
+                    <div class="btn-group">
+                        <!--            <button class="btn btn-lg btn-outline">취소하지 않음</button>-->
+                        <form th:action="@{'/mydining/reserve/plannedDetail/' + ${detail.resIdx()}}" method="post"
+                              enctype="multipart/form-data" style="width: 97%;">
+                            <!--              <input type="hidden" name="_method" value="put" />-->
+                            <input type="hidden" name="resIdx" th:value="${detail.resIdx()}">
+                            <button class="btn btn-lg btn-red" type="submit" style="width: 100%;">예약 취소</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    const loremIpsum = document.getElementById("lorem-ipsum")
+    fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+        .then(response => response.text())
+        .then(result => loremIpsum.innerHTML = result)
+
+    const modal = document.getElementById("modal")
+    const btnModal = document.getElementById("btn-modal")
+    btnModal.addEventListener("click", e => {
+        modal.style.display = "flex"
+    })
+
+    modal.addEventListener("click", e => {
+        const evTarget = e.target
+        if (evTarget.classList.contains("modal-overlay")) {
+            modal.style.display = "none"
+        }
+    })
+
+    const closeBtn = modal.querySelector(".close-area")
+    closeBtn.addEventListener("click", e => {
+        modal.style.display = "none"
+    })
+</script>
+</body>
+<script src="/js/map.js"></script>
+<script>
+    var imageSrc =
+            "https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons/location-red.svg", // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage = new kakao.maps.MarkerImage(
+            imageSrc,
+            imageSize,
+            imageOption
+        ),
+        markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition,
+        image: markerImage, // 마커이미지 설정
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+</script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const address = [[${detail.bistroDetailDto().bdAddr()}]]
+    const addressName = [[${detail.resAdminDto().resaBisName()}]]
+    console.log(address);
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(
+        address,
+        // 받아온 식당주소 입력
+        function (result, status) {
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords,
+                    image: markerImage,
+                });
+
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    content:
+                        '<div id="addressName" style="width:150px;text-align:center;padding:6px 0;"></div>',
+                });
+                infowindow.open(map, marker);
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+
+                document.querySelector("#addressName").innerHTML = addressName
+            }
+        }
+    );
+    /*]]>*/
+</script>
+</html>

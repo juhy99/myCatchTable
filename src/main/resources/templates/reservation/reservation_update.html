@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/booking.css">
+    <link rel="stylesheet" href="/air-datepicker/dist/css/datepicker.min.css"/>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/air-datepicker/dist/js/datepicker.min.js"></script>
+    <script src="/air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
+</head>
+<style>
+    .datepicker {
+        width: 680px;
+        margin: 0 auto;
+        height: 400px;
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+
+    .datepicker--nav {
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    .datepicker--day-name {
+        color: #666;
+        font-size: 12px;
+    }
+
+    .datepicker--days-names {
+        height: 30px;
+    }
+
+    .datepicker--cell.-selected-, .datepicker--cell.-selected-, .datepicker--cell.-selected-.-current- {
+        color: #fff;
+        background: #ff3d00;
+    }
+
+    .datepicker--cell.-focus-.-selected-, .datepicker--cell.-focus- {
+        background-color: #e8e8e8;
+    }
+
+    .datepicker--cells .datepicker--cells-days {
+        width: 100%;
+        height: 100%;
+    }
+
+    .datepicker--cell-day {
+        font-size: 15px;
+        height: 60px;
+    }
+
+    .-selected-.datepicker--cell-day.-other-month-, .-selected-.datepicker--cell-year.-other-decade- {
+        color: #fff;
+        background: #ff3d00;
+    }
+
+    .option-personnel label input:checked + span {
+        border-color: #ff3d00;
+        background-color: #ff3d00;
+        color: #fff;
+    }
+
+</style>
+</head>
+<body>
+<div id="root">
+    <!--  header 시작-->
+    <header id="header1">
+
+    </header>
+    <!--header 끝-->
+    <div class="wrapper">
+        <main id="main">
+            <section class="section">
+                <header th:text="${resaBisName}" id="header">
+                    스시도온
+                </header>
+                <p style="display: none" id="resIdx" th:text="${resIdx}"></p>
+                <!-- 날짜 API -->
+                <div id="datepicker" onclick="sendRes()">
+                </div>
+                <div class="select-all">
+                    <div class="option-personnel swiper-container mb-24" style="margin-left: 29px;">
+                        <div id="optionPersonalCntList">
+                            <div class="v-scroll-inner" style="min-width: 100%">
+                                <div id="optionPersonalCntList" class="" style="display: flex; flex-wrap: nowrap;justify-content: center;margin-right: 49px;">
+                                    <label class="swiper-slide" style="margin-right: 6px;">
+                                        <input class="count" type="radio" name="count" value="1"
+                                               onclick="sendRes()"><span>1명</span>
+                                    </label>
+                                    <label class="swiper-slide" style="margin-right: 6px;">
+                                        <input class="count" type="radio" name="count" value="2"
+                                               onclick="sendRes()"><span>2명</span>
+                                    </label>
+                                    <label class="swiper-slide" style="margin-right: 6px;">
+                                        <input class="count" type="radio" name="count" value="3"
+                                               onclick="sendRes()"><span>3명</span>
+                                    </label>
+                                    <label class="swiper-slide" style="margin-right: 6px;">
+                                        <input class="count" type="radio" name="count" value="4"
+                                               onclick="sendRes()"><span>4명</span>
+                                    </label>
+                                    <label class="swiper-slide" style="margin-right: 6px;">
+                                        <input class="count" type="radio" name="count" value="5"
+                                               onclick="sendRes()"><span>5명</span>
+                                    </label>
+                                    <label class="swiper-slide" style="margin-right: 6px;">
+                                        <input class="count" type="radio" name="count" value="6"
+                                               onclick="sendRes()"><span>6명</span>
+                                    </label>
+                                    <label class="swiper-slide" style="margin-right: 6px;">
+                                        <input class="count" type="radio" name="count" value="7"
+                                               onclick="sendRes()"><span>7명</span>
+                                    </label>
+                                    <label class="swiper-slide" style="margin-right: 6px;">
+                                        <input class="count" type="radio" name="count" value="8"
+                                               onclick="sendRes()"><span>8명</span>
+                                    </label>
+                                    <label class="swiper-slide" style="margin-right: 6px;">
+                                        <input class="count" type="radio" name="count" value="9"
+                                               onclick="sendRes()"><span>9명</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="v-scroll" id="scrollContainer_1671430849_164" style="">
+                        <div class="v-scroll-inner" style="display: flex;margin-right: 36px;">
+                            <div id="timelist" class="timetable-list timetable-list-sm" style="">
+                                <a href="#" id="scrollContainer_1671430849_164_itemElem_17002"
+                                   class="timetable-list-item empty" style="margin-bottom: auto; margin-top: auto;">
+                                    <span class="time">빈자리 알림신청</span>
+                                </a>
+                            </div>
+<!--                            <div class="timetable-list timetable-list-sm">-->
+<!--                                <a class="timetable-list-item" style="width: 1px; border-color: rgb(255, 255, 255);">-->
+<!--                                    <span class="time" style="background-color: rgb(255, 255, 255);">&nbsp;</span>-->
+<!--                                    <span class="event">&nbsp;</span>-->
+<!--                                </a>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="drawer-box-footer" style="padding: 0 30px;min-width: 100%;margin-top: 34px;">
+                    <div class="btn-group" style="display: flex;justify-content: center;margin-right: 18px;">
+                        <button class="btn btn-lg btn-outline" onclick="history.back()" style="width: 33%;padding: 0;">이전</button>
+                        <button class="btn btn-lg btn-red" onclick="upDateReservation()" style="width: 33%;margin-left: 24px;margin-right: 39px;">수정하기</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+<script>
+    <!-- 캘린더를 위한 스크립트-->
+    $("#datepicker").datepicker({
+        language: "ko",
+        minDate: new Date()
+    });
+
+    $(function () {
+        $("#datepicker").datepicker({
+            onSelect: function (dateText) {
+                //  $('#datepicker-display').datepicker("setDate", $(this).datepicker("getDate"));
+                month = $("#datepicker")
+                    .datepicker({dateFormat: "mm"})
+                    .val();
+                day = $("#datepicker")
+                    .datepicker({dateFormat: "dd"})
+                    .val();
+            },
+        });
+    });
+</script>
+<script src="/js/update_calender.js"></script>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<style>
+    body {
+        scrollbar-color: white;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        overflow-x: hidden;
+    }
+    .header-wrap {
+        top: -6.5px;
+        right: 8px;
+    }
+</style>
+<body>
+<div id="root">
+    <!--  header 시작-->
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!--header 끝-->
+    <div class="css-luwwab eug5r8l1">
+        <div class="css-833hqy ecbxmj4">
+            <div class="css-1v4whg ecbxmj3">컬렉션</div>
+            <div th:replace="fragment/timeline-aside :: timeline-aside"/>
+        </div>
+        <div class="css-171zbec eug5r8l0">
+            <div class="css-j0lifa ed9qr673">
+                <div class="css-fhxb3m ed9qr672">
+                    <h2 class="css-1268zpe ed9qr671">[[${prNick}]]님의 컬렉션 상세 보기</h2>
+                </div>
+            </div>
+            <div class="css-j0lifa ed9qr673" style="padding: 0;">
+                <input id="colIdx" type="hidden" name="colIdx" th:value="${collection.colIdx}">
+                <div>
+                    <section class="section pt-24 container gutter-sm">
+                        <h2 class="collection-top-title" th:text="${collection.colTitle}">스시오마카세</h2>
+                    </section>
+                </div>
+            </div>
+            <div class="my-list-detail-top" style="padding-left: 21px;">
+                <dl>
+                    <dt><strong>[[${prNick}]]의 컬렉션</strong></dt>
+                </dl>
+                <p class="excerpt" th:text="${collection.colContent}">스시가 맛있는 오마카세!</p>
+            </div>
+            <div class="saved-restaurant-list">
+                <div id="collection-detail-infinity-scroll" style="padding-left: 21px;">
+                    <div id="collection-detail-infinity-scroll_0" ata-dummy="187" th:each="save: ${savedBistro}">
+                        <div class="saved-restaurant-list-item">
+                            <div class="restaurant-info">
+                                <th:block th:if="${save.bistroDetailDto.bistroInfoDto.photoDto.savedPath != null and save.bistroDetailDto.bistroInfoDto.photoDto.orgNm == null and save.bistroDetailDto.bistroInfoDto.photoDto.savedNm == null}">
+                                    <a class="tb" th:href="'/shop/'+${save.resAdminDto.resaBisName}" >
+                                        <img class="img" th:src="${save.bistroDetailDto.bistroInfoDto.photoDto.savedPath}" alt="">
+                                    </a>
+                                </th:block>
+                                <th:block th:unless="${save.bistroDetailDto.bistroInfoDto.photoDto.savedPath != null and save.bistroDetailDto.bistroInfoDto.photoDto.orgNm == null and save.bistroDetailDto.bistroInfoDto.photoDto.savedNm == null}">
+                                    <a class="tb" th:href="'/shop/'+${save.resAdminDto.resaBisName}">
+                                        <img class="img" th:src="'/photo/'+${save.bistroDetailDto.bistroInfoDto.photoDto.savedNm}" alt="">
+                                    </a>
+                                </th:block>
+                                <a href="#" class="detail">
+                                    <h4 class="name" th:text="${save.resAdminDto.resaBisName}">스시쿤 정자점</h4>
+                                    <p class="excerpt" th:text="${save.bistroDetailDto.bistroInfoDto.bisDesc}">
+                                        정자동
+                                        미들급 스시 오마카세 맛</p>
+                                    <div class="restaurant-meta">
+                                        <div class="rating">
+                                            <span class="star">4.6</span>
+                                            <span class="count">(572)</span>
+                                        </div>
+                                        <span class="tags">[[${save.bistroDetailDto.bistroInfoDto.bisCategory}]] • [[${save.bistroDetailDto.bistroInfoDto.bisRegion}]]</span>
+                                        <span class="price">점심&nbsp;[[${save.bistroDetailDto.bistroInfoDto.bisLunch}]]&nbsp;저녁&nbsp;[[${save.bistroDetailDto.bistroInfoDto.bisDinner}]]</span>
+                                    </div>
+                                </a>
+                                <button onclick="delColRes()" class="btn-bookmark active" style="margin-top: 37px;">
+                                    북마크
+                                </button>
+                            </div>
+                            <div class="restaurant-meta mb-30"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+</html>

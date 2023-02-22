@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+</head>
+<style>
+    .social {
+        margin-top: 14px;
+        display: flex;
+        gap: 20px;
+        min-width: 50%;
+        justify-content: flex-start;
+        margin-left: 45px;
+    }
+
+    .social a {
+        display: flex;
+        width: 32px;
+        height: 32px;
+        border: 1px solid #c8c8c8;
+        box-sizing: border-box;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mypage-profile-meta {
+        display: flex;
+    }
+
+    body {
+        scrollbar-color: white;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        overflow-x: hidden;
+    }
+
+    .header-wrap {
+        top: -6.5px;
+        right: 8px;
+    }
+</style>
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!--    <div th:replace="fragment/timeline_header :: timeline_header"/>-->
+    <div class="css-luwwab eug5r8l1">
+        <div class="css-833hqy ecbxmj4">
+            <div class="css-1v4whg ecbxmj3">프로필</div>
+            <div th:replace="fragment/timeline-aside :: timeline-aside"/>
+        </div>
+        <div class="css-171zbec eug5r8l0">
+            <div class="css-j0lifa ed9qr673">
+                <div class="css-fhxb3m ed9qr672">
+                    <h2 class="css-1268zpe ed9qr671">[[${profile.prNick}]]님의 프로필 보기</h2>
+                    <!--                    <p>사용자 신고</p>-->
+                    <!--                    <p>사용자 차단</p>-->
+                </div>
+            </div>
+
+            <main id="main">
+                <div class="wrapper" id="profileReviewListScroll">
+                    <div class="container">
+                        <div class="header-left-1">
+                        </div>
+                    </div>
+                    <!-- </header> -->
+
+                    <main id="main">
+                        <section class="section section-overflow-hidden pt-24">
+                            <div class="container  ">
+                                <div class="mypage-profile">
+                                    <div class="profile-pic">
+                                        <div class="img"
+                                             style="background-image: url(&quot;https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/noimg/profile_default_v2.png&quot;);">
+                                        </div>
+                                    </div>
+                                    <div class="mypage-profile-meta">
+                                        <div>
+                                            <h4 class="name username"><span id="followingNick" class="txt"
+                                                                            style="max-width: none;"
+                                                                            th:text="${profile.prNick}">준숑이</span>
+                                            </h4>
+                                            <div class="meta">
+                                                <a th:href="'/timeline/following/'+ ${timeLineIdx}">
+                                                    <dl>
+                                                        <dt>팔로잉</dt>
+                                                        <dd id="result" th:text="${profile.followingNum}">1</dd>
+                                                    </dl>
+                                                </a>
+                                                <span>|</span>
+                                                <a th:href="'/timeline/follower/'+ ${timeLineIdx}">
+                                                    <dl>
+                                                        <dt>팔로워</dt>
+                                                        <dd th:text="${profile.followerNum}">0</dd>
+                                                    </dl>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="social">
+                                            <th:block th:each="snsList : ${profile.snsList}">
+                                                <th:block th:if="${snsList.snsAddr} != ''">
+                                                    <th:block th:if="${snsList.snsType == 'INSTAGRAM'} "><a
+                                                            th:href="${snsList.snsAddr}" target="_blank"><img
+                                                            src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-sns/insta.svg"
+                                                            alt="snsIcon"></a>
+                                                    </th:block>
+                                                </th:block>
+                                                <th:block th:if="${snsList.snsAddr} != ''">
+                                                    <th:block th:if="${snsList.snsType == 'YOUTUBE'}"><a
+                                                            th:href="${snsList.snsAddr}"
+                                                            target="_blank"><img
+                                                            src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-sns/youtube.svg"
+                                                            alt="snsIcon"></a>
+                                                    </th:block>
+                                                </th:block>
+                                                <th:block th:if="${snsList.snsAddr} != ''">
+                                                    <th:block th:if="${snsList.snsType == 'TWITTER'}"><a
+                                                            th:href="${snsList.snsAddr}"
+                                                            target="_blank"><img
+                                                            src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-sns/twitter.svg"
+                                                            alt="snsIcon"></a>
+                                                    </th:block>
+                                                </th:block>
+                                                <th:block th:if="${snsList.snsAddr} != ''">
+                                                    <th:block th:if="${snsList.snsType == 'BLOG'}"><a
+                                                            th:href="${snsList.snsAddr}"
+                                                            target="_blank"><img
+                                                            src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-sns/blog.svg"
+                                                            alt="snsIcon"></a>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
+                                        </div>
+                                    </div>
+                                    <div class="mypage-profile--desc" style="display: block;">
+                                        <div class="__desc">
+                                            <p id="introduce_p" class="expand"></p>
+                                        </div>
+                                        <th:block th:if="${timeLineIdx != prIdx}">
+                                            <div th:class="profile">
+                                                <input type="hidden" class="isfollow" th:value="${isFollow}">
+                                                <input type="hidden" class="login-idx" th:value="${prIdx}">
+                                                <input type="hidden" class="timeline-idx" th:value="${timeLineIdx}">
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <hr class="separator mt-28">
+                        <section class="section section-overflow-hidden">
+                            <div class="profile-summary">
+                                <dl class="__block">
+                                    <dt>평균 별점</dt>
+                                    <dd>
+                                        <div class="__avr-rate"><strong th:text="${profile.avgScore}">5</strong>
+                                            <div class="stars">
+                                                <span class="star full"
+                                                      style="width: 20px; height: 20px; margin-right: 8px;"></span>
+                                                <span class="star full"
+                                                      style="width: 20px; height: 20px; margin-right: 8px;"></span>
+                                                <span class="star full"
+                                                      style="width: 20px; height: 20px; margin-right: 8px;"></span>
+                                                <span class="star full"
+                                                      style="width: 20px; height: 20px; margin-right: 8px;"></span>
+                                                <span class="star full"
+                                                      style="width: 20px; height: 20px; margin-right: 8px;"></span>
+                                            </div>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="__block">
+                                    <dt>활동 지역</dt>
+                                    <dd>
+                                        <div class="color-gray"
+                                             th:text="${profile.prRegion} == null ? '아직 활동지역이 없습니다.': ${profile.prRegion}">
+                                            서울
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <hr class="separator mt-28">
+                        </section>
+
+                    </main>
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+<script src="/js/profileFollow.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+</html>

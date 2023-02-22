@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <link rel="stylesheet" href="/css/notice.css">
+    <link rel="stylesheet" href="/css/member_info.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<style>
+    .headerCategory {
+        padding: 6px 0;
+    }
+</style>
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+
+    <div th:replace="fragment/mypage_header :: mypage_header"/>
+    <div class="css-luwwab eug5r8l1 wrapper">
+
+        <div th:replace="fragment/mypage_aside :: mypage_aside"/>
+        <form th:action="@{'/mypage/collection/saveRes'}" method="post">
+            <div class="css-171zbec eug5r8l0">
+                <section class="section pt-20 section-overflow-hidden">
+                    <div class="container gutter-sm">
+                        <div class="__d-flex mb-24">
+                            <div class="section-header __d-flex __v-center" style="justify-content: space-between; width: 100%">
+                                <h3 class="section-title font-16">
+                                    저장한 레스토랑[[${#lists.size(list)}]]
+                                    <span class="count">10</span>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="section-body pb-32" style="padding-top: 10px">
+                            <input type="hidden" id="colIdx" name="colIdx" th:value="${colIdx}">
+                            <div id="common_infinity_sc" class="saved-restaurant-list">
+                                <div id="common_infinity_sc_3" data-dummy="221" th:each="list: ${list}">
+                                    <label class="label-checkbox">
+                                        <th:block th:if="${list.colIdx != colIdx}">
+                                            <input type="checkbox" class="form-checkbox" id="bisNames" name="bisNames" style="margin-top: 42px;"
+                                                   th:value="${list.resAdminDto.resaBisName}">
+                                            <div class="saved-restaurant-list-item" style="min-width: 100%;">
+                                                <div class="restaurant-info" style="margin-left: 10px;">
+                                                    <th:block th:if="${list.bistroDetailDto.bistroInfoDto.photoDto.savedPath != null and list.bistroDetailDto.bistroInfoDto.photoDto.orgNm == null and list.bistroDetailDto.bistroInfoDto.photoDto.savedNm == null}">
+                                                        <a class="tb" th:href="'/shop/'+${list.resAdminDto.resaBisName}" >
+                                                            <img class="img" th:src="${list.bistroDetailDto.bistroInfoDto.photoDto.savedPath}" alt="">
+                                                        </a>
+                                                    </th:block>
+                                                    <th:block th:unless="${list.bistroDetailDto.bistroInfoDto.photoDto.savedPath != null and list.bistroDetailDto.bistroInfoDto.photoDto.orgNm == null and list.bistroDetailDto.bistroInfoDto.photoDto.savedNm == null}">
+                                                        <a class="tb" th:href="'/shop/'+${list.resAdminDto.resaBisName}">
+                                                            <img class="img" th:src="'/photo/'+${list.bistroDetailDto.bistroInfoDto.photoDto.savedNm}" alt="">
+                                                        </a>
+                                                    </th:block>
+                                                    <a href="#" class="detail">
+                                                        <h4 class="name" th:text="${list.resAdminDto.resaBisName}">
+                                                            스시대옥</h4>
+                                                        <p class="excerpt"
+                                                           th:text="${list.bistroDetailDto.bistroInfoDto.bisDesc}">
+                                                            가성비 최강, 당일 선별된 재료로 정성을 다하는
+                                                            스시야
+                                                        </p>
+                                                        <div class="restaurant-meta">
+                                                            <div class="rating" style="margin-bottom: 5px">
+                                                                <span class="star"> 4.8 </span>
+                                                                <span class="count">(438)</span>
+                                                            </div>
+                                                            <span class="tags">[[${list.bistroDetailDto.bistroInfoDto.bisCategory}]] • [[${list.bistroDetailDto.bistroInfoDto.bisRegion}]]</span>
+                                                            <span class="price">점심&nbsp;[[${list.bistroDetailDto.bistroInfoDto.bisLunch}]]&nbsp;저녁&nbsp;[[${list.bistroDetailDto.bistroInfoDto.bisDinner}]]</span>
+                                                        </div>
+                                                    </a>
+                                                    <a href="#" class="btn-bookmark active" style="margin-top: 32px;">북마크</a>
+                                                </div>
+                                                <div class="restaurant-meta mb-30"></div>
+                                                <div style="height: 40px">&nbsp;</div>
+                                            </div>
+                                        </th:block>
+                                    </label>
+                                </div>
+                                <div th:if="${#lists.isEmpty(list)}">
+                                    추가할 식당이 없습니다.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="css-14332pf e1m8ervv0" style="position: relative; bottom: 20px;">
+                    <button class="css-1qirdbn e4nu7ef3"
+                            type="submit" id="saveBtn"><span class="css-ymwvow e4nu7ef1">저장하기</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+<!--<script src="/js/myCollection_res_save.js"></script>-->
+</body>
+</html>

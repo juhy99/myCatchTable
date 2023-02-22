@@ -1,0 +1,300 @@
+<!-- 최종예약 확인 및 결제 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="/css/collection_detail.css"/>
+    <script defer src="/js/payment.js"></script>
+</head>
+<style>
+    .headerCategory {
+        padding: 6px 0;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    /* 버튼 및 모달 */
+    .modal.modal-overlay {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        position: fixed;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .modal .modal-window {
+        background: white;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: 450px;
+        height: 400px;
+        position: relative;
+        top: -100px;
+        padding: 10px;
+    }
+
+    .modal .title {
+        padding-left: 10px;
+        display: inline;
+        /*text-shadow: 1px 1px 2px gray;*/
+        color: black;
+    }
+
+    .modal .title h2 {
+        display: inline;
+    }
+
+    .modal .content {
+        margin-top: 30px;
+        color: black;
+    }
+
+    .__h-center:hover {
+        border-color: #ff3d00;
+        color: #ff3d00;
+    }
+    .visiter-info {
+        display : none;
+    }
+</style>
+<body>
+<div id="root">
+    <!--  header 시작-->
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!--header 끝-->
+    <div class="wrapper" style="width: 640px;">
+        <main id="main">
+            <section class="section">
+                <div class="container gutter-sm">
+                    <div class="section-header" style="margin-top: 18px;">
+                        <h3 class="section-title font-18"><span id="resaBisName"></span>&nbsp;예약 정보</h3>
+                        <input type="hidden" id="bdIdx" th:value="${bistro.bdIdx()}">
+                        <input type="hidden" id="bisIdx" th:value="${bistro.bistroInfoDto().bisIdx()}">
+                    </div>
+                    <div class="section-body">
+                        <div class="__checkout-reserv-info">
+                            <div class="__summary">
+                                <div class="__more-info">
+                                    <dl>
+                                        <dt>정보</dt>
+                                        <dd>
+                                            <span id="resInfo"></span>
+                                        </dd>
+                                    </dl>
+                                    <div class="__more-info">
+                                        <dl>
+                                            <dt>예약자</dt>
+                                            <input type="hidden" id="prIdx" th:value="${profile.prIdx()}">
+                                            <dd><span id="res_name" th:text="${profile.prName()}"></span> (<span
+                                                    id="res_hp" th:text="${profile.prHp()}"></span>)
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="__more-info">
+                                        <dl class="visiter-info" style="display: none;">
+                                            <dt>방문자</dt>
+                                            <dd><span id="visitName"></span> (<span id="visitHp"></span>)
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="__visitor-info">
+                                <div class="__d-flex __h-center">
+                                    <a class="__edit">다른 사람이 방문해요</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section"></section>
+            <hr class="separator mt-24 mb-24"/>
+            <section class="section">
+                <div class="container gutter-sm">
+                    <div class="section-header">
+                        <h3 class="section-title font-18">고객 요청사항</h3>
+                    </div>
+                    <div class="section-body">
+                        <div class="__select-textarea">
+                  <textarea id="res_request"
+                            class="form-input __active"
+                            placeholder="레스토랑에 요청하실 내용을 입력해주세요."
+                            rows="4"
+                  ></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator mt-24 mb-24"/>
+            <section class="section">
+                <div class="container gutter-sm">
+                    <div class="section-header">
+                        <h3 class="section-title font-18">총 결제 금액</h3>
+                        <div class="utils">
+                            <strong class="ebold color-red font-18 mr-10"
+                            ><span class="resPrice" name="total_amount"></span>원</strong
+                            ><a href="" class="__toggle __toggle-checkout-info __up"
+                        >더보기</a
+                        >
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <div class="__checkout-more-info">
+                            <hr class="hairline full-width mt-20 mb-16"/>
+                            <table class="color-gray plain-txt">
+                                <tbody>
+                                <tr>
+                                    <td class="pt-5 pb-5">1인 예약금(50,000원)X <span id="resPerson"></span></td>
+                                    <td class="pt-5 pb-5 pl-5 align-middle txt-right">
+                                        <span class="resPrice"></span>원
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator mt-24 mb-24"/>
+            <section class="section section-overflow-hidden">
+                <div class="container gutter-sm">
+                    <div class="section-header mb-0">
+                        <h3 class="section-title font-18">결제수단</h3>
+                        <div class="utils" style="opacity: 0.4">
+                            카카오페이
+                        </div>
+                    </div>
+                    <div
+                            class="section-body __checkout-methods-container mt-24 __hide"
+                    >
+                        <div class="__checkout-methods">
+                            <div class="__item">
+                                <label
+                                ><input type="radio" name="checkout_method"/>
+                                    <span class="__txt">카카오페이로 할게요</span></label
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator mt-24 mb-24"/>
+            <div class="section">
+                <div class="container gutter-sm">
+                    <div class="section-header mb-20">
+                        <h3 class="section-title font-18">
+                            주문 내용 확인 및 결제 동의
+                        </h3>
+                        <div class="utils"></div>
+                    </div>
+                    <div class="agree-checkbox-block mb-15">
+                        <label class="label-checkbox"
+                        ><input
+                                type="checkbox"
+                                class="form-checkbox"
+                                autocomplete="nope"
+                        />&nbsp;<span class="label strong font-14"
+                        >[필수] 취소 및 환불 규정에 동의합니다.</span
+                        ></label
+                        >
+                    </div>
+                    <div class="well ml-20 mb-20 p-20">
+                        <p class="font-13 color-gray">
+                            14일 전 취소: 100% 환불 <br/>13일 전 취소: 50% 환불
+                            <br/>12일 전 취소: 50% 환불 <br/>11일 전 취소: 50% 환불
+                            <br/>10일 전 취소: 50% 환불 <br/>9일 전 취소: 환불 불가
+                            <br/>8일 전 취소: 환불 불가 <br/>7일 전 취소: 환불 불가
+                            <br/>6일 전 취소: 환불 불가 <br/>5일 전 취소: 환불 불가
+                            <br/>4일 전 취소: 환불 불가 <br/>3일 전 취소: 환불 불가
+                            <br/>2일 전 취소: 환불 불가 <br/>1일 전 취소: 환불 불가
+                            <br/>당일 취소: 환불 불가 <br/>노쇼 시: 환불 불가
+                        </p>
+                    </div>
+                    <div>
+                        <label class="label-checkbox label-checkbox-with-btn mb-15"
+                        ><span class="label strong font-14"
+                        >개인정보 제3자 제공 동의</span
+                        ><a href="#" class="__view">보기</a></label
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="sticky-bottom-btns">
+                <button id="btn-kakao-pay" class="btn btn-lg btn-red full-width ebold">
+                    <span class="resPrice"></span>원 결제하기
+                </button>
+            </div>
+        </main>
+    </div>
+    <!--      다른 사람이 방문해요 모달-->
+    <div class="modal modal-overlay hidden" tabindex="-1">
+        <div class="modal-window">
+            <div class="drawer-box">
+                <div class="drawer-box-header">
+                    <h2 class="drawer-box-title">방문자 입력</h2>
+                </div>
+                <div class="drawer-box-body">
+                    <div class="mb-8"><label class="font-14">방문자 성함</label></div>
+                    <input type="text" class="form-input mb-25" id="vsName"
+                           placeholder="방문하실 분의 성함을 입력해 주세요.">
+                    <div class="mb-8"><label class="font-14">방문자 연락처</label></div>
+                    <input type="tel" class="form-input" id="vsHp"
+                           placeholder="방문하실 분의 휴대폰 번호를 입력해 주세요." value="">
+                </div>
+                <div class="drawer-box-footer">
+                    <div class="btn-group">
+                        <button class="btn btn-lg outline" style="border: 1px solid gainsboro;border-radius: 10px;"
+                                onclick="closeModal()">취소
+                        </button>
+                        <button class="btn btn-lg btn-red" onclick="block()">확인
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+<script>
+    // let visitName = $('#visitName');
+    // let visiteHp = $('#visiteHp');
+
+    $('.__edit').click(function () {
+        $('.modal').css("display", "flex");
+    });
+
+    function closeModal() {
+        $('.modal').css("display", "none");
+    }
+
+        $("#vsName").change(function () {
+            console.log(this.value)
+            $('#visitName').html(this.value);
+        });
+    $("#vsHp").change(function () {
+        console.log(this.value)
+        $('#visitHp').html(this.value);
+    });
+    function block() {
+        $('.visiter-info').css("display", "flex");
+        $('.modal').css("display", "none");
+    }
+
+</script>
+</html>

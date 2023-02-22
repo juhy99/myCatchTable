@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+  <div th:replace="fragment/link :: link"/>
+  <link rel="stylesheet" href="/css/collection_detail.css">
+  <style>
+    .my-dining-item.completed .btn-delete, .my-dining-item.with-x .btn-delete {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgzMlYzMkgweiIgdHJhbnNmb3JtPSJtYXRyaXgoLTEgMCAwIDEgMzIgMCkiLz4KICAgICAgICA8ZyBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIj4KICAgICAgICAgICAgPHBhdGggZD0iTTAgMC4wOTNMMTMuMzE3IDEzLjQxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5LjEgOS4xKSIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMC41NzMgMEwxMy44OSAxMy4zMTciIHRyYW5zZm9ybT0idHJhbnNsYXRlKDkuMSA5LjEpIG1hdHJpeCgxIDAgMCAtMSAwIDEzLjMxNykiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=) 50% 50% no-repeat;
+      background-size: 20px auto;
+      text-indent: -999em;
+      overflow: hidden;
+    }
+    a {
+      color: #000;
+    }
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+    .my-dining-item .info .date {
+      color: #ff3d00;
+    }
+    .my-dining-item .info .meta {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .meta {
+      display: flex;
+      align-items: baseline;
+      line-height: 14px;
+    }
+    .my-dining-item .info {
+      font-weight: 500;
+      min-width: 0;
+      flex: 1;
+      padding-right: 15px;
+    }
+    .my-dining-item .tb img {
+      object-fit: cover;
+      width: 48px;
+      height: 64px;
+      display: block;
+      border-radius: 4px;
+    }
+    .my-dining-item .tb {
+      margin-right: 14px;
+      min-width: 0;
+      width: 48px;
+      align-self: flex-start;
+    }
+    .my-dining-item .restaurant-info {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      position: relative;
+    }
+    .my-dining-item .my-dining-status .desc {
+      font-size: 12px;
+      color: #666;
+      padding: 0 2px;
+      margin-right: -20px;
+    }
+    .my-dining-item .my-dining-status>* {
+      margin-right: 5px;
+      display: block;
+    }
+    .my-dining-item .my-dining-status .badge.danger {
+      background: #ffebe5;
+      border-color: #ffebe5;
+      color: #ff3d00;
+    }
+    .my-dining-item .my-dining-status .badge {
+      border: 1px solid #d5d5d5;
+      box-sizing: border-box;
+      border-radius: 20px;
+      font-size: 12px;
+      padding: 4px 8px;
+      font-weight: 500;
+      height: 24px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .my-dining-item .my-dining-status {
+      padding: 24px 16px 0;
+      margin-bottom: -5px;
+      display: flex;
+      align-items: center;
+    }
+    .my-dining-item.completed .my-dining-item-header, .my-dining-item.with-x .my-dining-item-header {
+      padding-right: 30px;
+    }
+    .my-dining-item .my-dining-item-header {
+      position: relative;
+    }
+    .my-dining-item {
+      background: #fff;
+      border-radius: 10px;
+      filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, .15));
+      backdrop-filter: blur(6px);
+    }
+    .label1 {
+      /*border-color: #000;*/
+      color: #000;
+      background: #fff;
+      white-space: nowrap;
+      display: block;
+      border-radius: 18px;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 15px;
+      border: 1px solid #666;
+      /*color: #666;*/
+    }
+
+    .label2 {
+      white-space: nowrap;
+      display: block;
+      border-radius: 18px;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 15px;
+      border: 1px solid transparent;
+      color: #666;
+    }
+     .headerCategory {
+       padding: 6px 0;
+     }
+  </style>
+<body class="disable-user-select">
+<div id="root">
+  <!-- header 시작 -->
+  <header id="header">
+    ㅎㄷㅎㄷ
+  </header>
+  <!-- header 끝 -->
+  <div style="background-color : #FEF7EA;">
+    <a href="#" class="__banner">
+      <img src="/images/mydining_banner.png"
+           style="display: block; width: 100%; box-shadow: 0 0 20px rgb(0 0 0 / 5%); margin-bottom: 34px;">
+    </a>
+  </div>
+  <div class="wrapper">
+    <main id="main">
+      <div class="mb-30">
+      </div>
+      <section class="section mb-30">
+        <div class="container gutter-sm">
+          <div class="tag-radio-group mt--10">
+            <a th:href="@{/mydining/planned}" class="check">
+              <span class="label2">방문예정</span>
+            </a>
+            <a th:href="@{/mydining/done}">
+              <span class="label2">방문완료</span>
+            </a>
+            <!-- <label style="position: relative;"><input type="radio" name="type" value="done"><span class="label">방문완료</span></label> -->
+            <a th:href="@{/mydining/cancel}">
+              <span class="label2">취소/노쇼</span>
+            </a>
+            <a th:href="@{/mydining/emptySlot}"><span class="label1">나의 알림</span></a>
+          </div>
+        </div>
+        <div class="container gutter-sm" th:if="${#lists.isEmpty(list)}">
+          <div class="section-body ">
+            <div class="my-dining-list">
+              <p class="txt-center plain-txt font-16 bold color-gray3 mt-70 mb-20">
+                알림 메세지가 존재하지 않습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="container gutter-sm mt-24">
+          <div class="section-header" style="margin-left: 8px;"  th:if="${!#lists.isEmpty(list)}">
+            <h3 class="section-title section-title-sm">총 [[${#lists.size(list)}]]건</h3>
+          </div>
+          <div class="section-body"  th:each="list : ${list}">
+            <div class="my-dining-list">
+              <div class="section-body">
+                <div class="mypage-reservation-list">
+                  <div class="my-dining-list">
+                    <div id="myReservationDoneListScroll">
+                      <div id="myReservationDoneListScroll_0" data-dummy="139">
+                        <div class="my-dining-item completed" style="margin: 24px 5px">
+                          <div class="my-dining-item-header" style="padding: 0;">
+                            <div class="my-dining-status">
+                              <div class="desc">
+                                <div class="cancel">
+                                  <span class="date">[[${#temporals.month(list.regDate)}]]월 [[${#temporals.day(list.regDate)}]]일([[${#temporals.dayOfWeekNameShort(list.regDate)}]])  [[${#temporals.format(list.regDate, 'HH:mm')}]]</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="restaurant-info" style="justify-content: space-between;">
+                              <div style="margin-top: 10px;margin-bottom: 10px;" th:text="${list.taaContent}">노쇼 3번으로 예약이 정지되었습니다</div>
+                              <div style="margin-right: 7px;">캐치테이블</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <!-- footer 시작 -->
+  <div th:replace="fragment/footer :: footer"/>
+  <!-- footer 끝 -->
+</div>
+</body>
+</html>

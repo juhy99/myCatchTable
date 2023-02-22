@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/collection_detail.css" />
+    <link rel="stylesheet" href="/css/notice.css">
+</head>
+<style>
+    .headerCategory {
+        padding: 6px 0;
+    }
+</style>
+<body class="disable-user-select">
+<div id="root">
+    <!-- header 시작 -->
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!-- header 끝 -->
+    <div class="wrapper" style="min-height: 85%;">
+        <div class="css-2b29tl eug5r8l2">
+            <div class="css-luwwab eug5r8l1">
+                <div class="css-833hqy ecbxmj4">
+                    <div class="css-1v4whg ecbxmj3">공지사항</div>
+                    <!-- aside 시작 -->
+                    <div th:replace="fragment/notice_aside :: notice_aside"/>
+                    <!-- aside 끝 -->
+                </div>
+                <div class="css-171zbec eug5r8l0">
+                    <div class="css-j0lifa ed9qr673">
+                        <div class="css-fhxb3m ed9qr672">
+                            <h2 class="css-1268zpe ed9qr671">공지사항</h2><span class="css-a3vgo2 ed9qr670">캐치 테이블의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span>
+                        </div>
+                    </div>
+                    <div class="css-e23nfx e16adls21">
+                        <div width="50" class="css-mbsaqp e16adls20">번호</div>
+                        <div class="css-1ym8aqm e16adls20">제목</div>
+                        <div width="100" class="css-16tcewl e16adls20">작성자</div>
+                        <div width="100" class="css-16tcewl e16adls20">작성일</div>
+                    </div>
+                    <ul class="css-1fttcpj e1cfowvj5" th:each="notice: ${notice}">
+                        <li><a th:href="'notice/content/'+${notice.noIdx}">
+                            <div class="css-14yglsw e1cfowvj4">
+                                <div class="css-3o6rrk e1cfowvj2" th:text="${notice.noIdx}">공지</div>
+                                <div class="css-fzefrb e1cfowvj2" th:text="${notice.noTitle}">[안내] 컬리 소비자 분쟁해결 기준 안내</div>
+                                <div class="css-3d2kks e1cfowvj2">캐치 테이블</div>
+                                <div class="css-b1hszl e1cfowvj2" th:text="${#temporals.format(notice.regDate, 'yyyy/MM/dd')}">2022.07.27</div>
+                            </div>
+                        </a></li>
+                    </ul>
+                    <div class="css-1kbzkwh e14yho7m0">
+                        <div class="css-sxxs1g eytury60"><button type="button" class="css-rzcdhr e1hbwyso0" disabled="">
+                            <div class="css-7qb0sc e1ilyb3p0">이전</div>
+                        </button><button type="button" class="css-1jwilit e1pk9060">
+                            <div class="css-7qb0sc e1ilyb3p0">다음</div>
+                        </button></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--페이징 처리-->
+    <div class="page_wrap">
+        <div class="page_nation" aria-label="Page navigation example">
+            <a class="pagine2" th:href="@{/notice(page=${notice.number - 1})}"
+               th:class="'page-prev' + (${notice.number} <= 0 ? ' page-disabled':'')"></a>
+            <span class="pagine" th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}" th:href="@{/notice(page=${pageNumber})}"
+                           th:class="(${pageNumber} == ${notice.number} ? 'active' : '')">1</a></span>
+            <a th:href="@{/notice(page=${notice.number + 1})}" th:class="'page-next' +
+                    (${notice.number} >= ${notice.totalPages - 1} ? '':' page-disabled')"></a>
+        </div>
+    </div>
+    <!--페이징 끝-->
+    <!-- footer 시작 -->
+    <div th:replace="fragment/footer :: footer"/>
+    <!-- footer 끝 -->
+</div>
+</body>
+<script src="/js/notice.js"></script>
+</html>

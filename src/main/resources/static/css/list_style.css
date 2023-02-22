@@ -1,0 +1,640 @@
+#root, body, html {
+    height: 100%;
+    width: 100%;
+}
+
+a, address, article, aside, b, body, center, code, dd, del, details, div, dl, dt, em, embed, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, label, li, mark, menu, nav, object, ol, p, pre, q, s, section, small, span, strong, sub, summary, table, tbody, td, th, thead, time, tr, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+a {
+    color: #000;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6, p {
+    word-break: break-word;
+    line-height: normal;
+}
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section {
+    display: block;
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -.05em;
+}
+* {
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+html {
+    font-family: "-apple-system",BlinkMacSystemFont,"Apple SD Gothic Neo",Inter,Lato,"Noto Sans KR","Spoqa Han Sans","Segoe UI",sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    word-break: keep-all;
+    -webkit-text-size-adjust: none;
+}
+
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
+    width: auto;
+    position: relative;
+    background: #fff;
+    min-height: 100%;
+    /* box-shadow: 0 0 20px rgb(0 0 0 / 5%); */
+}
+#header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    opacity: 1;
+    visibility: visible;
+}
+
+#header.line .container {
+    border-bottom: 1px solid #eee;
+}
+
+#header .container {
+    margin: 0 auto;
+    max-width: 480px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    height: 48px;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #fff;
+}
+.container {
+    padding: 0 30px;
+}
+
+#header .header-left {
+    display: flex;
+    align-items: center;
+}
+
+#header .header-left .btn-back {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTEuMzkzMSAxMC4yMTk3QzExLjY4NiA5LjkyNjc4IDEyLjE2MDkgOS45MjY3OCAxMi40NTM4IDEwLjIxOTdDMTIuNzQ2NyAxMC41MTI2IDEyLjc0NjcgMTAuOTg3NCAxMi40NTM4IDExLjI4MDNMOC41MzQwOSAxNS4ySDI1LjM0NjhDMjUuNzYxIDE1LjIgMjYuMDk2OCAxNS41MzU4IDI2LjA5NjggMTUuOTVDMjYuMDk2OCAxNi4zNjQyIDI1Ljc2MSAxNi43IDI1LjM0NjggMTYuN0g4LjU4NzIzTDEyLjQ1MzggMjAuNTY2NUMxMi43NDY3IDIwLjg1OTQgMTIuNzQ2NyAyMS4zMzQzIDEyLjQ1MzggMjEuNjI3MkMxMi4xNjA5IDIxLjkyMDEgMTEuNjg2IDIxLjkyMDEgMTEuMzkzMSAyMS42MjcyTDYuMjE5NjcgMTYuNDUzOEM1LjkyNjc4IDE2LjE2MDkgNS45MjY3OCAxNS42ODYgNi4yMTk2NyAxNS4zOTMxTDExLjM5MzEgMTAuMjE5N1oiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=) 50% 50% no-repeat;
+    width: 32px;
+    height: 32px;
+    display: block;
+    text-indent: -999em;
+    overflow: hidden;
+    margin-right: 6px;
+    flex: none;
+}
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    background: 0 0;
+    color: #000;
+
+}
+
+#header .header-left .page-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 2px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
+/* #main {
+    padding-bottom: 48px;
+} */
+
+.search-header {
+    /* position: sticky;
+    top: 48px; */
+    z-index: 100;
+    background: #fff;
+    padding: 15px;
+}
+
+.search-header .datetime-selector {
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.search-header .datetime-selector, .search-header .search-filter__header {
+    background: #fff;
+    z-index: 2;
+    position: relative;
+}
+
+
+.search-header .datetime-selector a {
+    height: 56px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 56px;
+    padding: 0 20px 0 49px;
+    font-size: 16px;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgyNFYyNEgweiIvPgogICAgICAgIDxnIHN0cm9rZT0iIzAwMCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNCAzKSI+CiAgICAgICAgICAgIDxyZWN0IHdpZHRoPSIxNC44IiBoZWlnaHQ9IjEzLjI3NiIgeD0iLjYiIHk9IjIuMTI0IiBzdHJva2Utd2lkdGg9IjEuMiIgcng9IjMiLz4KICAgICAgICAgICAgPHBhdGggZmlsbD0iIzAwMCIgZD0iTTEuNTEyIDYuOTgzSDE0LjQ4ODAwMDAwMDAwMDAwMVY3LjA4M0gxLjUxMnoiLz4KICAgICAgICAgICAgPGcgc3Ryb2tlLXdpZHRoPSIxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0LjE5KSI+CiAgICAgICAgICAgICAgICA8cmVjdCB3aWR0aD0iLjUiIGhlaWdodD0iMyIgeD0iLjUiIHk9IjEiIHJ4PSIuNSIvPgogICAgICAgICAgICAgICAgPHJlY3Qgd2lkdGg9Ii41IiBoZWlnaHQ9IjMiIHg9IjYuNSIgeT0iMSIgcng9Ii41Ii8+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=) 20px 50% no-repeat;
+    font-weight: 500;
+    position: relative;
+}
+
+.search-header .datetime-selector a:after {
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgxNlYxNkgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGM0QwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTYuMTM3IDQuNjYzTDkuODEgOC4zMzcgNi4xMzcgMTIuMDEiIHRyYW5zZm9ybT0icm90YXRlKDkwIDcuOTczIDguMzM3KSIvPgogICAgPC9nPgo8L3N2Zz4K) 50% 50% no-repeat;
+    width: 16px;
+    height: 16px;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+
+.search-header .__filter-list {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+}
+
+.search-header .__filter-list .__actions {
+    padding-left: 20px;
+    margin-right: 16px;
+    display: flex;
+}
+
+.search-header .__filter-list .__actions a {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d5d5d5;
+    border-radius: 8px;
+    position: relative;
+}
+
+.search-header .__filter-list .__actions a.__active {
+    background: #fcefe7;
+    border: 1px solid #ff3d00;
+}
+
+.search-header .__filter-list .__actions a+a {
+    margin-left: 8px;
+}
+
+.search-header .__filter-list .__actions a.__active .__count {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-header .__filter-list .__actions a .__count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%,-50%);
+    width: 16px;
+    height: 16px;
+    background: #ff3d00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.search-header .__filter-list .__split {
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: #d5d5d5;
+}
+
+.search-header .__filter-list .__list {
+    flex: 1;
+    overflow: hidden;
+    padding-right: 20px;
+    padding-left: 16px;
+}
+
+.search-header .__filter-list .__list .swiper {
+    overflow: visible;
+}
+
+.swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+
+.swiper-wrapper {
+    transition-timing-function: linear;
+}
+
+.swiper-container-android .swiper-slide, .swiper-wrapper {
+    transform: translate3d(0,0,0);
+}
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.search-header .__filter-list .__list .swiper-slide {
+    width: auto!important;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+
+.search-header .__filter-list .__list a.__active {
+    background: #fcefe7;
+    border: 1px solid #ff3d00;
+    color: #ff3d00;
+}
+
+.search-header .__filter-list .__list a {
+    border: 1px solid #d5d5d5;
+    box-sizing: border-box;
+    border-radius: 18px;
+    display: flex;
+    height: 36px;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 0 14px;
+}
+
+hr.separator {
+    height: 8px;
+    background-image: linear-gradient(to bottom,#e4e4e4,#f9f9f9 60%);
+    background: #f9f9f9;
+    background: #ececec!important;
+}
+
+hr {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: #e8e8e8;
+}
+
+.__search-result-header {
+    display: flex;
+    padding: 16px 0;
+    align-items: center;
+    border-bottom: 1px solid #f9f9f9;
+}
+.mb-20 {
+    margin-bottom: 20px!important;
+}
+
+.__search-result-header .__total-count {
+    padding-left: 13px;
+    color: #aaa;
+}
+.__search-result-header .__total-count strong {
+    font-weight: 700;
+}
+
+.__search-result-header .__sort {
+    padding-right: 20px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    grid-gap: 6px;
+    gap: 6px;
+}
+
+.__search-result-header .__sort svg {
+    display: block;
+}
+.section {
+    box-sizing: border-box;
+}
+
+.container.gutter-sm {
+    padding: 0 20px;
+}
+
+.saved-restaurant-list .saved-restaurant-list-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.saved-restaurant-list .saved-restaurant-list-item {
+    margin-bottom: 20px;
+    padding-bottom: 4px;
+    position: relative;
+}
+.saved-restaurant-list-item {
+    position: relative;
+}
+.saved-restaurant-list-item .restaurant-info {
+    display: flex;
+    margin-bottom: 16px;
+    position: relative;
+}
+.saved-restaurant-list-item .restaurant-info .tb {
+    margin-top: 2px;
+    overflow: hidden;
+    margin-right: 15px;
+}
+.saved-restaurant-list-item .restaurant-info .tb .img {
+    position: relative;
+    overflow: hidden;
+}
+.saved-restaurant-list-item .restaurant-info .tb .img {
+    width: 78px;
+    height: 104px;
+    border-radius: 4px;
+    background: 50% 50% no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    box-sizing: border-box;
+    border: 1px solid #f1f1f1;
+}
+
+.saved-restaurant-list-item .restaurant-info .detail {
+    flex: 1;
+    min-width: 1px;
+}
+
+.saved-restaurant-list-item .restaurant-info .detail .detail-header {
+    display: flex;
+}
+
+.saved-restaurant-list-item .restaurant-info .detail .detail-header .txt {
+    flex: 1;
+    min-width: 1px;
+    margin-right: 8px;
+}
+
+.saved-restaurant-list-item .restaurant-info .detail .name {
+    font-size: 20px;
+    margin-bottom: 3px;
+    font-weight: 700;
+    word-break: break-word;
+    line-height: 1.4;
+}
+.saved-restaurant-list-item .restaurant-info .detail .excerpt, .saved-restaurant-list-item .restaurant-info .detail .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.saved-restaurant-list-item .restaurant-info .detail .excerpt {
+    font-size: 15px;
+    line-height: 15px;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.saved-restaurant-list-item .restaurant-info .btn-bookmark {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.btn-bookmark {
+    display: block;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    background: #fff url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSIxNSIgZmlsbD0iI0Q5RDlEOSIvPg0KICAgIDxwYXRoIGQ9Ik0xNS43ODE3IDE4LjgzNjlMMTUuNTIyMiAxOC42NkwxNS4yNTAxIDE4LjgxNjlMOS41IDIyLjEzNDNWMTBDOS41IDkuMTcxNTcgMTAuMTcxNiA4LjUgMTEgOC41SDE5QzE5LjgyODQgOC41IDIwLjUgOS4xNzE1NyAyMC41IDEwVjIyLjA1MzlMMTUuNzgxNyAxOC44MzY5WiIgc3Ryb2tlPSJ3aGl0ZSIvPg0KPC9zdmc+DQo=) 50% 50% no-repeat;
+    border-radius: 50%;
+    text-indent: -999em;
+    overflow: hidden;
+}
+
+.restaurant-meta {
+    font-size: 16px;
+    font-weight: 500;
+}
+.__d-flex {
+    display: flex;
+}
+.mb-6 {
+    margin-bottom: 6px!important;
+}
+
+.restaurant-meta .rating {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: baseline;
+}
+
+.restaurant-meta .rating .star {
+    font-size: 14px;
+    position: relative;
+    padding-left: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 700;
+}
+
+.restaurant-meta .rating .star:before {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTguMTQ1MiAyOC41MzY1QzE4LjA1NDkgMjguNDg2NiAxNy45NDUyIDI4LjQ4NjYgMTcuODU0OSAyOC41MzY1TDguNzI0ODggMzMuNTgzNUM4LjUwNTcxIDMzLjcwNDYgOC4yNDMzNCAzMy41MTk4IDguMjgzNjUgMzMuMjcyNkwxMC4wMzQ1IDIyLjUzOTJDMTAuMDQ5OCAyMi40NDUyIDEwLjAxOTYgMjIuMzQ5NiA5Ljk1MzEyIDIyLjI4MTRMMi41MjU0IDE0LjY2ODZDMi4zNTQ4OCAxNC40OTM4IDIuNDUzNDQgMTQuMTk5NCAyLjY5NDgyIDE0LjE2MjVMMTIuOTMzOSAxMi41OTgxQzEzLjAzMjggMTIuNTgzIDEzLjExNzYgMTIuNTE5NiAxMy4xNjAxIDEyLjQyOUwxNy43Mjg1IDIuNjk2MjNDMTcuODM2NCAyLjQ2NjE5IDE4LjE2MzYgMi40NjYxOSAxOC4yNzE2IDIuNjk2MjNMMjIuODM5OSAxMi40MjlDMjIuODgyNCAxMi41MTk2IDIyLjk2NzMgMTIuNTgzIDIzLjA2NjIgMTIuNTk4MUwzMy4zMDUyIDE0LjE2MjVDMzMuNTQ2NiAxNC4xOTk0IDMzLjY0NTIgMTQuNDkzOCAzMy40NzQ3IDE0LjY2ODZMMjYuMDQ2OSAyMi4yODE0QzI1Ljk4MDQgMjIuMzQ5NiAyNS45NTAzIDIyLjQ0NTIgMjUuOTY1NiAyMi41MzkyTDI3LjcxNjQgMzMuMjcyNkMyNy43NTY3IDMzLjUxOTggMjcuNDk0NCAzMy43MDQ2IDI3LjI3NTIgMzMuNTgzNUwxOC4xNDUyIDI4LjUzNjVaIiBmaWxsPSIjRkZDMDFEIi8+DQo8L3N2Zz4NCg==) 0 50% no-repeat;
+    background-size: contain;
+    width: 14px;
+    height: 14px;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.restaurant-meta .rating .count {
+    vertical-align: middle;
+    font-size: 13px;
+    margin-left: 5px;
+    color: #999;
+    font-weight: 400;
+}
+.count {
+    word-break: keep-all;
+}
+
+.saved-restaurant-list-item .restaurant-info .detail .restaurant-meta .tags {
+    display: block;
+    color: #aaa;
+    margin-bottom: 5px;
+    font-size: 11px;
+}
+
+.saved-restaurant-list-item .restaurant-info .detail .restaurant-meta .price {
+    display: block;
+    color: #aaa;
+    font-size: 11px;
+}
+
+.restaurant-meta .price {
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    color: #333;
+}
+.saved-restaurant-list-item .timetable-list {
+    margin-top: 13px;
+    overflow: auto;
+    margin-right: -20px;
+    padding-right: 20px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.timetable-list {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.timetable-list-sm .timetable-list-item {
+    flex: 1;
+    margin-right: 5px;
+    width: auto;
+    min-width: 72px;
+}
+.timetable-list-item.disabled {
+    border-color: #f1f1f1;
+    color: #aaa;
+}
+.timetable-list .timetable-list-item {
+    flex: 0 0 auto;
+    margin-right: 6px;
+}
+.timetable-list-item {
+    border-radius: 6px;
+    border: solid 1px #ff3d00;
+    overflow: hidden;
+    width: 76px;
+    text-align: center;
+    font-weight: 500;
+}
+.timetable-list .timetable-list-item:last-child {
+    margin-right: 0!important;
+}
+
+.timetable-list-sm .timetable-list-item .time {
+    font-size: 13px;
+    min-width: 70px;
+    height: 36px;
+    box-sizing: border-box;
+}
+.timetable-list-item.disabled .time {
+    background-color: #f1f1f1;
+    color: #aaa;
+}
+.timetable-list-item .time {
+    font-size: 16px;
+    color: #fff;
+    background: #ff3d00;
+    padding: 12px 0 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timetable-list-sm .timetable-list-item {
+    flex: 1;
+    margin-right: 5px;
+    width: auto;
+    min-width: 72px;
+}
+.timetable-list-item.disabled {
+    border-color: #f1f1f1;
+    color: #aaa;
+}
+.timetable-list .timetable-list-item {
+    flex: 0 0 auto;
+    margin-right: 6px;
+}
+.timetable-list-item {
+    border-radius: 6px;
+    border: solid 1px #ff3d00;
+    overflow: hidden;
+    width: 76px;
+    text-align: center;
+    font-weight: 500;
+}
+
+#footer {
+    background: #f9f9f9;
+    padding: 35px 0;
+    margin-top: 90px;
+}
+
+#footer h4, #footer p {
+    font-size: 11px;
+    color: #8f8f8f;
+    margin-bottom: 10px;
+    line-height: 1.25;
+}
+
+#footer h4 strong, #footer p strong {
+    color: #666;
+}
+
+#footer .footer-menu {
+    margin-top: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+#footer .footer-menu a {
+    color: #666;
+}
+#footer .footer-menu .split {
+    margin: 0 4px;
+    color: #aaa;
+    display: block;
+}

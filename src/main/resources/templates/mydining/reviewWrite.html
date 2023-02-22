@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/detail.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+  </head>
+  <style>
+    .headerCategory {
+      padding: 6px 0;
+    }
+  </style>
+  <body>
+<div id="root">
+  <header id="header">
+    ㅎㄷㅎㄷ
+  </header>
+    <div class="wrapper">
+    <main id="main" style="margin-top: 50px;">
+      <section class="section bg-gray mb-30" style="background-color: white;">
+        <div class="restaurant-reservation-detail">
+          <div class="detail-box p-10">
+            <div class="box">
+                <div class="review">
+                  <div class="review-header">
+                    <div class="review-title">
+                      리뷰 작성
+                      <span style="color:rgb(255, 61, 0)">*</span>
+                    </div>
+                    <p class="descrption" style="padding: 12px 0 0 0;">레스토랑과 관련된 사진을 업로드 해주세요.</p>
+                    <p class="descrption" style="padding: 8px 0;">초상권 침해 사진의 경우 삭제할 수 있습니다.</p>
+                  </div>
+                </div>
+                <form action="/mydining/reserve/doneDetail" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="revStatus" th:value="${detail.profileDto().prIdx()}">
+                  <input type="hidden" name="prIdx" th:value="${detail.profileDto().prIdx()}">
+                  <input type="hidden" name="resIdx" th:value="${resIdx}">
+                  <input type="hidden" name="resaBisName" th:value="${detail.resAdminDto().resaBisName()}">
+<!--                  <input type="hidden" name="resIdx" th:value="${detail.resIdx()}">-->
+                  <div class="star-wrapper" style="margin: 0 0 15px 0;">
+                    <div class="star-header" style="padding-left: 16px;">평균 별점</div>
+                    <div class="star">
+                      ★★★★★
+                      <span class="star">★★★★★</span>
+                      <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10" name="revScore">
+                    </div>
+                  </div>
+                  <div class="review-main" style="padding: 0 12px 12px 17px;">
+            <textarea id="review-content" class="review-content" cols="30" rows="10" placeholder="레스토랑과 유저들에게 도움이 되는 따뜻한 리뷰를 작성해주세요." style="width: 98%;font-size: 13px;
+                                                                                        padding-left: 6px;" name="revContent"></textarea>
+                    <div class="review-content">
+                      <div class="upload-wrapper">
+                        <div class="upload">
+                          <div class="photo">
+                            <input type="file" name="file" class="hidden">
+                            <input type="file" multiple="multiple" name="files" id="images" class="hidden">
+                            <div class="image-wrapper" style="padding: 8px 0;">
+                              <label for="images"><img style="width:30px; height:30px; cursor: pointer; margin-top: 8px;" src="/images/file.png" alt=""></label>
+                              <p class="upload-description">업로드</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-footer" style="padding: 0 32px 25px 17px;justify-content: right;">
+                    <!--            <div class="review-footer-revisit">-->
+                    <!--                <button class="review-footer-revisit" type="button">✔ 재방문 할래요</button>-->
+                    <!--            </div>-->
+                    <div class="review-footer-register"> <button class="review-footer-register" style="width: 140px;"><input type="submit" class="hidden"/>✔ 등록</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+    </main>
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+  </div>
+<script>
+  const drawStar = (target) => {
+    document
+            .querySelector(`.star span`)
+            .style
+            .width = `${
+            target.value * 10
+    }%`;
+  }
+</script>
+  </body>
+
+</html>

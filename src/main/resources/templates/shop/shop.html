@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="fragment/link :: link"/>
+    <title th:text="${bisDetail.resAdminDto.resaBisName()}">텍사스 데 브라질 센트럴시티점</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <div id="ch-plugin" class="notranslate">
+        <div id="ch-plugin-core"></div>
+        <div id="ch-plugin-script" style="display:none" class="ch-messenger-hidden">
+            <iframe id="ch-plugin-script-iframe"
+                    style="position:relative!important;height:100%!important;width:100%!important;border:none!important;"></iframe>
+        </div>
+    </div>
+    <style>
+        .__restaurant-notice-v2 .__restaurant-notice-v2-item .__notice-content .__desc {
+            margin-right: 15px;
+        }
+
+        .video-swiper-wrapper {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .container.gutter-sm .v-scroll {
+            margin-left: 0px;
+        }
+
+        body {
+            scrollbar-color: white;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow-x: hidden;
+        }
+
+        .header-wrap {
+            top: -6.5px;
+            right: 8px;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f813af5669862c77201e5b06934d8538&libraries=services"></script>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b5d757c54c1d945c4c71d8f3f60e1a69&amp;autoload=false&amp;libraries=services,clusterer"
+            async=""></script>
+</head>
+
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷ
+    </header>
+    <div class="wrapper" id="wrapperDiv">
+        <!--메인 시작-->
+        <main id="main">
+            <section class="restaurant-detail-header mb-40" style="position: relative; z-index: 0;">
+                <div class="video-swiper-wrapper">
+                    <div class="swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <div class="img-container" style="position: relative;">
+                            <th:block
+                                    th:if="${shopPic.savedPath() != null and shopPic.orgNm() == null and shopPic.savedNm() == null}">
+                                <div class="img swiper-lazy swiper-lazy-loaded">
+                                    <img class="guide-img" style="width: 100%; max-height:500px; display: block;"
+                                         th:src="${shopPic.savedPath()}" alt="">
+                                </div>
+                            </th:block>
+                            <th:block
+                                    th:unless="${shopPic.savedPath() != null and shopPic.orgNm() == null and shopPic.savedNm() == null}">
+                                <div class="img swiper-lazy swiper-lazy-loaded">
+                                    <img class="guide-img" style="width: 100%; max-height:500px; display: block;"
+                                         th:src="'/photo/' + ${shopPic.savedNm()}" alt="">
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                    <a href="#target" class="btn-location">위치</a>
+                </div>
+            </section>
+            <section class="section">
+                <div class="container gutter-sm">
+                    <div class="restaurant-summary mb-20" style="margin-left: 0">
+                        <h2 id="resa_bis_name" class="name"
+                            th:text="${bisDetail.bistroInfoDto().resAdminDto().resaBisName()}"></h2>
+                        <p class="slogan" style="line-height: 1.5;" th:text="${bisDetail.bistroInfoDto().bisDesc()}">
+                            고속터미널역에 위치한 무한 리필 스테이크 맛집</p>
+                        <span class="tags"
+                              th:text="|${bisDetail.bistroInfoDto().bisCategory()} • ${bisDetail.bistroInfoDto().bisRegion()}|">스테이크,립 • 반포</span>
+                    </div>
+                    <div class="restaurant-meta mb-16">
+                        <div class="rating"><span class="star" th:text="${avgpoint}">3.3</span><span class="count"
+                                                                                                     th:text="|(${revcnt})|">(165)</span>
+                        </div>
+                        <div class="price">
+                            <span class="lunch"
+                                  th:text=" |${bisDetail.bistroInfoDto().bisLunch()}|">점심 5 - 7만원</span>
+                            <span class="dinner"
+                                  th:text=" |${bisDetail.bistroInfoDto().bisDinner()}|">저녁 6.8만원</span></div>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator">
+            <section class="section pb-30" style="padding-top: 30px;">
+                <div class="container gutter-sm" style="margin: 0">
+                    <div class="section-body">
+                        <div class="btn-centered"><a th:href="'/reservation/'+${bisDetail.bistroInfoDto().resAdminDto().resaBisName()}"
+                                th:onclick="checkBlock([[${bisDetail.resAdminDto().resaBisName()}]],[[${prIdx}]])"
+                                class="btn btn-rounded btn-outline-red"><span
+                                class="label arrow">예약가능 날짜 찾기</span></a></div>
+            </section>
+            <hr class="separator" th:if="${!#lists.isEmpty(bisNotice)}">
+            <section class="section pt-30 pb-30 section-overflow-hidden" th:if="${!#lists.isEmpty(bisNotice)}">
+                <div class="container gutter-sm">
+                    <div class="section-header mb-30">
+                        <h3 class="section-title __sm">레스토랑 공지</h3>
+                        <div class="utils"><a class="__btn-all" style="color: black;">전체보기</a></div>
+                    </div>
+                    <div class="section-body" style="overflow: hidden;">
+                        <div id="shop-notice-list" class="v-scroll">
+                            <div class="v-scroll-inner">
+                                <div id="shop-notice-list" class="__restaurant-notice-v2"
+                                     style="display: flex; flex-wrap: nowrap;">
+                                    <div class="swiper-slide" style=" margin-right: 10px;">
+                                        <article class="__restaurant-notice-v2-item">
+                                            <div class="__notice-content">
+                                                <div class="__pic">
+                                                    <div class="img"></div>
+                                                </div>
+                                                <div class="__desc" th:each="notice : ${bisNotice}">
+                                                    <p th:text="${notice.binContent}">12월 1일부터 한달간(12월31일까지) 평일디너는
+                                                        17:00에 오픈을 시작합니다. (19:00종료) </p>
+                                                    <a class="__more"><span>더보기</span></a>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator">
+            <section class="section pt-30">
+                <div class="container gutter-sm">
+                    <div class="section-header mb-16">
+                        <h3 class="section-title __sm">편의시설</h3>
+                    </div>
+                    <div class="section-body">
+                        <div class="restaurant-features mb-20">
+                            <th:block th:if="${!facility.isEmpty()}">
+                                <span class="feature-item" th:if="${facility[0].facParking}">
+                                    <img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_parking.svg"
+                                         alt="" class="icon"><span class="label">주차 가능</span>
+                                </span>
+                                <span class="feature-item" th:if="${facility[0].facValet}">
+                                    <img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_welcome_kids.svg"
+                                         alt="" class="icon"><span class="label">발렛 가능</span>
+                                </span>
+                                <span class="feature-item" th:if="${facility[0].facCorkage}">
+                                    <img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_corkage.svg"
+                                         alt="" class="icon"><span class="label">콜키지 가능</span>
+                                </span>
+                                <span class="feature-item" th:if="${facility[0].facNokid}">
+                                    <img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_accessible.svg"
+                                         alt="" class="icon"><span class="label">노키즈존</span>
+                                </span>
+                                <span class="feature-item" th:if="${facility[0].facAnimal}">
+                                    <img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_pet.svg "
+                                         alt="" class="icon"><span class="label">반려동물 동반</span>
+                                </span>
+                                <span class="feature-item" th:if="${facility[0].facHandi}">
+                                    <img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_accessible.svg"
+                                         alt="" class="icon"><span class="label">장애인 편의시설</span>
+                                </span>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="__notes ml--20 mr--20">
+                        <span id="toc-toggle" onclick="openCloseToc()"> 주차정보</span>
+                        <ol id="toc-content">
+                            <br><br>
+                            <li th:text=" |- ${bisDetail.bdPark} |"></li>
+                            <br><br>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator">
+            <section class="section pt-30 pb-16">
+                <div class="container gutter-sm">
+                    <div class="section-header">
+                        <h3 class="section-title">메뉴</h3>
+                        <div class="utils"><a class="__btn-all"
+                                              th:href="'/shop/menulist/' + ${bisDetail.resAdminDto().resaBisName()}">전체보기</a>
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <div class="menupan-item-list mb-20">
+                            <div class="__menupan-item" th:each="menus : ${menu}">
+                                <div class="__name">
+                                    <h4 th:text="${menus.meName()}">평일_런치</h4>
+                                    <div class="__price" th:text="|${menus.mePrice()}|">53,000원</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="margin-top: 30px"><a th:href="'/shop/menulist/' + ${bisDetail.resAdminDto().resaBisName()}"
+                                class="btn-menupan-photo"><span>메뉴 전체보기</span></a></div>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator">
+            <section class="section pt-30 pb-20">
+                <div class="container gutter-sm">
+                    <div class="section-header mb-25">
+                        <h3 class="section-title">최신 리뷰</h3>
+                        <div class="utils"><a class="__btn-all"
+                                              th:href="|/shop/review/${bisDetail.resAdminDto.resaBisName}|">전체보기</a>
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <div class="section-body">
+                            <div class="rating-summary mb-30">
+                                <div class="rating"><span class="star" th:text="${avgpoint}">4.5</span><span
+                                        class="count" th:text="|(${revcnt})|">(165)</span>
+                                </div>
+                            </div>
+                            <div class="review-post-list mb-25">
+                                <div class="v-scroll">
+                                    <div class="v-scroll-inner">
+                                        <div class="review-post-list">
+                                            <a class="review-post-list-item" th:each="review,revStat:${reviewAndPhoto}"
+                                               th:if="${revStat.index>(revStat.size-4)}">
+                                                <div class="tb">
+                                                    <div class="img">
+                                                        <div th:if="${review.reviewPhotoDto == null}">
+                                                            <img src="" alt="">
+                                                        </div>
+                                                        <div th:unless="${review.reviewPhotoDto == null}">
+                                                            <th:block
+                                                                    th:if="${review.reviewPhotoDto.savedPath != null and review.reviewPhotoDto.orgNm == null and review.reviewPhotoDto.savedNm == null}">
+                                                                <img th:src="${review.reviewPhotoDto.savedPath}" alt=""
+                                                                     style="width: 300px; height:200px; object-fit: cover;">
+                                                            </th:block>
+                                                            <th:block
+                                                                    th:unless="${review.reviewPhotoDto.savedPath != null and review.reviewPhotoDto.orgNm == null and review.reviewPhotoDto.savedNm == null}">
+                                                                <img
+                                                                        th:src="'/photo/'+${review.reviewPhotoDto.savedNm}"
+                                                                        alt=""
+                                                                        style="width: 300px; height:200px; object-fit: cover;">
+                                                            </th:block>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="detail">
+                                                    <div class="post-meta">
+                                                        <div class="profile-pic">
+                                                            <img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/noimg/profile_default_v2.png"
+                                                                 alt="" class="img">
+                                                        </div>
+                                                        <div class="profile">
+                                                            <h4 class="name username  "><span class="txt"
+                                                                                              th:text="${review.prNick}">빠빠티</span>
+                                                            </h4><span class="date" th:text="${#temporals.format(review.regDate, 'yyyy년 MM월 dd일')}">2022.12.13</span>
+                                                        </div>
+                                                        <div class="rating"><span class="star"
+                                                                                  th:text="${review.revScore}">5.0</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-area">
+                                                    <div class="review-comment" style="margin-top: 8px;">
+                                                        <p class="desc" th:text="${review.revContent}">직원들이 다 친절하게
+                                                            대응해주시고 바쁘신 와중에도 좋은 서비스를 해주셔서 감사했습니다</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="showall">
+                                                <a class="arrow"
+                                                   th:href="|/shop/review/${bisDetail.resAdminDto.resaBisName}|"><span>리뷰<br>전체보기</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn-menupan-photo" id="target"
+                       th:href="|/shop/review/${bisDetail.resAdminDto.resaBisName}|"><span>리뷰 전체보기</span></a>
+            </section>
+            <hr class="separator">
+
+            <hr class="separator">
+            <section class="section pt-30 pb-20">
+                <div class="container gutter-sm">
+                    <div class="section-header">
+                        <h3 class="section-title">위치정보</h3>
+                    </div>
+                    <div class="section-body">
+                        <div class="sc-hKMtZM jdiMxr">
+                            <div class="map" id="map"
+                                 style="height: 240px; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/2x/bg_tile.png&quot;);">
+
+                            </div>
+                            <div class="addr" style="padding-left: 0">
+                                <p th:text="${bisDetail.bdAddr()}">서울특별시 서초구 사평대로 205 CENTRALCITY 반포천 복개주차장</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="separator">
+            <section class="section pt-30 pb-25">
+                <div class="container gutter-sm">
+                    <div class="section-header">
+                        <h3 class="section-title">상세정보</h3>
+                    </div>
+                    <div class="section-body">
+                        <div class="desc-blocks" style="word-break: break-word;">
+                            <div class="desc-block">
+                                <dl>
+                                    <dt>전화번호</dt>
+                                    <!--       th:text="${shop.bdHp}"-->
+                                    <dd th:text="${bisDetail.bdHp()}">02-6282-5000</dd>
+                                </dl>
+                            </div>
+                            <div class="desc-block">
+                                <dl>
+                                    <dt><a class="__toggle">매장 소개</a></dt>
+                                    <!--                                        th:text="${shop.bdIntro}"-->
+                                    <dd class="color-gray" th:text="${bisDetail.bdIntro()}" style="white-space: pre-line">강렬한 삼바 리듬과 함께 즐기는 브라질 슈하스코
+                                        하우스<br><br>15가지의 브라질 정통 스테이크인
+                                        슈하스코와 50여가지의 신선한 계절 샐러드를 함께 즐길 수 있으며 <br>고객이 계신 테이블로 카버가 찾아가 스테이크를 직접
+                                        카빙서비스해드리기에, 원하시는 부위별로 마음껏 골라 드실 수 있습니다.<br><br>‘맛’과 ‘재미‘ 가 공존하는 텍사스 데
+                                        브라질에서 열정의 나라 브라질만의 놀라운 맛과 멋을 경험해 보세요.
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="desc-block">
+                                <dl>
+                                    <dt><a class="__toggle">영업시간</a></dt>
+                                    <dd class="color-gray" th:text="${bisDetail.bdHour()}">
+                                        9:00 - 10:00
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="desc-block">
+                                <dl>
+                                    <dt><a class="__toggle">정기 휴무</a></dt>
+                                    <dd class="color-gray" th:text="${bisDetail.bdHoliday()}">연중무휴</dd>
+                                </dl>
+                            </div>
+                            <div class="desc-block">
+                                <dl>
+                                    <dt>홈페이지</dt>
+                                    <dd><span style="color: rgb(0, 0, 255); cursor: pointer;"
+                                              th:text="${bisDetail.bdHome()}">http://www.texasdebrazil.co.krr/</span>
+                                    </dd>
+                                </dl>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <!--footer-->
+    <div th:replace="fragment/footer :: footer"/>
+    <!--/footer-->
+</div>
+
+</body>
+<script type="text/javascript" src="/js/script.js"></script>
+<script src="/js/shopBlock.js"></script>
+<script src="/js/map.js"></script>
+<script>
+    var imageSrc =
+            "https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons/location-red.svg", // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage = new kakao.maps.MarkerImage(
+            imageSrc,
+            imageSize,
+            imageOption
+        ),
+        markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition,
+        image: markerImage, // 마커이미지 설정
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+</script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const address = [[${bisDetail.bdAddr()}]]
+    const addressName = [[${bisDetail.resAdminDto().resaBisName()}]]
+    console.log(address);
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(
+        address,
+        // 받아온 식당주소 입력
+        function (result, status) {
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords,
+                    image: markerImage,
+                });
+
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    content:
+                        '<div id="addressName" style="width:150px;text-align:center;padding:6px 0;"></div>',
+                });
+                infowindow.open(map, marker);
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+
+                document.querySelector("#addressName").innerHTML = addressName
+            }
+        }
+    );
+    /*]]>*/
+</script>
+</html>

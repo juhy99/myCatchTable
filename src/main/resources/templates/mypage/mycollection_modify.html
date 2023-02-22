@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+    <link rel="stylesheet" href="/css/notice.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<style>
+    .headerCategory {
+        padding: 6px 0;
+    }
+</style>
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!--  mypageHeader-->
+    <div th:replace="fragment/mypage_header :: mypage_header"/>
+    <!--  /mypageHeader-->
+    <div class="css-luwwab eug5r8l1 wrapper">
+        <div th:replace="fragment/mypage_aside :: mypage_aside"/>
+        <div class="css-171zbec eug5r8l0">
+            <form>
+                <div class="css-j0lifa ed9qr673">
+                    <div class="css-fhxb3m ed9qr672">
+                        <h2 class="css-1268zpe ed9qr671">컬렉션 수정하기</h2>
+                    </div>
+                </div>
+                <div class="css-185m8ch e1153ede0">
+                    <input id="colIdx" type="hidden" name="colIdx" th:value="${myCollection.colIdx}">
+                    <div class="css-17bp14q e1vbjq4w3">
+                        <div class="css-mm5tap e1vbjq4w2">
+                            <label data-testid="label-text">
+                                컬렉션 이름
+                                <span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0">*</span>
+                            </label>
+                        </div>
+                        <div class="css-12l4j2c e1vbjq4w1" style="width: 82%;">
+                            <div class="css-1waqr6j e1uzxhvi6">
+                                <div height="44" class="css-t7kbxx e1uzxhvi3">
+                                    <input data-testid="input-box" id="colTitle" name="colTitle"
+                                           th:field="${myCollection.colTitle}" type="text" height="44"
+                                           class="css-n2am0u e1uzxhvi2" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="css-rm6te4 e1fgvk594">
+                        <div class="css-17bp14q e1vbjq4w3">
+                            <div class="css-mm5tap e1vbjq4w2">
+                                <label for="inquiry-contents" data-testid="label-text">
+                                    설명
+                                    <span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0">*</span>
+                                </label>
+                            </div>
+                            <div class="css-12l4j2c e1vbjq4w1">
+                                <div class="css-0 e1tjt2bn7">
+                                    <div class="css-1gua357 e1tjt2bn5" style="    height: 331px;">
+                                        <textarea id="inquiry-contents" inputmode="text" aria-label="textarea-message"
+                                                  name="contents" class="css-5etceh e1tjt2bn1"></textarea>
+                                        <div class="placeholder css-1ofzfyp e1tjt2bn6" style="padding: 0px 15px 32px">
+                                            <div class="css-168e7y9 e1fgvk593">
+                                                <input data-testid="input-box" id="colContent" name="colContent"
+                                                       th:field="${myCollection.colContent}"
+                                                       type="text" height="44"
+                                                       class="css-n2am0u e1uzxhvi2" value="" style="padding: 0;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="css-17bp14q e1vbjq4w3">
+                        <div class="css-mm5tap e1vbjq4w2">
+                            <label data-testid="label-text">
+                                컬렉션 공개하기
+                                <!-- <span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0">*</span> -->
+                            </label>
+                        </div>
+                        <div class="__ml-auto" style="display: flex">
+                            <label style="color: #8f8f8f; position: relative; top: 5px; right: 10px; font-size: small;">활성화 시 공개</label>
+                            <label class="switch">
+                                <input id="colLock" type="checkbox" checked>
+                                <span class="gadget"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="css-v3zc4x effwtd5"></div>
+                    <div class="css-1spu0j4 ebvrvv11">
+                        <button type="button" id="colModBtn" class="css-13kn1it ebvrvv10">등록</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+<script src="/js/myCollection_mod.js"></script>
+</body>
+</html>

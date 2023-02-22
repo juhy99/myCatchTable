@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/collection_detail.css">
+  </head>
+  <style>
+      .headerCategory {
+          padding: 6px 0;
+      }
+  </style>
+<body>
+<div id="root">
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+
+    <!--  mypageHeader-->
+    <div th:replace="fragment/mypage_header :: mypage_header"/>
+    <!--  /mypageHeader-->
+    
+    <div class="css-luwwab eug5r8l1 wrapper">
+
+    <div th:replace="fragment/mypage_aside :: mypage_aside"/>
+
+      <div class="css-171zbec eug5r8l0">
+        <div class="css-j0lifa ed9qr673">
+            <div class="css-fhxb3m ed9qr672">
+                <h2 class="css-1268zpe ed9qr671">포인트 선물 내역</h2>
+            </div>
+        </div>
+       
+        <section>
+            <div class="css-1fqjuar eczmil30">
+                <div class="reg-date">날짜</div>
+                <div class="detail">내용</div>
+                <div class="expire-date">보낸이</div>
+                <div class="point">금액</div>
+            </div>
+            <ul class="css-qr8q5p evguv7f0">
+                <li class="css-12qgyh1 e1o0vhxv0">
+                    <div class="reg-date">22.03.05</div>
+                    <div class="detail">50000포인트 선물</div>
+                    <div class="expire-date">바나나</div>
+                    <div class="point ">+211 원</div>
+                </li>
+                <li class="css-12qgyh1 e1o0vhxv0">
+                    <div class="reg-date">22.03.04</div>
+                    <div class="detail">주문(1646358733620) 결제 시 사용</div>
+                    <div class="expire-date">선물</div>
+                    <div class="point minus">-822 원</div>
+                </li>
+                <li class="css-12qgyh1 e1o0vhxv0">
+                    <div class="reg-date">21.12.03</div>
+                    <div class="detail">[구매적립] 주문(1638410940017) 0.5% 적립</div>
+                    <div class="expire-date">22.12.31</div>
+                    <div class="point ">+80 원</div>
+                </li>
+                <li class="css-12qgyh1 e1o0vhxv0">
+                    <div class="reg-date">21.09.25</div>
+                    <div class="detail">[구매적립] 주문(1632359132966) 5% 적립</div>
+                    <div class="expire-date">22.09.30</div>
+                    <div class="point ">+742 원</div>
+                </li>
+            </ul>
+            <ul class="css-1mv89gg e1hsgxt10">
+                <li class=" css-11i2iy4 ectsgb90"><button class="css-17zbtwr ectsgb91"><img src="https://res.kurly.com/pc/etc/old/images/common/icon-pagination-first.png" alt="first"></button></li>
+                <li class=" css-11i2iy4 ectsgb90"><button class="css-17zbtwr ectsgb91"><img src="https://res.kurly.com/pc/etc/old/images/common/icon-pagination-prev.png" alt="prev"></button></li>
+                <li class="active css-11i2iy4 ectsgb90"><button class="css-17zbtwr ectsgb91">1</button></li>
+                <li class=" css-11i2iy4 ectsgb90"><button class="css-17zbtwr ectsgb91"><img src="https://res.kurly.com/pc/etc/old/images/common/icon-pagination-next.png" alt="next"></button></li>
+                <li class=" css-11i2iy4 ectsgb90"><button class="css-17zbtwr ectsgb91"><img src="https://res.kurly.com/pc/etc/old/images/common/icon-pagination-last.png" alt="last"></button></li>
+            </ul>
+        </section>
+    </div>
+
+    </div>
+    <div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+</html>

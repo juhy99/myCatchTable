@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+  <div th:replace="fragment/link :: link"/>
+  <link rel="stylesheet" href="/css/detail.css">
+  <link rel="stylesheet" href="/css/collection_detail.css">
+</head>
+<style>
+  .headerCategory {
+    padding: 6px 0;
+  }
+</style>
+<body>
+<div id="root">
+  <header id="header">
+    ㅎㄷㅎㄷ
+  </header>
+  <div class="wrapper">
+    <main id="main">
+      <section class="section bg-gray mb-30">
+        <div class="restaurant-reservation-detail">
+          <div class="detail-box p-10">
+            <div class="box">
+              <div class="detail-box-header">
+                <div class="reservation-status">
+                  <span class="cancel" th:text="${detail.resStatus()}"></span>
+                </div>
+                <h2 class="name">
+                  <a href="/ct/shop/Y2F0Y2hfMCtRcEsrMGd5ZUloTGszSitWY2xhdz09"
+                     th:text="${detail.resAdminDto().resaBisName()}"></a
+                  >
+                </h2>
+                <div style="display: flex;justify-content: center">
+                  <h3 class="type" th:text="${detail.bistroInfoDto().bisCategory()}"></h3>
+                  <span>&nbsp•&nbsp</span>
+                  <h3 class="type" th:text="${detail.bistroInfoDto().bisRegion()}"></h3>
+                </div>
+              </div>
+              <div class="detail-box-body">
+                <div class="options">
+                  <div class="date">[[${detail.resMonth()}]].[[${detail.resDay()}]]
+                  </div>
+                  <div class="time">
+                    <span>[[${detail.resTime()}]]시</span>
+                  </div>
+                  <div class="people">
+                    <span>[[${detail.resPerson()}]]명</span>
+                  </div>
+                </div>
+
+                <hr class="hairline" />
+                <div>
+                  <div class="cancel-msg">
+                    <h6>예약이 취소되었습니다.</h6>
+                    <p>
+                      변경사항을 미리 알려 주셔서 감사합니다. 다음에 다시
+                      찾아주세요 :)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container gutter-sm">
+          <div class="section-header section-header-v">
+            <h3 class="section-title section-title-sm">예약 정보</h3>
+          </div>
+          <div class="section-body">
+            <div class="reservation-info-summary">
+              <dl>
+                <dt>예약자</dt>
+                <dd style="word-break: break-all" th:text="${detail.prName()}">전지혜</dd>
+              </dl>
+              <dl>
+                <dt>예약경로</dt>
+                <dd>캐치테이블 앱</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="separator mt-30 mb-30" />
+      <section class="section">
+        <div class="container gutter-sm">
+          <div class="section-header section-header-v">
+            <h3 class="section-title section-title-sm">레스토랑 유의사항</h3>
+          </div>
+          <div class="section-body">
+            <div class="well">
+              <p class="font-12 color-gray">
+                예약은 전날 까지 가능하며, 좌석은 직원들이 안내 해드릴
+                겁니다.<br />공연은 매주 목,금,토 19:30~21:00 진행하니 예약 시
+                참고 부탁 드리겠습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="separator mt-24" />
+      <section class="section pt-30 pb-20">
+        <div class="container gutter-sm">
+          <div class="section-header">
+            <h3 class="section-title">위치정보</h3>
+          </div>
+          <div class="section-body">
+            <div class="sc-gsnTZi hLhZKP">
+              <div
+                      class="map"
+                      id="mapContainer"
+                      style="
+                  height: 240px;
+                  overflow: hidden;
+                  background: url('https://t1.daumcdn.net/mapjsapi/images/2x/bg_tile.png');
+                "
+              >
+                <img
+                        src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons/location-red.svg"
+                        class="icon"
+                />
+                <div
+                        style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    width: 100%;
+                    height: 100%;
+                    touch-action: none;
+                  "
+                >
+                  <div style="position: absolute">
+                    <div style="position: absolute; z-index: 0"></div>
+                    <div
+                            style="
+                        position: absolute;
+                        z-index: 1;
+                        left: 0px;
+                        top: 0px;
+                      "
+                    >
+                      <img
+                              src="https://map1.daumcdn.net/map_2d_hd/2212ejo/L3/1999/889.png"
+                              alt=""
+                              role="presentation"
+                              draggable="false"
+                              style="
+                          position: absolute;
+                          user-select: none;
+                          -webkit-user-drag: none;
+                          min-width: 0px;
+                          min-height: 0px;
+                          max-width: none;
+                          max-height: none;
+                          left: -79px;
+                          top: 151px;
+                          opacity: 1;
+                          transition-property: opacity;
+                          transition-duration: 0.2s;
+                          transition-timing-function: ease;
+                          width: 256px;
+                          height: 256px;
+                        "
+                      /><img
+                            src="https://map2.daumcdn.net/map_2d_hd/2212ejo/L3/1999/890.png"
+                            alt=""
+                            role="presentation"
+                            draggable="false"
+                            style="
+                          position: absolute;
+                          user-select: none;
+                          -webkit-user-drag: none;
+                          min-width: 0px;
+                          min-height: 0px;
+                          max-width: none;
+                          max-height: none;
+                          left: 177px;
+                          top: 151px;
+                          opacity: 1;
+                          transition-property: opacity;
+                          transition-duration: 0.2s;
+                          transition-timing-function: ease;
+                          width: 256px;
+                          height: 256px;
+                        "
+                    /><img
+                            src="https://map3.daumcdn.net/map_2d_hd/2212ejo/L3/1999/891.png"
+                            alt=""
+                            role="presentation"
+                            draggable="false"
+                            style="
+                          position: absolute;
+                          user-select: none;
+                          -webkit-user-drag: none;
+                          min-width: 0px;
+                          min-height: 0px;
+                          max-width: none;
+                          max-height: none;
+                          left: 433px;
+                          top: 151px;
+                          opacity: 1;
+                          transition-property: opacity;
+                          transition-duration: 0.2s;
+                          transition-timing-function: ease;
+                          width: 256px;
+                          height: 256px;
+                        "
+                    /><img
+                            src="https://map1.daumcdn.net/map_2d_hd/2212ejo/L3/2000/889.png"
+                            alt=""
+                            role="presentation"
+                            draggable="false"
+                            style="
+                          position: absolute;
+                          user-select: none;
+                          -webkit-user-drag: none;
+                          min-width: 0px;
+                          min-height: 0px;
+                          max-width: none;
+                          max-height: none;
+                          left: -79px;
+                          top: -105px;
+                          opacity: 1;
+                          transition-property: opacity;
+                          transition-duration: 0.2s;
+                          transition-timing-function: ease;
+                          width: 256px;
+                          height: 256px;
+                        "
+                    /><img
+                            src="https://map2.daumcdn.net/map_2d_hd/2212ejo/L3/2000/890.png"
+                            alt=""
+                            role="presentation"
+                            draggable="false"
+                            style="
+                          position: absolute;
+                          user-select: none;
+                          -webkit-user-drag: none;
+                          min-width: 0px;
+                          min-height: 0px;
+                          max-width: none;
+                          max-height: none;
+                          left: 177px;
+                          top: -105px;
+                          opacity: 1;
+                          transition-property: opacity;
+                          transition-duration: 0.2s;
+                          transition-timing-function: ease;
+                          width: 256px;
+                          height: 256px;
+                        "
+                    /><img
+                            src="https://map3.daumcdn.net/map_2d_hd/2212ejo/L3/2000/891.png"
+                            alt=""
+                            role="presentation"
+                            draggable="false"
+                            style="
+                          position: absolute;
+                          user-select: none;
+                          -webkit-user-drag: none;
+                          min-width: 0px;
+                          min-height: 0px;
+                          max-width: none;
+                          max-height: none;
+                          left: 433px;
+                          top: -105px;
+                          opacity: 1;
+                          transition-property: opacity;
+                          transition-duration: 0.2s;
+                          transition-timing-function: ease;
+                          width: 256px;
+                          height: 256px;
+                        "
+                    />
+                    </div>
+                    <div style="position: absolute; z-index: 1"></div>
+                    <div
+                            style="
+                        width: 480px;
+                        height: 240px;
+                        position: absolute;
+                        z-index: 1;
+                      "
+                    ></div>
+                    <div style="position: absolute; z-index: 1">
+                      <svg
+                              version="1.1"
+                              style="
+                          stroke: none;
+                          stroke-dashoffset: 0.5;
+                          stroke-linejoin: round;
+                          fill: none;
+                          transform: translateZ(0px);
+                          position: absolute;
+                          width: 2400px;
+                          height: 1200px;
+                          left: -960px;
+                          top: -480px;
+                        "
+                              viewBox="0 0 2400 1200"
+                      >
+                        <defs></defs>
+                      </svg>
+                    </div>
+                    <div
+                            style="
+                        position: absolute;
+                        z-index: 1;
+                        width: 100%;
+                        height: 0px;
+                        transform: translateZ(0px);
+                      "
+                    >
+                      <div
+                              style="
+                          position: absolute;
+                          margin: -35px 0px 0px -12px;
+                          z-index: 0;
+                          left: 240px;
+                          top: 120px;
+                        "
+                      >
+                        <img
+                                draggable="false"
+                                src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons/location-red.svg"
+                                alt=""
+                                role="presentation"
+                                title=""
+                                style="
+                            min-width: 0px;
+                            min-height: 0px;
+                            max-width: 99999px;
+                            max-height: none;
+                            border: 0px;
+                            display: block;
+                            position: absolute;
+                            user-select: none;
+                            -webkit-user-drag: none;
+                            clip: rect(0px, 26px, 36px, 0px);
+                            top: 0px;
+                            left: 0px;
+                            width: 26px;
+                            height: 36px;
+                          "
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                        style="
+                    position: absolute;
+                    cursor: default;
+                    z-index: 1;
+                    margin: 0px 6px;
+                    height: 19px;
+                    line-height: 14px;
+                    left: 0px;
+                    bottom: 0px;
+                    color: rgb(0, 0, 0);
+                  "
+                >
+                  <div
+                          style="
+                      color: rgb(0, 0, 0);
+                      text-align: center;
+                      font-size: 10px;
+                      float: left;
+                    "
+                  >
+                    <div
+                            style="
+                        float: left;
+                        margin: 2px 3px 0px 4px;
+                        height: 6px;
+                        transition: width 0.1s ease 0s;
+                        border-top: none rgb(0, 0, 0);
+                        border-right: 2px solid rgb(0, 0, 0);
+                        border-bottom: 2px solid rgb(0, 0, 0);
+                        border-left: 2px solid rgb(0, 0, 0);
+                        border-image: initial;
+                        width: 46px;
+                      "
+                    ></div>
+                    <div
+                            style="
+                        float: left;
+                        margin: 0px 4px 0px 0px;
+                        font-family: AppleSDGothicNeo-Regular, 돋움, dotum,
+                          sans-serif;
+                        font-weight: bold;
+                        color: rgb(0, 0, 0);
+                      "
+                    >
+                      50m
+                    </div>
+                  </div>
+                  <div style="margin: 0px 4px; float: left">
+                    <a
+                            target="_blank"
+                            href="http://map.kakao.com/"
+                            title="Kakao 지도로 보시려면 클릭하세요."
+                            style="float: left; width: 32px; height: 10px"
+                    ><img
+                            src="https://t1.daumcdn.net/mapjsapi/images/2x/m_bi_b.png"
+                            alt="Kakao 지도로 이동"
+                            style="
+                          float: left;
+                          width: 32px;
+                          height: 10px;
+                          border: none;
+                        "
+                    /></a>
+                    <div
+                            style="
+                        font: 11px / 11px Arial, Tahoma, Dotum, sans-serif;
+                        float: left;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div
+                        style="
+                    cursor: auto;
+                    position: absolute;
+                    z-index: 2;
+                    left: 0px;
+                    top: 0px;
+                  "
+                ></div>
+              </div>
+              <div class="addr">
+                <a class="btn-copy">매장주소 복사하기</a>
+                <p>서울특별시 중구 세종대로 135 코리아나호텔 2층</p>
+              </div>
+            </div>
+            <div class="btn-centered">
+              <a href="#" class="btn full-width btn-lg"
+              ><strong class="label arrow">레스토랑 길찾기</strong></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="separator" />
+      <section class="section pt-30 pb-25">
+        <div class="container gutter-sm">
+          <div class="section-header">
+            <h3 class="section-title">상세정보</h3>
+          </div>
+          <div class="section-body">
+            <div class="desc-blocks" style="word-break: break-word">
+              <div class="desc-block">
+                <dl>
+                  <dt>전화번호</dt>
+                  <dd>02-2171-7830</dd>
+                </dl>
+                <div class="action">
+                  <a class="btn-call"><span>전화하기</span></a>
+                </div>
+              </div>
+              <div class="desc-block">
+                <dl>
+                  <dt><a class="__toggle">매장 소개</a></dt>
+                  <dd class="color-gray">
+                    안녕하세요 호텔 코리아나 피아 라운지입니다.<br />아늑한
+                    라운지에서 라이브 재즈 공연과 함께 이탈리안 음식을 이용
+                    가능하니<br />많은 이용 부탁드리겠습니다.
+                  </dd>
+                </dl>
+              </div>
+              <div class="desc-block">
+                <dl>
+                  <dt><a class="__toggle">영업시간</a></dt>
+                  <dd class="color-gray">
+                    월-토 18:00~23:00 디너 브레이크타임 없이 운영<br />(라스트오더
+                    20:30)<br />
+                  </dd>
+                </dl>
+              </div>
+              <div class="desc-block">
+                <dl>
+                  <dt><a class="__toggle">정기 휴무</a></dt>
+                  <dd class="color-gray">매주 일요일은 정기 휴무입니다.</dd>
+                </dl>
+              </div>
+              <div class="desc-block">
+                <dl>
+                  <dt><a class="__toggle">안내 및 유의사항</a></dt>
+                  <dd class="color-gray">
+                    예약은 전날 까지 가능하며, 좌석은 직원들이 안내 해드릴
+                    겁니다.<br />공연은 매주 목,금,토 19:30~21:00 진행하니 예약
+                    시 참고 부탁 드리겠습니다.
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="space-40"></div>
+    </main>
+  </div>
+  <div th:replace="fragment/footer :: footer"/>
+</div>
+</body>
+</html>

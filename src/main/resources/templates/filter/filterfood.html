@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/filterfood.css">
+</head>
+<body>
+    <div id="root" style= "overflow: hidden; position: relative;"></div> <!--스타일 안에 height : 959px-->
+        <div class="wrapper" style="box-shadow: none;">
+            <header id="header" class="opaque line">
+                <div class="container">
+                    <div class="header-left">
+                        <h1 class="page-title">음식 종류</h1>
+                    </div>
+                    <div class="header-right"><button class="btn-reset">초기화</button></div>
+                </div>
+            </header>
+            <main id="main">
+                <section class="section">
+                    <div class="search-header mb-25">
+                        <div class="keyword">
+                            <input type="text" name="keyword" placeholder="음식종류 검색" value="" style="background-color: rgb(255, 255, 255);">
+                        </div>
+                    </div>
+                    <div class="container mb-30">
+                        <div class="checkbox-tag-group">
+                            <label>
+                                <input type="checkbox">
+                                <span class="tag">스시오마카세</span>
+                            </label>
+                            <label>
+                                <input type="checkbox">
+                                <span class="tag">한우오마카세</span>
+                            </label>
+                            <label>
+                                <input type="checkbox">
+                                <span class="tag">스테이크</span>
+                            </label>
+                            <label>
+                                <input type="checkbox">
+                                <span class="tag">한식</span>
+                            </label>
+                            <label>
+                                <input type="checkbox">
+                                <span class="tag">소고기구이</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <div class="filter-group-item open" name="country">
+                            <a class="__header">
+                                <strong class="__name">국가별</strong>
+                                <small class="__count">전체</small>
+                            </a>
+                            <div class="__body pt-16">
+                                <div class="checkbox-tree">
+                                    <div class="__depth1">
+                                        <label class="label-checkbox" id="cuisineItem_C_1">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">한식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_3">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">중식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_4">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">일식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_2">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">이탈리아음식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_12">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">프랑스음식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_13">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">스페인음식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_15">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">유러피안음식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_16">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">아메리칸음식</span>
+                                        </label><label class="label-checkbox" id="cuisineItem_C_17">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">기타 세계음식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_18">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">퓨전음식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_19">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">아시아음식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_C_20">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">컨템포러리</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-group-item open" name="kind">
+                            <a class="__header">
+                                <strong class="__name">종류별</strong>
+                                <small class="__count">전체</small>
+                            </a>
+                            <div class="__body pt-16">
+                                <div class="checkbox-tree">
+                                    <div class="__depth1">
+                                        <label class="label-checkbox" id="cuisineItem_D_26">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">한정식</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_20">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">육류,고기요리</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_18">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">해물,생선요리</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_16">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">다이닝바</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_15">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">닭,오리요리</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_6">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">뷔페</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_7">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">코스요리</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_13">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">패밀리레스토랑</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_17">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">카페,디저트</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_19">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">베지테리안/비건</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_21">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">브런치</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_22">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">국수,냉면</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_23">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">샤브샤브</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_24">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">피자</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_25">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">파스타</span>
+                                        </label>
+                                        <label class="label-checkbox" id="cuisineItem_D_27">
+                                            <input type="checkbox" class="form-checkbox">
+                                            <span class="label ebold font-16 strong">백반,가정식</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <hr class="space-40">
+            </main>
+        </div>
+    </div>
+</body>
+</html>

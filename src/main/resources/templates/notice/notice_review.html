@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>즐거운 미식 생활의 시작, 캐치테이블</title>
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/collection_detail.css" />
+    <link rel="stylesheet" href="/css/notice.css">
+</head>
+<style>
+    .headerCategory {
+        padding: 6px 0;
+    }
+</style>
+<body class="disable-user-select">
+<div id="root">
+    <!-- header 시작 -->
+    <header id="header">
+        ㅎㄷㅎㄷ
+    </header>
+    <!-- header 끝 -->
+    <div class="wrapper">
+        <div class="css-1i60c0e emilzgk3">
+            <div class="css-1uvp5r6 emilzgk2">
+                <div class="css-qwe8mt emilzgk1">공지사항</div>
+                <div class="css-1funedv emilzgk0">캐치 테이블의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</div>
+            </div>
+            <div class="css-1t45bai erzmnr90">
+                <div class="css-1dhg94g e1pwb5hv0">
+                    <div class="css-1xrh39a e1pwb5hv2">제목</div>
+                    <div class="css-8vgw34 e1pwb5hv1" th:text="${content.noTitle()}">[안내] 스마일페이 시스템 점검 안내 (2022.12.18)</div>
+                </div>
+                <div class="css-1dhg94g e1pwb5hv0">
+                    <div class="css-1xrh39a e1pwb5hv2">작성자</div>
+                    <div class="css-8vgw34 e1pwb5hv1">캐치테이블</div>
+                </div>
+                <div class="css-1dhg94g e1pwb5hv0">
+                    <div class="css-1xrh39a e1pwb5hv2">작성일</div>
+                    <div class="css-8vgw34 e1pwb5hv1" th:text="${#temporals.format(content.regDate, 'yyyy.MM.dd')}">2022.12.14</div>
+                </div>
+                <div class="css-1xvp3jp ezf0ge90">
+                    <div>
+                        <p th:text="${content.noContent()}"></p>
+                    </div>
+                </div>
+                <div class="css-d7qwpj e1p3kiis0"><a th:href="@{'/notice'}"><button class="css-214ym4 e4nu7ef3" type="button" width="150" height="42" radius="0"><span class="css-ymwvow e4nu7ef1">목록</span></button></a></div>
+            </div>
+        </div>
+    </div>
+    <!-- footer 시작 -->
+    <div th:replace="fragment/footer :: footer"/>
+    <!-- footer 끝 -->
+</div>
+</body>
+<script src="/js/notice.js"></script>
+</html>

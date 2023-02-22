@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캐치테이블 입점 문의</title>
+    <link rel="shortcut icon" href="/images/favicon.svg" type="image/x-icon" class="box_logo">
+    <link rel="stylesheet" href="/css/index.css">
+    <style>
+        .private_table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        .private_table th{
+            border: 1px solid #333;
+            text-align: center;
+            padding: 5px 0;
+        }
+        .private_table td{
+            border: 1px solid #333;
+            padding: 5px 20px;
+        }
+    </style>
+</head>
+    <body class="form page-apply">
+        <div class="wrap">
+            <header>
+                <div class="header_innner">
+                    <h1 class="logo" id="logo_banner">
+                        <img src="/images/logo-white.png" alt="catchtable logo" class="logo_size">
+                    </h1>
+                </div>
+            </header>
+                <!-- container -->
+            <div class="container">
+                <div class="spot">
+                    <div class="spot_inner">
+                        <h2 class="spot_tit">입점 문의</h2>
+                    </div>
+                </div>
+        
+                <div class="content">
+                    <section class="__about-section __bg-gray __apply-why">
+                        <div class="__container">
+                            <div class="__title-area">
+                                <h3>4,000개의 레스토랑이 캐치테이블을 선택한 이유</h3>
+                            </div>
+                            <div class="__why">
+                                <div class="__item">
+                                    <i><img src="/images/icon-why1.svg"></i>
+                                    <p>당일취소, 노쇼가 줄어들어요!</p>
+                                </div>
+                                <div class="__item">
+                                    <i><img src="/images/icon-why2.svg"></i>
+                                    <p>운영 비용과 시간이 줄어들어요!</p>
+                                </div>
+                                <div class="__item">
+                                    <i><img src="/images/icon-why3.svg"></i>
+                                    <p>매출이 늘어나요!</p>
+                                </div>
+                                <div class="__item">
+                                    <i><img src="/images/icon-why4.svg"></i>
+                                    <p>다양한 노출 및 홍보로 고객이 늘어나요!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+        
+                    
+                    <section class="__about-section __bg-gray __apply-why">
+                        <div class="__container">
+                            <div class="__title-area">
+                                <h3>입점문의</h3>
+                                <p>지금 바로, 부담 없이 무료 상담 받아보세요!<br>
+                                    아래 내용을 상세하게 적을수록 빠르고 정확한 상담이 가능합니다.</p>
+                            </div>
+        
+                            <form name="form1" id="form1" method="post" action="/pending">
+                                <input type="hidden" name="gubun" value="">
+                                <fieldset>
+                                    <div class="__fieldset-header">
+                                        <h4>매장 및 문의자 정보*</h4>
+                                    </div>
+                                    <div class="__form-group">
+                                        <div class="__form-block">
+                                            <label for="shop_name" class="__form-label">매장명</label>
+                                            <div class="__form-control">
+                                                <input type="text" placeholder="매장명을 입력해주세요." id="shop_name" name="penBisName" value="" class="__form-input">
+                                            </div>
+                                        </div>
+                                        <div class="__form-block">
+                                            <label for="customer_name" class="__form-label">문의자명 </label>
+                                            <div class="__form-control">
+                                                <input type="text" placeholder="문의주시는 분의 성함과 직책을 입력해 주세요." id="customer_name" name="penName" value="" class="__form-input">
+                                            </div>
+                                        </div>
+                                        <div class="__form-block">
+                                            <label for="customer_phone" class="__form-label">문의자 전화번호</label>
+                                            <div class="__form-control">
+                                                <input type="phone" placeholder="문의자 전화번호를 입력해주세요." id="customer_phone" name="penHp" value="" class="__form-input">
+                                            </div>
+                                        </div>
+                                        <div class="__form-block">
+                                            <label for="customer_address" class="__form-label">매장 지역</label>
+                                            <div class="__form-control">
+                                                <input type="text" placeholder="매장의 위치를 시/구, 시/군/구 순으로 작성해주세요" id="customer_address" name="penRegion" value="" class="__form-input">
+                                            </div>
+                                        </div>
+                                        <div class="__form-block">
+                                            <label for="reservationCntAvg" class="__form-label">월 평균 예약건수</label>
+                                            <div class="__form-control">
+                                                <select id="reservationCntAvg" name="penBook" class="__form-input">
+                                                    <option value="" selected="" disabled>월 평균 예약건수를 선택해주세요.</option>
+                                                    <option value="50">0~50건</option>
+                                                    <option value="150">50~150건</option>
+                                                    <option value="300">150~300건</option>
+                                                    <option value="450">300~450건</option>
+                                                    <option value="600">450건 이상</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+        
+                                <fieldset>
+                                    <div class="__fieldset-header">
+                                        <h4>매장 분야* <small></small></h4>
+                                    </div>
+                                    <div class="__checkbox-group">
+                                        <label class="__label-checkbox"><input type="radio" name="penFoodtype" value="한식"> <span>한식</span></label>
+                                        <label class="__label-checkbox"><input type="radio" name="penFoodtype" value="중식"> <span>중식</span></label>
+                                        <label class="__label-checkbox"><input type="radio" name="penFoodtype" value="일식"> <span>일식</span></label>
+                                        <label class="__label-checkbox"><input type="radio" name="penFoodtype" value="이탈리안 음식"> <span>이탈리안 음식</span></label>
+                                        <label class="__label-checkbox"><input type="radio" name="penFoodtype" value="프랑스 음식"> <span>프랑스 음식</span></label>
+                                        <label class="__label-checkbox"><input type="radio" name="penFoodtype" value="유러피안 음식"> <span>유러피안 음식</span></label>
+                                        <label class="__label-checkbox"><input type="radio" name="penFoodtype" value="스페인 음식"> <span>스페인 음식</span></label>
+                                        <label class="__label-checkbox"><input type="radio" name="penFoodtype" value="기타 세계 음식"> <span>기타 세계 음식</span></label>
+                                    </div>
+                                </fieldset>
+        
+                                <fieldset>
+                                    <div class="__fieldset-header">
+                                        <h4>약관동의</h4>
+                                        <div class="__utils">
+                                            <label class="__label-checkbox"><input type="checkbox" id="checkAgree" name="checkAgree"> <span>개인정보 수집 및 이용 동의 (필수)</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="__doc">
+                                        <div class="__doc-inner">
+                                            <p><b>개인정보 수집 및 이용에 대한 안내</b></p><br>
+                                            <p>㈜와드는 입점·문의사항 접수시, 최소한의 범위 내에서 아래와 같이 개인정보를 수집·이용 합니다.</p>
+                                            <p>처리결과 회신이 콜센터를 통해 진행될 경우, 상담원과의 통화는 녹취될 수 있습니다.</p><br>
+                                            <p>1. 수집하는 개인정보 항목</p>
+                                            <table class="private_table">
+                                                <tbody><tr>
+                                                    <th>수집하는 개인정보 항목</th>
+                                                    <th>수집 및 이용 목적</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>매장명, 이름, 연락처, 월 평균 예약건수, 관심분야</td>
+                                                    <td>입점, 문의사항 접수 및 처리결과 회신</td>
+                                                </tr>
+                                                </tbody></table><br>
+                                            <p>2. 수집 및 이용 목적 : 입점, 문의사항 접수 및 처리결과 회신</p><br>
+                                            <p>3. 개인정보의 이용기간 :&nbsp;<u>목적 달성 후, 해당 개인정보를 지체없이 파기</u> </p><br>
+                                            <p>위 개인정보 수집‧이용에 대한 동의를 거부할 권리가 있습니다. 다만 동의를 거부하는 경우 입점·문의사항 접수가 제한될 수 있습니다.</p>
+                                        </div>
+                                    </div>
+                                </fieldset>
+        
+                                <button id="inquiryBtn" name="inquiryBtn" class="submit" type="submit"><strong>접수하기</strong></button>
+                            </form>
+                        </div>
+                    </section>
+        
+        
+                </div>
+        
+            </div>
+            <!-- //container -->
+        
+            
+        
+        <footer>
+            <div class="footer_inner">
+                <!-- PC 메뉴 리스트 -->
+                <div class="pc_menu_list">
+                    <ul class="footer_menu_list">
+                        <li class="list_item">
+                            <a href="/policy/terms_of_use">이용약관  |</a>
+                        </li>
+                        <li class="list_item">
+                            <a href="/policy/refund_policy">환불규정 (refund guide)  |</a>
+                        </li>
+                        <li class="list_item">
+                            <a href="/policy/private_policy">개인정보처리방침  |</a>
+                        </li>
+                        <li class="list_item">
+                            <a href="/recruit">인재채용</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="company_info">
+                    <a href="/"><img src="/images/logo-white.png" alt="catchtable logo" class="logo_size1"><span class="blind">캐치테이블 로고 이미지</span></a>
+                    <br>
+                    <br>
+        
+                    <strong class="company_tit">주식회사 와드</strong>
+                    <address>
+                        <ul class="address_list">
+                            <li class="list_item">
+                                경기도 성남시 분당구 성남대로331번길 8, 킨스타워 1600호<br> <span id="spanTableNote" style="cursor: pointer" onclick=""></span>
+                            </li>
+                            <li class="list_item">
+                                대표이사 : 용태순
+                            </li>
+                            <li class="list_item">
+                                사업자번호 : 614-88-00597<br>
+                            </li>
+                            <li class="list_item">
+                                통신판매번호 : 제2017-성남분당-0933호
+                            </li>
+                        </ul>
+                    </address>
+                    <p class="copyright">
+                        Copyright © WAD Corp.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <script>
+            if(gtag) {
+                gtag('config', 'AW-730541101/IjbZCLr6k6cBEK3YrNwC', {'phone_conversion_number': '18005895'});
+            }
+        
+            function createHash(src) {
+                var hash = 0, i, chr;
+                if (!src || src.length === 0) return hash;
+                for (i = 0; i < src.length; i++) {
+                    chr = src.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + chr;
+                    hash |= 0; // Convert to 32bit integer
+                }
+                return hash;
+            };
+        
+            $(document).ready(function () {
+                if (location.href.indexOf('alpha-') > 0 || location.href.indexOf('local-') > 0) {
+                    $.getScript('https://alpha.catchtable.co.kr/widget/reservation/loader');
+                } else {
+                    $.getScript('https://catchtable.co.kr/widget/reservation/loader');
+                }
+        
+                var timerWidgetClick;
+                var counterForWidget = 0;
+                var handled;
+        
+                $('#spanTableNote').on('click touchstart', function (e) {
+                    var handle = function () {
+                        counterForWidget++;
+        
+                        console.log(counterForWidget);
+        
+                        if (counterForWidget === 3) {
+                            counterForWidget = 0;
+                            window.clearTimeout(timerWidgetClick);
+                            TableNote.Widget.open('HeVD8hxgtZw1lpfPz-0FeA');
+                        }
+        
+                        // 2초 뒤에 카운터를 0으로 초기화
+                        timerWidgetClick = window.setTimeout(function () {
+                            counterForWidget = 0;
+                        }, 2000);
+                    }
+        
+                    e.stopImmediatePropagation();
+                    if (e.type == "touchstart") {
+                        handled = true;
+                        handle();
+                    } else if (e.type == "click" && !handled) {
+                        handle();
+                    } else {
+                        handled = false;
+                    }
+                });
+            });
+        
+        </script>
+         
+        
+            <!-- <button type="button" class="btn_top"><span class="blind">top이동 버튼</span></button>
+        </div> -->
+       
+        <script>
+            var cellPhone = document.getElementById('customer_phone');
+            cellPhone.onkeyup = function(event){
+                event = event || window.event;
+                var _val = this.value.trim();
+                this.value = autoHypenPhone(_val) ;
+            }
+        
+            function autoHypenPhone(str){
+                str = str.replace(/[^0-9]/g, '');
+                var tmp = '';
+                if( str.length < 4){
+                    return str;
+                }else if(str.length < 7){
+                    tmp += str.substr(0, 3);
+                    tmp += '-';
+                    tmp += str.substr(3);
+                    return tmp;
+                }else if(str.length < 11){
+                    tmp += str.substr(0, 3);
+                    tmp += '-';
+                    tmp += str.substr(3, 3);
+                    tmp += '-';
+                    tmp += str.substr(6);
+                    return tmp;
+                }else{
+                    tmp += str.substr(0, 3);
+                    tmp += '-';
+                    tmp += str.substr(3, 4);
+                    tmp += '-';
+                    tmp += str.substr(7);
+                    return tmp;
+                }
+                return str;
+            }
+        
+            function sleep(ms){
+                ts1 = new Date().getTime() + ms;
+                do ts2 = new Date().getTime(); while (ts2<ts1);
+            }
+        
+        
+            function phoneCheck() {
+                //var rgEx = /(01[016789])[-](\d{4}|\d{3})[-]\d{4}$/g;
+                var rgEx = /^\d{2,3}-\d{3,4}-\d{4}$/;
+                var strValue = document.form1.customer_phone.value;
+                var chkFlg = rgEx.test(strValue);
+                if (!chkFlg) {
+                    alert("휴대폰번호 형식을 올바르게 입력해 주세요.");
+                    document.form1.customer_phone.focus();
+                    return false;
+                }
+                return true;
+            }
+        
+        
+            $("#inquiryBtn").click(function() {
+                if (form1.shop_name.value === '') {
+                    alert('매장명을 입력해 주세요.');
+                    form1.shop_name.focus();
+                }
+                else if (form1.customer_name.value === '') {
+                    alert('문의주시는 분의 성함과 직책을 입력해 주세요.');
+                    form1.customer_name.focus();
+                }
+                else if (form1.customer_phone.value === '') {
+                    alert('문의자 번호 입력해 주세요.');
+                    form1.customer_phone.focus();
+                }
+                else if (form1.reservationCntAvg.value === ''){
+                    alert('월 평균 예약건수 선택해 주세요.');
+                    form1.reservationCntAvg.focus();
+                }
+                else if($("input:checkbox[name='penFoodtype']:checked").length == 0){
+                    alert('관심 분야를 한개이상 선택해 주세요.');
+                }
+                else if(!$("input:checkbox[id='checkAgree']").is(":checked")) {
+                    alert('개인정보 수집 및 이용에 동의해주세요.');
+                }
+                else if (phoneCheck()) {
+                    if (window.confirm('입력하신 내용으로 문의를 등록하시겠습니까?')) {
+                        var ifrm = document.createElement("iframe");
+                        ifrm.setAttribute("id", "iframe1");
+                        ifrm.setAttribute("name", "iframe1");
+                        ifrm.style.width = '0px';
+                        ifrm.style.heigt = '0px';
+                        ifrm.src = '';
+                        document.getElementsByTagName('body')[0].appendChild(ifrm);
+                        // sleep(500);
+                        form1.target = "iframe1";
+                        form1.submit();
+                    }
+                }
+            });
+        </script>
+        
+     
+        <iframe id="__6472_ct_widget0_frame" frameborder="0" allowtransparency="true" width="100%" height="100%" src="" style="position: fixed; left: 0; top:0; visibility: hidden; z-index:18000; display:none"></iframe><iframe src="//tpc.googlesyndication.com/sodar/Beq5YUTp.html" width="0" height="0" style="display: none;"></iframe>
+        </div>
+    </body>
+
+</html>

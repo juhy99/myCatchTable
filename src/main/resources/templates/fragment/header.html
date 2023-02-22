@@ -1,0 +1,139 @@
+<head th:fragment="header">
+    <link rel="stylesheet" href="/css/header.css">
+    <script src="https://kit.fontawesome.com/495cfd393e.js" crossorigin="anonymous"></script>
+    <script defer src="/js/header.js"></script>
+</head>
+<body>
+<header class="header-wrap">
+    <div class="header">
+        <div class="headerMain">
+            <div class="logo">
+                <a href="#"><img class="logoImg" src="/images/logo.png"/><span>행복한 미식 생활, 건강한 예약 문화</span></a>
+
+            </div>
+            <div class="login">
+                <ul class="loginMenu">
+                    <li><a href="/login">로그인</a>|</li>
+                    <li><a href="/join">회원가입</a>|</li>
+                    <li><a href="/notice">고객센터</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="centerLine"/>
+        <div class="headerCategory">
+            <div class="category">
+                <ul class="categoryList">
+                    <li><a href="/timeline">타임라인</a></li>
+                    <li><a href="/mydining/planned">마이다이닝</a></li>
+                    <li><a href="/mypage">마이페이지</a></li>
+                </ul>
+            </div>
+            <div class="searchBar">
+                <form>
+                    <div class="searchWarp">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input class="searchText" type="text" placeholder="지역,음식,레스토랑명검색">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr class="lastLine">
+    </div>
+
+    <!-- 스크롤시 나타나는 헤더 -->
+    <div class="small_header">
+        <div class="small_headerCategory">
+            <div class="small_category">
+                <ul class="small_categoryList">
+                    <li class="small_logo">
+                        <a href="#"><img class="small_logoImg" src="/images/small_logo.svg"/></a>
+                    </li>
+                    <li><a href="/timeline">타임라인</a></li>
+                    <li><a href="/mydining/planned">마이다이닝</a></li>
+                    <li><a href="/mypage">마이페이지</a></li>
+                </ul>
+            </div>
+            <div class="small_searchBar">
+                <form>
+                    <div class="small_searchWarp">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input class="searchText" type="text" placeholder="지역,음식,레스토랑명검색">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <hr class="lastLine">
+        <!-- 스크롤 헤더 드롭다운 -->
+<!--        <div class="small_dropdown_wrapper">-->
+            <div class="small_dropdown">
+                <div class="drop_timeline">
+                    <ul>
+                        <li style="font-weight: 700"><a href="/timeline">타임라인</a></li>
+                        <li><a href="/timeline">추천</a></li>
+                        <li><a href="/timeline/following">팔로잉</a></li>
+                    </ul>
+                </div>
+                <div  class="drop_mydining">
+                    <ul>
+                        <li style="font-weight: 700"><a href="/mydining/planned">마이다이닝</a></li>
+                        <li><a href="/mydining/planned">나의 예약</a></li>
+                        <li><a href="/mydining/notifications">나의 알림</a></li>
+                    </ul>
+                </div>
+                <div  class="drop_mypage">
+                    <ul>
+                        <li style="font-weight: 700"><a href="/mypage">마이페이지</a></li>
+                        <li><a href="/mypage/saveList">나의 저장</a></li>
+                        <li><a href="/mypage/review">나의 리뷰</a></li>
+                        <li><a href="/mypage/collection">나의 컬렉션</a></li>
+                    </ul>
+                </div>
+                <div class="drop_cs">
+                    <ul>
+                        <li style="font-weight: 700"><a href="/notice">고객센터</a></li>
+                        <li><a href="/support/contact">문의하기</a></li>
+                        <li><a href="/support/improve">개선제안</a></li>
+                        <li><a href="/report/list">신고내역</a></li>
+                    </ul>
+                </div>
+            </div>
+<!--        </div>-->
+    </div>
+    <!-- 드롭다운 -->
+<!--    <div class="dropdown-wrapper">-->
+        <div class="dropdown">
+            <div class="drop_timeline">
+                <ul>
+                    <li style="font-weight: 700"><a href="/timeline">타임라인</a></li>
+                    <li><a href="/timeline">추천</a></li>
+                    <li><a href="/timeline/following">팔로잉</a></li>
+                </ul>
+            </div>
+            <div  class="drop_mydining">
+                <ul>
+                    <li style="font-weight: 700"><a href="/mydining/planned">마이다이닝</a></li>
+                    <li><a href="/mydining/planned">나의 예약</a></li>
+                    <li><a href="/mydining/notifications">나의 알림</a></li>
+                </ul>
+            </div>
+            <div  class="drop_mypage">
+                <ul>
+                    <li style="font-weight: 700"><a href="/mypage">마이페이지</a></li>
+                    <li><a href="/mypage/saveList">나의 저장</a></li>
+                    <li><a href="/mypage/review">나의 리뷰</a></li>
+                    <li><a href="/mypage/collection">나의 컬렉션</a></li>
+                </ul>
+            </div>
+            <div class="drop_cs">
+                <ul>
+                    <li style="font-weight: 700"><a href="/notice">고객센터</a></li>
+                    <li><a href="/support/contact">문의하기</a></li>
+                    <li><a href="/support/improve">개선제안</a></li>
+                    <li><a href="/report/list">신고내역</a></li>
+                </ul>
+            </div>
+        </div>
+<!--    </div>-->
+</header>
+</body>

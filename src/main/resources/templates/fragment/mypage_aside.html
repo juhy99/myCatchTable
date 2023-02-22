@@ -1,0 +1,26 @@
+<div th:fragment="mypage_aside" class="css-833hqy ecbxmj4">
+    <div class="css-1v4whg ecbxmj3">마이페이지</div>
+    <ul class="css-1x9bshx ecbxmj2">
+        <li class="css-0 ecbxmj1">
+            <a class="css-pi3u6r ecbxmj0" href="/mypage">프로필 및 정보수정<span class="css-e41glx e1x0rfoo0"></span
+            ></a>
+        </li>
+        <li class="css-0 ecbxmj1">
+            <!--              <input type="hidden" th:text="${profile.prIdx}">-->
+            <a class="css-pi3u6r ecbxmj0"  th:href="@{'/mypage/saveList/' + ${profile.prIdx}}">나의 저장<span class="css-e41glx e1x0rfoo0"></span
+            ></a>
+        </li>
+        <li class="css-0 ecbxmj1">
+            <a class="css-pi3u6r ecbxmj0" href="/mypage/review">나의 리뷰<span class="css-e41glx e1x0rfoo0"></span
+            ></a>
+        </li>
+        <li class="css-0 ecbxmj1">
+            <a class="css-pi3u6r ecbxmj0" href="/mypage/collection">나의 컬렉션<span class="css-e41glx e1x0rfoo0"></span
+            ></a>
+        </li>
+        <li class="css-0 ecbxmj1">
+            <a class="css-pi3u6r ecbxmj0" href="/mypage/newSNS">나의 SNS<span class="css-e41glx e1x0rfoo0"></span
+            ></a>
+        </li>
+    </ul>
+</div>
