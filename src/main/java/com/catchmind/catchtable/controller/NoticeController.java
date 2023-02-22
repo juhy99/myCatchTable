@@ -130,7 +130,7 @@ public class NoticeController {
         System.out.println(request);
         noticeService.updateWrite(askIdx, request);
 //        model.addAttribute("askDto", askDto);
-        return "redirect:/support/contact";
+        return "redirect:support/contact";
     }
 
     @GetMapping("/support/contact/write/impModify/{impIdx}")
@@ -146,21 +146,21 @@ public class NoticeController {
         System.out.println(request);
         noticeService.updateImpWrite(impIdx, request);
 //        model.addAttribute("askDto", askDto);
-        return "redirect:/support/improve";
+        return "redirect:support/improve";
     }
 
     // 1:1문의 삭제
     @DeleteMapping("/support/contact/write/delete/{askIdx}")
     public String delete(Model model, @PathVariable("askIdx") Long askIdx) {
         noticeService.deletePost(askIdx);
-        return "redirect:/support/contact";
+        return "redirect:support/contact";
     }
 
     // 개선사항 삭제
     @DeleteMapping("/support/contact/write/impDelete/{impIdx}")
     public String impDelete(Model model, @PathVariable("impIdx") Long impIdx) {
         noticeService.impDeletePost(impIdx);
-        return "redirect:/support/improve";
+        return "redirect:support/improve";
     }
 
     // 1:1문의 등록
@@ -168,14 +168,14 @@ public class NoticeController {
     public String contactWrite(AskRequest askRequest) {
         System.out.println("🍌" + askRequest);
         noticeService.saveFile(askRequest);
-        return "redirect:/support/contact";
+        return "redirect:support/contact";
     }
 
     // 개선제안 리스트
     @GetMapping("/support/improve")
     public String improve(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:/login";
+            return "redirect:login";
         }
         Long prIdx = catchPrincipal.prIdx();
 //        List<ImprovementDto> improvementDtoList = improvementRepository.findAllByProfile_PrIdx(prIdx).stream().map(ImprovementDto::from).toList();
@@ -190,7 +190,7 @@ public class NoticeController {
     @GetMapping("/support/improve/write")
     public String improveWrite(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:/login";
+            return "redirect:login";
         }
         Long prIdx = catchPrincipal.prIdx();
         model.addAttribute("prIdx", prIdx);
@@ -201,13 +201,13 @@ public class NoticeController {
     @PostMapping("/support/improve/write")
     public String improveWrite(ImprovementRequest improvementRequest) {
         noticeService.saveImprovementFile(improvementRequest);
-        return "redirect:/support/improve";     // 돌아가자마자 status값이 null 이라서 리스트페이지에서 오류인듯   // support로 수정
+        return "redirect:support/improve";     // 돌아가자마자 status값이 null 이라서 리스트페이지에서 오류인듯   // support로 수정
     }
     // 리뷰 신고내역
     @GetMapping("/report/review/list")
     public String reportList(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:/login";
+            return "redirect:login";
         }
         Long prIdx = catchPrincipal.prIdx();
         List<DeclareReviewDto> declareReviewDto = noticeService.listDe(prIdx);
@@ -219,7 +219,7 @@ public class NoticeController {
     @GetMapping("/report/comment/list")
     public String reportCommentList(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:/login";
+            return "redirect:login";
         }
         Long prIdx = catchPrincipal.prIdx();
         List<DeclareCommentDto> declareCommentDto = noticeService.listDec(prIdx);
@@ -232,7 +232,7 @@ public class NoticeController {
     @GetMapping("/report/review/{revIdx}")
     public String reportReview(Model model, @PathVariable(name="revIdx")Long revIdx, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:/login";
+            return "redirect:login";
         }
         Long prIdx = catchPrincipal.prIdx();
         System.out.println("🍋" + prIdx);
@@ -249,14 +249,14 @@ public class NoticeController {
     public String reportReviewWrite(DeclareReviewRequest declareReviewRequest) {
         noticeService.saveDeclareReview(declareReviewRequest);
         System.out.println("🎁" + declareReviewRequest);
-        return "redirect:/report/review/list";
+        return "redirect:report/review/list";
     }
 
     // 댓글 신고
     @GetMapping("/report/comment/{comIdx}")
     public String reportReply(Model model, @PathVariable(name="comIdx")Long comIdx, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:/login";
+            return "redirect:login";
         }
         Long prIdx = catchPrincipal.prIdx();
         String prHp = catchPrincipal.prHp();
@@ -275,11 +275,11 @@ public class NoticeController {
     @PostMapping("/report/comment")
     public String reportReplyWrite(DeclareCommentRequest declareCommentRequest, @AuthenticationPrincipal CatchPrincipal catchPrincipal){
         if(catchPrincipal == null) {
-            return "redirect:/login";
+            return "redirect:login";
         }
         noticeService.saveDeclareComment(declareCommentRequest);
         System.out.println("🗡️" + declareCommentRequest);
-        return "redirect:/report/comment/list";
+        return "redirect:report/comment/list";
     }
 }
 
