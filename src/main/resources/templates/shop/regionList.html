@@ -209,7 +209,7 @@
                                                     <th:block
                                                             th:unless="${list.photoDto.savedPath != null and list.photoDto.orgNm == null and list.photoDto.savedNm == null}">
                                                         <a th:href="@{/shop/{id}(id=${list.resaBisName})}">
-                                                            <img class="img"style="height: 152px"
+                                                            <img class="img" style="height: 152px"
                                                                  th:src="'/photo/'+${list.photoDto.savedNm}">
                                                         </a>
                                                     </th:block>
@@ -253,8 +253,14 @@
                                                         </div>
                                                         <span class="tags"
                                                               th:text=" ${list.bistroDetailDto.bistroInfoDto.bisCategory}">한식 • 이태원</span>
+                                                        <th:block
+                                                                th:if="${list.bistroDetailDto.bistroInfoDto.bisLunch} != null and ${list.bistroDetailDto.bistroInfoDto.bisDinner} != null">
                                                         <span class="price"
-                                                              th:text="|점심 ${list.bistroDetailDto.bistroInfoDto.bisLunch} · 저녁 ${list.bistroDetailDto.bistroInfoDto.bisDinner}|"></span>
+                                                              th:text="|${list.bistroDetailDto.bistroInfoDto.bisLunch} · ${list.bistroDetailDto.bistroInfoDto.bisDinner}|"></span>
+                                                        </th:block>
+                                                        <th:block
+                                                                th:if="${list.bistroDetailDto.bistroInfoDto.bisLunch} != null and ${list.bistroDetailDto.bistroInfoDto.bisDinner} != null">
+                                                        </th:block>
                                                     </div>
                                                     <!--                                                    *****-->
                                                     <div class="timetable-list timetable-list-sm">
@@ -284,9 +290,11 @@
                         <a th:href="@{/shop/list/bisRegion/__${bisRegion}__(sort=${sort},page=${shopList.number - 1})}"
                            th:class="'page-prev' + (${shopList.number} <= 0 ? ' page-disabled':'')"></a>
                         <span th:each="pageNumber : ${paginationBarNumbers}">
-                        <a th:text="${pageNumber + 1}" th:href="@{/shop/list/bisRegion/__${bisRegion}__(sort=${sort},page=${pageNumber})}"
+                        <a th:text="${pageNumber + 1}"
+                           th:href="@{/shop/list/bisRegion/__${bisRegion}__(sort=${sort},page=${pageNumber})}"
                            th:class="(${pageNumber} == ${shopList.number} ? 'active' : '')">1</a></span>
-                        <a th:href="@{/shop/list/bisRegion/__${bisRegion}__(sort=${sort},page=${shopList.number + 1})}" th:class="'page-next' +
+                        <a th:href="@{/shop/list/bisRegion/__${bisRegion}__(sort=${sort},page=${shopList.number + 1})}"
+                           th:class="'page-next' +
                     (${shopList.number} >= ${shopList.totalPages - 1} ? ' page-disabled':'')"></a>
                     </div>
                 </div>

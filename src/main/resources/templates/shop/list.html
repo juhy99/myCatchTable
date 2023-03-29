@@ -255,10 +255,15 @@
                                                         </div>
                                                         <span class="tags"
                                                               th:text=" ${list.bistroDetailDto.bistroInfoDto.bisCategory}">한식 • 이태원</span>
+                                                        <th:block
+                                                                th:if="${list.bistroDetailDto.bistroInfoDto.bisLunch} != null and ${list.bistroDetailDto.bistroInfoDto.bisDinner} != null">
                                                         <span class="price"
-                                                              th:text="|점심 ${list.bistroDetailDto.bistroInfoDto.bisLunch} · 저녁 ${list.bistroDetailDto.bistroInfoDto.bisDinner}|"></span>
+                                                              th:text="|${list.bistroDetailDto.bistroInfoDto.bisLunch} · ${list.bistroDetailDto.bistroInfoDto.bisDinner}|"></span>
+                                                        </th:block>
+                                                        <th:block
+                                                                th:if="${list.bistroDetailDto.bistroInfoDto.bisLunch} != null and ${list.bistroDetailDto.bistroInfoDto.bisDinner} != null">
+                                                        </th:block>
                                                     </div>
-                                                    <!--                                                    *****-->
                                                     <div class="timetable-list timetable-list-sm">
                                                         <a class="timetable-list-item disabled"
                                                            style="display: none; margin-bottom: auto; margin-top: auto; min-width: 70px;"><span

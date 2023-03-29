@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://52.78.231.29:3306/catchTable?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://52.79.146.68:3306/aidev?serverTimezone=Asia/Seoul
     username: junhyop
     password: 1234
   jpa:
@@ -15,7 +15,7 @@ spring:
     multipart:
       max-file-size: 200MB
       max-request-size: 100MB
-      location: D:/test/
+      location: /home/ec2-user/catchMind/photo/
   main:
     allow-bean-definition-overriding: true
 server:

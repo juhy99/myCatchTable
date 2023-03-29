@@ -2,7 +2,7 @@ package com.catchmind.catchtable.controller;
 
 import com.catchmind.catchtable.domain.Follow;
 import com.catchmind.catchtable.dto.*;
-import com.catchmind.catchtable.dto.network.request.CommentHeartRequest;
+import com.catchmind.catchtable.dto.network.request.CommentRequest;
 import com.catchmind.catchtable.dto.network.request.FollowRequest;
 import com.catchmind.catchtable.dto.network.request.ReviewHeartRequest;
 import com.catchmind.catchtable.dto.network.response.*;
@@ -58,7 +58,7 @@ public class TimelineController {
     public String profile(@PathVariable Long timeLineIdx, @AuthenticationPrincipal CatchPrincipal catchPrincipal, ModelMap map,
                           @PageableDefault(size = 10, sort = "revIdx", direction = Sort.Direction.DESC) Pageable pageable) {
         if (catchPrincipal == null) {
-            TimeLineResponse profile = timeLineService.getHeader(timeLineIdx);
+            ProfileResponse profile = timeLineService.getHeader(timeLineIdx);
             boolean isFollow = false;
             map.addAttribute("isFollow", isFollow);
             map.addAttribute("timeLineIdx", timeLineIdx);
@@ -69,7 +69,7 @@ public class TimelineController {
             Page<ReviewResponse> response = timeLineService.getReview(prIdx, timeLineIdx, pageable);
             boolean isFollow = false;
             List<FollowDto> loginFollowing = timeLineService.getFollowerList(prIdx);
-            TimeLineResponse profile = timeLineService.getHeader(timeLineIdx);
+            ProfileResponse profile = timeLineService.getHeader(timeLineIdx);
             for (FollowDto follow : loginFollowing) {
                 System.out.println("following" + follow.following());
                 System.out.println("follower" + follow.follower());
@@ -124,7 +124,7 @@ public class TimelineController {
         if(catchPrincipal == null) {
             Page<ReviewResponse> response = timeLineService.getReview(null, timeLineIdx, pageable);
             List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), response.getTotalPages());
-            TimeLineResponse profile = timeLineService.getHeader(timeLineIdx);
+            ProfileResponse profile = timeLineService.getHeader(timeLineIdx);
             map.addAttribute("profile", profile);
             map.addAttribute("reviews", response);
             map.addAttribute("paginationBarNumbers", barNumbers);
@@ -134,7 +134,7 @@ public class TimelineController {
             Long prIdx = catchPrincipal.prIdx();
             Page<ReviewResponse> response = timeLineService.getReview(prIdx, timeLineIdx, pageable);
             List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), response.getTotalPages());
-            TimeLineResponse profile = timeLineService.getHeader(timeLineIdx);
+            ProfileResponse profile = timeLineService.getHeader(timeLineIdx);
             map.addAttribute("profile", profile);
             map.addAttribute("reviews", response);
             map.addAttribute("paginationBarNumbers", barNumbers);
@@ -151,7 +151,7 @@ public class TimelineController {
     public String following(@PathVariable Long timeLineIdx, @AuthenticationPrincipal CatchPrincipal catchPrincipal, ModelMap map) {
         // 로그인 안한 회원
         if (catchPrincipal == null) {
-            TimeLineResponse profile = timeLineService.getHeader(timeLineIdx);
+            ProfileResponse profile = timeLineService.getHeader(timeLineIdx);
             List<FollowDto> followingDtos = timeLineService.getFollowerList(timeLineIdx);
             boolean isFollow = false;
             List<FollowResponse> followingList = new ArrayList<>();
@@ -166,7 +166,7 @@ public class TimelineController {
             // 로그인한 유저
         } else {
             Long prIdx = catchPrincipal.prIdx();
-            TimeLineResponse profile = timeLineService.getHeader(timeLineIdx);
+            ProfileResponse profile = timeLineService.getHeader(timeLineIdx);
             List<FollowDto> followingDtos = timeLineService.getFollowerList(timeLineIdx);
             List<FollowDto> loginDtos = timeLineService.getFollowerList(prIdx);
             List<FollowResponse> followingList = new ArrayList<>();
@@ -197,7 +197,7 @@ public class TimelineController {
     @GetMapping("/follower/{timeLineIdx}")
     public String follower(@PathVariable Long timeLineIdx, @AuthenticationPrincipal CatchPrincipal catchPrincipal, ModelMap map) {
         if (catchPrincipal == null) {
-            TimeLineResponse profile = timeLineService.getHeader(timeLineIdx);
+            ProfileResponse profile = timeLineService.getHeader(timeLineIdx);
             List<FollowDto> followerDtos = timeLineService.getFollowingList(timeLineIdx);
             boolean isFollow = false;
             List<FollowResponse> followerList = new ArrayList<>();
@@ -212,7 +212,7 @@ public class TimelineController {
 
         } else {
             Long prIdx = catchPrincipal.prIdx();
-            TimeLineResponse profile = timeLineService.getHeader(timeLineIdx);
+            ProfileResponse profile = timeLineService.getHeader(timeLineIdx);
 
             List<FollowDto> followerDtos = timeLineService.getFollowingList(timeLineIdx);
             List<FollowDto> loginDtos = timeLineService.getFollowerList(prIdx);
@@ -353,7 +353,7 @@ public class TimelineController {
     // 댓글 등록
     @PostMapping(path = "/new/comment")
     @ResponseBody
-    public Long newComment(@RequestBody CommentHeartRequest request) {
+    public Long newComment(@RequestBody CommentRequest request) {
         System.out.println(request);
         Long response = timeLineService.newComment(request);
         log.info("새로운 댓글 번호 : " + response);

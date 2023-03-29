@@ -119,9 +119,7 @@
                             </th:block>
                         </th:block>
                     </th:block>
-<!--                    <button th:if="${isSnsAddr == true}" onclick="location.href='/mypage/newSNS'">-->
-<!--                        SNS 추가하기-->
-<!--                    </button>-->
+
                 </div>
             </div>
             <div class="__loc __d-flex __v-center" style="color: rgb(102, 102, 102);display: flex;margin-bottom: 15px;">
@@ -137,7 +135,6 @@
                     </svg>
                 </i>
                 <div th:text="${header.prRegion == null or header.prRegion == ''} ? '아직 활동 지역이 없습니다.' : ${header.prRegion}"></div>
-                <!-- <button class="follower btn btn-orange btn-rounded"><span class="label">팔로우</span></button> -->
 
             </div>
             <div class="css-1l4w6pd ebhkjs76">
@@ -158,11 +155,9 @@
                 <a href="/mypage/review">
                     <button class="css-1bm0yf4 e1ugk4rt6" type="button">
                         <div class="css-157zkrj e1ugk4rt5">나의 리뷰
-                            <!-- <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3QgZmlsbD0iI0ZBNjIyRiIgZmlsbC1ydWxlPSJub256ZXJvIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHJ4PSI3Ii8+CiAgICAgICAgPHBhdGggZD0iTTguMzg1IDEwdi0uMDA2TDUuNjQ1IDYuMjFWMTBoLTEuNlY0aDEuNmwyLjc0IDMuNzg4VjRoMS42djZoLTEuNnoiIGZpbGw9IiNGRkYiLz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="new" class="css-1929aej e1ugk4rt1"> -->
                             <span class="css-14phxgn e1ugk4rt4"></span></div>
                         <div class="css-1omzzwx e1ugk4rt3">보러가기</div>
 
-                        <!-- <div class="css-1omzzwx e1ugk4rt3">1<span class="css-mmvz9h e1ugk4rt0">개</span></div> -->
                     </button>
                 </a>
             </div>
@@ -191,7 +186,7 @@
                                         style="width: 20px; height: 20px; margin-right: 8px;"></span><span
                                         class="star full"
                                         style="width: 20px; height: 20px; margin-right: 8px;"></span><span
-                                        class="star half" style="width: 20px; height: 20px; margin-right: 8px;"></span>
+                                        class="star full" style="width: 20px; height: 20px; margin-right: 8px;"></span>
                                 </div>
                             </div>
                         </dd>

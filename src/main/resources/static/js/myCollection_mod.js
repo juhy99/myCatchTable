@@ -33,7 +33,7 @@ function colMod(){
         }
     });
 
-    // fetch('http://localhost:8888/mypage/collection/detail/'+colIdx+'/modify', {
+    // fetch('http://52.79.146.68:8888/mypage/collection/detail/'+colIdx+'/modify', {
     //     method: 'POST',
     //     headers: { 'Content-Type': 'application/json'},
     //     body: JSON.stringify({

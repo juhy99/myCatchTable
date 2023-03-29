@@ -11,10 +11,12 @@ import com.catchmind.catchtable.dto.network.request.DeclareCommentRequest;
 import com.catchmind.catchtable.dto.network.request.DeclareReviewRequest;
 import com.catchmind.catchtable.dto.network.request.ImprovementRequest;
 import com.catchmind.catchtable.dto.security.CatchPrincipal;
-import com.catchmind.catchtable.repository.*;
+import com.catchmind.catchtable.repository.AskRepository;
+import com.catchmind.catchtable.repository.CommentRepository;
+import com.catchmind.catchtable.repository.NoticeRepository;
+import com.catchmind.catchtable.repository.ReviewRepository;
 import com.catchmind.catchtable.service.NoticeService;
 import com.catchmind.catchtable.service.PaginationService;
-import com.catchmind.catchtable.service.ProfileLogicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,10 +38,6 @@ public class NoticeController {
     private final AskRepository askRepository;
     private final NoticeRepository noticeRepository;
     private final NoticeService noticeService;
-    private final ProfileLogicService profileLogicService;
-    private final ImprovementRepository improvementRepository;
-    private final DeclareReviewRepository declareReviewRepository;
-    private final DeclareCommentRepository declareCommentRepository;
     private final PaginationService paginationService;
     private final ReviewRepository reviewRepository;
     private final CommentRepository commentRepository;
@@ -50,9 +48,6 @@ public class NoticeController {
     @GetMapping("/notice")
     public String notice(Model model, @PageableDefault(size=10, sort="noIdx", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<NoticeDto> noticeDtoList = noticeRepository.findAll(pageable).map(NoticeDto::from);
-//        final int start = (int)pageable.getOffset();
-//        final int end = Math.min((start + pageable.getPageSize()), noticeDtoList.size());
-//        PageImpl<NoticeDto> page = new PageImpl<>(noticeDtoList.subList(start, end), pageable, noticeDtoList.size());
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), noticeDtoList.getTotalPages());
         model.addAttribute("notice", noticeDtoList);
         model.addAttribute("paginationBarNumbers", barNumbers);
@@ -62,10 +57,8 @@ public class NoticeController {
     //공지사항 상세
     @GetMapping("/notice/content/{noIdx}")
     public String noticeContent(Model model, @PathVariable Long noIdx) {
-//        List<NoticeDto> noticeDtoList = noticeRepository.findAll().stream().map(NoticeDto::from).toList();
         NoticeDto noticeDto = noticeService.getNotice(noIdx);
         model.addAttribute("content", noticeDto);
-//        model.addAttribute("content", noticeDtoList);
         return "notice/notice_review";
     }
 
@@ -94,14 +87,8 @@ public class NoticeController {
             return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
-//        List<AskDto> askDtoList = askRepository.findAllByProfile_PrIdx(prIdx).stream().map(AskDto::from).toList();
-
         List<Ask> asks = noticeService.list(prIdx);
-//        List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), asks.getTotalPages());
-
         model.addAttribute("notice", asks);
-//        model.addAttribute("paginationBarNumbers", barNumbers);
-//        model.addAttribute("notice", askDtoList);
 
         return "notice/contact1";
     }
@@ -130,7 +117,7 @@ public class NoticeController {
         System.out.println(request);
         noticeService.updateWrite(askIdx, request);
 //        model.addAttribute("askDto", askDto);
-        return "redirect:support/contact";
+        return "redirect:/support/contact";
     }
 
     @GetMapping("/support/contact/write/impModify/{impIdx}")
@@ -146,21 +133,21 @@ public class NoticeController {
         System.out.println(request);
         noticeService.updateImpWrite(impIdx, request);
 //        model.addAttribute("askDto", askDto);
-        return "redirect:support/improve";
+        return "redirect:/support/improve";
     }
 
     // 1:1문의 삭제
     @DeleteMapping("/support/contact/write/delete/{askIdx}")
     public String delete(Model model, @PathVariable("askIdx") Long askIdx) {
         noticeService.deletePost(askIdx);
-        return "redirect:support/contact";
+        return "redirect:/support/contact";
     }
 
     // 개선사항 삭제
     @DeleteMapping("/support/contact/write/impDelete/{impIdx}")
     public String impDelete(Model model, @PathVariable("impIdx") Long impIdx) {
         noticeService.impDeletePost(impIdx);
-        return "redirect:support/improve";
+        return "redirect:/support/improve";
     }
 
     // 1:1문의 등록
@@ -168,20 +155,17 @@ public class NoticeController {
     public String contactWrite(AskRequest askRequest) {
         System.out.println("🍌" + askRequest);
         noticeService.saveFile(askRequest);
-        return "redirect:support/contact";
+        return "redirect:/support/contact";
     }
 
     // 개선제안 리스트
     @GetMapping("/support/improve")
     public String improve(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:login";
+            return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
-//        List<ImprovementDto> improvementDtoList = improvementRepository.findAllByProfile_PrIdx(prIdx).stream().map(ImprovementDto::from).toList();
         List<Improvement> improvementDtoList = noticeService.listImp(prIdx);
-//        List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), improvementDtoList.getTotalPages());
-//        model.addAttribute("paginationBarNumbers", barNumbers);
         model.addAttribute("notice", improvementDtoList);
         return "notice/improve1";
     }
@@ -190,7 +174,7 @@ public class NoticeController {
     @GetMapping("/support/improve/write")
     public String improveWrite(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:login";
+            return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
         model.addAttribute("prIdx", prIdx);
@@ -201,13 +185,13 @@ public class NoticeController {
     @PostMapping("/support/improve/write")
     public String improveWrite(ImprovementRequest improvementRequest) {
         noticeService.saveImprovementFile(improvementRequest);
-        return "redirect:support/improve";     // 돌아가자마자 status값이 null 이라서 리스트페이지에서 오류인듯   // support로 수정
+        return "redirect:/support/improve";     // 돌아가자마자 status값이 null 이라서 리스트페이지에서 오류인듯   // support로 수정
     }
     // 리뷰 신고내역
     @GetMapping("/report/review/list")
     public String reportList(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:login";
+            return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
         List<DeclareReviewDto> declareReviewDto = noticeService.listDe(prIdx);
@@ -219,7 +203,7 @@ public class NoticeController {
     @GetMapping("/report/comment/list")
     public String reportCommentList(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:login";
+            return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
         List<DeclareCommentDto> declareCommentDto = noticeService.listDec(prIdx);
@@ -232,7 +216,7 @@ public class NoticeController {
     @GetMapping("/report/review/{revIdx}")
     public String reportReview(Model model, @PathVariable(name="revIdx")Long revIdx, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:login";
+            return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
         System.out.println("🍋" + prIdx);
@@ -249,14 +233,14 @@ public class NoticeController {
     public String reportReviewWrite(DeclareReviewRequest declareReviewRequest) {
         noticeService.saveDeclareReview(declareReviewRequest);
         System.out.println("🎁" + declareReviewRequest);
-        return "redirect:report/review/list";
+        return "redirect:/report/review/list";
     }
 
     // 댓글 신고
     @GetMapping("/report/comment/{comIdx}")
     public String reportReply(Model model, @PathVariable(name="comIdx")Long comIdx, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
-            return "redirect:login";
+            return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
         String prHp = catchPrincipal.prHp();
@@ -275,11 +259,11 @@ public class NoticeController {
     @PostMapping("/report/comment")
     public String reportReplyWrite(DeclareCommentRequest declareCommentRequest, @AuthenticationPrincipal CatchPrincipal catchPrincipal){
         if(catchPrincipal == null) {
-            return "redirect:login";
+            return "redirect:/login";
         }
         noticeService.saveDeclareComment(declareCommentRequest);
         System.out.println("🗡️" + declareCommentRequest);
-        return "redirect:report/comment/list";
+        return "redirect:/report/comment/list";
     }
 }
 

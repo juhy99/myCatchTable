@@ -12,10 +12,6 @@ import java.util.List;
 public interface ReserveRepository extends JpaRepository<Reserve, Long> {
 
     List<Reserve> findAllByresStatusAndProfile_PrIdx(ReservationType resStatus, Long prIdx, Sort updateDate);
-    List<Reserve> findAllByresStatus(ReservationType resStatus);
-
-    Reserve findByResIdx(Long resIdx);
-
     List<Reserve> findAllByResMonthAndResDayAndResAdmin_ResaBisName(String month, String day, String resaBisName);
 
 }

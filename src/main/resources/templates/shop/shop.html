@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <div th:replace="fragment/link :: link"/>
-    <title th:text="${bisDetail.resAdminDto.resaBisName()}">텍사스 데 브라질 센트럴시티점</title>
+    <title th:text="${resaBisName}">텍사스 데 브라질 센트럴시티점</title>
     <link rel="stylesheet" href="/css/style.css">
     <div id="ch-plugin" class="notranslate">
         <div id="ch-plugin-core"></div>
@@ -62,17 +62,17 @@
                     <div class="swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
                         <div class="img-container" style="position: relative;">
                             <th:block
-                                    th:if="${shopPic.savedPath() != null and shopPic.orgNm() == null and shopPic.savedNm() == null}">
+                                    th:if="${detail.shopPhoto().savedPath() != null and detail.shopPhoto().orgNm() == null and detail.shopPhoto().savedNm() == null}">
                                 <div class="img swiper-lazy swiper-lazy-loaded">
                                     <img class="guide-img" style="width: 100%; max-height:500px; display: block;"
-                                         th:src="${shopPic.savedPath()}" alt="">
+                                         th:src="${detail.shopPhoto().savedPath()}" alt="">
                                 </div>
                             </th:block>
                             <th:block
-                                    th:unless="${shopPic.savedPath() != null and shopPic.orgNm() == null and shopPic.savedNm() == null}">
+                                    th:unless="${detail.shopPhoto().savedPath() != null and detail.shopPhoto().orgNm() == null and detail.shopPhoto().savedNm() == null}">
                                 <div class="img swiper-lazy swiper-lazy-loaded">
                                     <img class="guide-img" style="width: 100%; max-height:500px; display: block;"
-                                         th:src="'/photo/' + ${shopPic.savedNm()}" alt="">
+                                         th:src="'/photo/' + ${detail.shopPhoto().savedNm()}" alt="">
                                 </div>
                             </th:block>
                         </div>
@@ -83,22 +83,29 @@
             <section class="section">
                 <div class="container gutter-sm">
                     <div class="restaurant-summary mb-20" style="margin-left: 0">
-                        <h2 id="resa_bis_name" class="name"
-                            th:text="${bisDetail.bistroInfoDto().resAdminDto().resaBisName()}"></h2>
-                        <p class="slogan" style="line-height: 1.5;" th:text="${bisDetail.bistroInfoDto().bisDesc()}">
+                        <h2 id="resa_bis_name" class="name" th:text="${resaBisName}"></h2>
+                        <p class="slogan" style="line-height: 1.5;"
+                           th:text="${detail.bistroDetailDto().bistroInfoDto().bisDesc()}">
                             고속터미널역에 위치한 무한 리필 스테이크 맛집</p>
-                        <span class="tags"
-                              th:text="|${bisDetail.bistroInfoDto().bisCategory()} • ${bisDetail.bistroInfoDto().bisRegion()}|">스테이크,립 • 반포</span>
+                        <th:block th:if="${detail.bistroDetailDto().bistroInfoDto().bisCategory()} != null">
+                            <span class="tags"
+                                  th:text="|${detail.bistroDetailDto().bistroInfoDto().bisCategory()} • ${detail.bistroDetailDto().bistroInfoDto().bisRegion()}|">스테이크,립 • 반포</span>
+                        </th:block>
+                        <th:block th:if="${detail.bistroDetailDto().bistroInfoDto().bisCategory()} != null">
+                            <span class="tags"></span>
+                        </th:block>
                     </div>
                     <div class="restaurant-meta mb-16">
-                        <div class="rating"><span class="star" th:text="${avgpoint}">3.3</span><span class="count"
-                                                                                                     th:text="|(${revcnt})|">(165)</span>
+                        <div class="rating"><span class="star" th:text="${detail.revAvg()}">3.3</span><span
+                                class="count"
+                                th:text="|(${detail.revCnt()})|">(165)</span>
                         </div>
                         <div class="price">
                             <span class="lunch"
-                                  th:text=" |${bisDetail.bistroInfoDto().bisLunch()}|">점심 5 - 7만원</span>
+                                  th:text=" |${detail.bistroDetailDto().bistroInfoDto().bisLunch()}|">점심 5 - 7만원</span>
                             <span class="dinner"
-                                  th:text=" |${bisDetail.bistroInfoDto().bisDinner()}|">저녁 6.8만원</span></div>
+                                  th:text=" |${detail.bistroDetailDto().bistroInfoDto().bisDinner()}|">저녁 6.8만원</span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -106,13 +113,15 @@
             <section class="section pb-30" style="padding-top: 30px;">
                 <div class="container gutter-sm" style="margin: 0">
                     <div class="section-body">
-                        <div class="btn-centered"><a th:href="'/reservation/'+${bisDetail.bistroInfoDto().resAdminDto().resaBisName()}"
-                                th:onclick="checkBlock([[${bisDetail.resAdminDto().resaBisName()}]],[[${prIdx}]])"
+                        <div class="btn-centered"><a
+                                th:href="'/reservation/'+${resaBisName}"
+                                th:onclick="checkBlock([[${resaBisName}]],[[${prIdx}]])"
                                 class="btn btn-rounded btn-outline-red"><span
                                 class="label arrow">예약가능 날짜 찾기</span></a></div>
             </section>
-            <hr class="separator" th:if="${!#lists.isEmpty(bisNotice)}">
-            <section class="section pt-30 pb-30 section-overflow-hidden" th:if="${!#lists.isEmpty(bisNotice)}">
+            <hr class="separator" th:if="${!#lists.isEmpty(detail.bisNoticeDto())}">
+            <section class="section pt-30 pb-30 section-overflow-hidden"
+                     th:if="${!#lists.isEmpty(detail.bisNoticeDto())}">
                 <div class="container gutter-sm">
                     <div class="section-header mb-30">
                         <h3 class="section-title __sm">레스토랑 공지</h3>
@@ -129,10 +138,10 @@
                                                 <div class="__pic">
                                                     <div class="img"></div>
                                                 </div>
-                                                <div class="__desc" th:each="notice : ${bisNotice}">
+                                                <div class="__desc" th:each="notice : ${detail.bisNoticeDto()}">
                                                     <p th:text="${notice.binContent}">12월 1일부터 한달간(12월31일까지) 평일디너는
                                                         17:00에 오픈을 시작합니다. (19:00종료) </p>
-                                                    <a class="__more"><span>더보기</span></a>
+                                                    <!--                                                    <a class="__more"><span>더보기</span></a>-->
                                                 </div>
                                             </div>
                                         </article>
@@ -150,40 +159,40 @@
                         <h3 class="section-title __sm">편의시설</h3>
                     </div>
                     <div class="section-body">
-                        <div class="restaurant-features mb-20">
-                            <th:block th:if="${!facility.isEmpty()}">
-                                <span class="feature-item" th:if="${facility[0].facParking}">
-                                    <img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_parking.svg"
+                        <th:block th:if="${!detail.facilityDto().isEmpty()}">
+                            <div class="restaurant-features mb-20" th:each="fac : ${detail.facilityDto()}">
+                                <span class="feature-item" th:if="${fac.facParking}">
+                                    <img src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons-mood/ic_parking.svg"
                                          alt="" class="icon"><span class="label">주차 가능</span>
                                 </span>
-                                <span class="feature-item" th:if="${facility[0].facValet}">
-                                    <img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_welcome_kids.svg"
+                                <span class="feature-item" th:if="${fac.facValet}">
+                                    <img src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons-mood/ic_valet_parking.svg"
                                          alt="" class="icon"><span class="label">발렛 가능</span>
                                 </span>
-                                <span class="feature-item" th:if="${facility[0].facCorkage}">
-                                    <img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_corkage.svg"
+                                <span class="feature-item" th:if="${fac.facCorkage}">
+                                    <img src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons-mood/ic_corkage.svg"
                                          alt="" class="icon"><span class="label">콜키지 가능</span>
                                 </span>
-                                <span class="feature-item" th:if="${facility[0].facNokid}">
-                                    <img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_accessible.svg"
+                                <span class="feature-item" th:if="${fac.facNokid}">
+                                    <img src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons-mood/ic_no_kids.svg"
                                          alt="" class="icon"><span class="label">노키즈존</span>
                                 </span>
-                                <span class="feature-item" th:if="${facility[0].facAnimal}">
-                                    <img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_pet.svg "
+                                <span class="feature-item" th:if="${fac.facAnimal}">
+                                    <img src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons-mood/ic_pet.svg"
                                          alt="" class="icon"><span class="label">반려동물 동반</span>
                                 </span>
-                                <span class="feature-item" th:if="${facility[0].facHandi}">
-                                    <img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_accessible.svg"
+                                <span class="feature-item" th:if="${fac.facHandi}">
+                                    <img src="https://d1il53drs2cmia.cloudfront.net/resources/img/icons-mood/ic_accessible.svg"
                                          alt="" class="icon"><span class="label">장애인 편의시설</span>
                                 </span>
-                            </th:block>
-                        </div>
+                            </div>
+                        </th:block>
                     </div>
                     <div class="__notes ml--20 mr--20">
                         <span id="toc-toggle" onclick="openCloseToc()"> 주차정보</span>
                         <ol id="toc-content">
                             <br><br>
-                            <li th:text=" |- ${bisDetail.bdPark} |"></li>
+                            <li th:text="${detail.bistroDetailDto().bdPark()}"></li>
                             <br><br>
                         </ol>
                     </div>
@@ -195,12 +204,12 @@
                     <div class="section-header">
                         <h3 class="section-title">메뉴</h3>
                         <div class="utils"><a class="__btn-all"
-                                              th:href="'/shop/menulist/' + ${bisDetail.resAdminDto().resaBisName()}">전체보기</a>
+                                              th:href="'/shop/menulist/' + ${resaBisName}">전체보기</a>
                         </div>
                     </div>
                     <div class="section-body">
                         <div class="menupan-item-list mb-20">
-                            <div class="__menupan-item" th:each="menus : ${menu}">
+                            <div class="__menupan-item" th:each="menus : ${detail.menuDto()}">
                                 <div class="__name">
                                     <h4 th:text="${menus.meName()}">평일_런치</h4>
                                     <div class="__price" th:text="|${menus.mePrice()}|">53,000원</div>
@@ -208,7 +217,8 @@
 
                             </div>
                         </div>
-                        <div style="margin-top: 30px"><a th:href="'/shop/menulist/' + ${bisDetail.resAdminDto().resaBisName()}"
+                        <div style="margin-top: 30px"><a
+                                th:href="'/shop/menulist/' + ${resaBisName}"
                                 class="btn-menupan-photo"><span>메뉴 전체보기</span></a></div>
                     </div>
                 </div>
@@ -219,21 +229,22 @@
                     <div class="section-header mb-25">
                         <h3 class="section-title">최신 리뷰</h3>
                         <div class="utils"><a class="__btn-all"
-                                              th:href="|/shop/review/${bisDetail.resAdminDto.resaBisName}|">전체보기</a>
+                                              th:href="|/shop/review/${resaBisName}|">전체보기</a>
                         </div>
                     </div>
                     <div class="section-body">
                         <div class="section-body">
                             <div class="rating-summary mb-30">
-                                <div class="rating"><span class="star" th:text="${avgpoint}">4.5</span><span
-                                        class="count" th:text="|(${revcnt})|">(165)</span>
+                                <div class="rating"><span class="star" th:text="${detail.revAvg()}">4.5</span><span
+                                        class="count" th:text="|(${detail.revCnt()})|">(165)</span>
                                 </div>
                             </div>
                             <div class="review-post-list mb-25">
                                 <div class="v-scroll">
                                     <div class="v-scroll-inner">
                                         <div class="review-post-list">
-                                            <a class="review-post-list-item" th:each="review,revStat:${reviewAndPhoto}"
+                                            <a class="review-post-list-item"
+                                               th:each="review,revStat:${detail.reviewAndPhotoResponse()}"
                                                th:if="${revStat.index>(revStat.size-4)}">
                                                 <div class="tb">
                                                     <div class="img">
@@ -243,7 +254,8 @@
                                                         <div th:unless="${review.reviewPhotoDto == null}">
                                                             <th:block
                                                                     th:if="${review.reviewPhotoDto.savedPath != null and review.reviewPhotoDto.orgNm == null and review.reviewPhotoDto.savedNm == null}">
-                                                                <img th:src="${review.reviewPhotoDto.savedPath}" alt=""
+                                                                <img th:src="${review.reviewPhotoDto.savedPath}"
+                                                                     alt=""
                                                                      style="width: 300px; height:200px; object-fit: cover;">
                                                             </th:block>
                                                             <th:block
@@ -265,7 +277,8 @@
                                                         <div class="profile">
                                                             <h4 class="name username  "><span class="txt"
                                                                                               th:text="${review.prNick}">빠빠티</span>
-                                                            </h4><span class="date" th:text="${#temporals.format(review.regDate, 'yyyy년 MM월 dd일')}">2022.12.13</span>
+                                                            </h4><span class="date"
+                                                                       th:text="${#temporals.format(review.regDate, 'yyyy년 MM월 dd일')}">2022.12.13</span>
                                                         </div>
                                                         <div class="rating"><span class="star"
                                                                                   th:text="${review.revScore}">5.0</span>
@@ -281,7 +294,7 @@
                                             </a>
                                             <div class="showall">
                                                 <a class="arrow"
-                                                   th:href="|/shop/review/${bisDetail.resAdminDto.resaBisName}|"><span>리뷰<br>전체보기</span></a>
+                                                   th:href="|/shop/review/${resaBisName}|"><span>리뷰<br>전체보기</span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -290,7 +303,7 @@
                         </div>
                     </div>
                     <a class="btn-menupan-photo" id="target"
-                       th:href="|/shop/review/${bisDetail.resAdminDto.resaBisName}|"><span>리뷰 전체보기</span></a>
+                       th:href="|/shop/review/${resaBisName}|"><span>리뷰 전체보기</span></a>
             </section>
             <hr class="separator">
 
@@ -307,7 +320,8 @@
 
                             </div>
                             <div class="addr" style="padding-left: 0">
-                                <p th:text="${bisDetail.bdAddr()}">서울특별시 서초구 사평대로 205 CENTRALCITY 반포천 복개주차장</p>
+                                <p th:text="${detail.bistroDetailDto().bdAddr()}">서울특별시 서초구 사평대로 205 CENTRALCITY 반포천
+                                    복개주차장</p>
                             </div>
                         </div>
                     </div>
@@ -323,43 +337,56 @@
                         <div class="desc-blocks" style="word-break: break-word;">
                             <div class="desc-block">
                                 <dl>
-                                    <dt>전화번호</dt>
-                                    <!--       th:text="${shop.bdHp}"-->
-                                    <dd th:text="${bisDetail.bdHp()}">02-6282-5000</dd>
+                                    <th:block
+                                            th:if="${detail.bistroDetailDto().bdHp()} != '' or ${detail.bistroDetailDto().bdHp()} != null">
+                                        <dt>전화번호</dt>
+                                        <dd th:text="${detail.bistroDetailDto().bdHp()}">02-6282-5000</dd>
+                                    </th:block>
                                 </dl>
                             </div>
                             <div class="desc-block">
                                 <dl>
-                                    <dt><a class="__toggle">매장 소개</a></dt>
-                                    <!--                                        th:text="${shop.bdIntro}"-->
-                                    <dd class="color-gray" th:text="${bisDetail.bdIntro()}" style="white-space: pre-line">강렬한 삼바 리듬과 함께 즐기는 브라질 슈하스코
-                                        하우스<br><br>15가지의 브라질 정통 스테이크인
-                                        슈하스코와 50여가지의 신선한 계절 샐러드를 함께 즐길 수 있으며 <br>고객이 계신 테이블로 카버가 찾아가 스테이크를 직접
-                                        카빙서비스해드리기에, 원하시는 부위별로 마음껏 골라 드실 수 있습니다.<br><br>‘맛’과 ‘재미‘ 가 공존하는 텍사스 데
-                                        브라질에서 열정의 나라 브라질만의 놀라운 맛과 멋을 경험해 보세요.
-                                    </dd>
+                                    <th:block th:if="${detail.bistroDetailDto().bdIntro()} != '' or ${detail.bistroDetailDto().bdIntro()} != null">
+                                        <dt><a class="__toggle">매장 소개</a></dt>
+                                        <dd class="color-gray" th:text="${detail.bistroDetailDto().bdIntro()}"
+                                            style="white-space: pre-line">강렬한 삼바 리듬과 함께 즐기는 브라질 슈하스코
+                                            하우스<br><br>15가지의 브라질 정통 스테이크인
+                                            슈하스코와 50여가지의 신선한 계절 샐러드를 함께 즐길 수 있으며 <br>고객이 계신 테이블로 카버가 찾아가 스테이크를 직접
+                                            카빙서비스해드리기에, 원하시는 부위별로 마음껏 골라 드실 수 있습니다.<br><br>‘맛’과 ‘재미‘ 가 공존하는 텍사스 데
+                                            브라질에서 열정의 나라 브라질만의 놀라운 맛과 멋을 경험해 보세요.
+                                        </dd>
+                                    </th:block>
                                 </dl>
                             </div>
                             <div class="desc-block">
                                 <dl>
-                                    <dt><a class="__toggle">영업시간</a></dt>
-                                    <dd class="color-gray" th:text="${bisDetail.bdHour()}">
-                                        9:00 - 10:00
-                                    </dd>
+                                    <th:block th:if="${detail.bistroDetailDto().bdHour()} != '' or ${detail.bistroDetailDto().bdHour()} != null">
+                                        <dt><a class="__toggle">영업시간</a></dt>
+                                        <dd class="color-gray" th:text="${detail.bistroDetailDto().bdHour()}">
+                                            9:00 - 10:00
+                                        </dd>
+                                    </th:block>
                                 </dl>
                             </div>
                             <div class="desc-block">
                                 <dl>
-                                    <dt><a class="__toggle">정기 휴무</a></dt>
-                                    <dd class="color-gray" th:text="${bisDetail.bdHoliday()}">연중무휴</dd>
+                                    <th:block th:if="${detail.bistroDetailDto().bdHoliday()} != '' or ${detail.bistroDetailDto().bdHoliday()} != null">
+                                        <dt><a class="__toggle">정기 휴무</a></dt>
+                                        <dd class="color-gray" th:text="${detail.bistroDetailDto().bdHoliday()}">연중무휴
+                                        </dd>
+                                    </th:block>
                                 </dl>
                             </div>
                             <div class="desc-block">
                                 <dl>
-                                    <dt>홈페이지</dt>
-                                    <dd><span style="color: rgb(0, 0, 255); cursor: pointer;"
-                                              th:text="${bisDetail.bdHome()}">http://www.texasdebrazil.co.krr/</span>
-                                    </dd>
+                                    <th:block th:if="${detail.bistroDetailDto().bdHome()} != '' or ${detail.bistroDetailDto().bdHome()} != null">
+                                        <dt>홈페이지</dt>
+                                        <dd>
+                                            <th:block style="color: rgb(0, 0, 255); cursor: pointer;"
+                                                      th:href="${detail.bistroDetailDto().bdHome()}"
+                                                      target="_blank"></th:block>
+                                        </dd>
+                                    </th:block>
                                 </dl>
 
                             </div>
@@ -404,8 +431,8 @@
 </script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    const address = [[${bisDetail.bdAddr()}]]
-    const addressName = [[${bisDetail.resAdminDto().resaBisName()}]]
+    const address = [[${detail.bistroDetailDto().bdAddr()}]]
+    const addressName = [[${resaBisName}]]
     console.log(address);
     // 주소로 좌표를 검색합니다
     geocoder.addressSearch(

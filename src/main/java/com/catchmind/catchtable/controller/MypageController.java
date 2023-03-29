@@ -8,16 +8,14 @@ import com.catchmind.catchtable.dto.ProfileDto;
 import com.catchmind.catchtable.dto.network.request.MyCollectionRequest;
 import com.catchmind.catchtable.dto.network.request.ProfileRequest;
 import com.catchmind.catchtable.dto.network.request.SnsRequest;
+import com.catchmind.catchtable.dto.network.response.ProfileResponse;
 import com.catchmind.catchtable.dto.network.response.ReviewResponse;
-import com.catchmind.catchtable.dto.network.response.TimeLineResponse;
 import com.catchmind.catchtable.dto.security.CatchPrincipal;
-import com.catchmind.catchtable.repository.BistroSaveRepository;
-import com.catchmind.catchtable.repository.ProfileRepository;
 import com.catchmind.catchtable.repository.SnsRepository;
 import com.catchmind.catchtable.service.PaginationService;
-import com.catchmind.catchtable.service.ProfileLogicService;
+import com.catchmind.catchtable.service.ProfileService;
 import com.catchmind.catchtable.service.TimeLineService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -38,26 +36,17 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("mypage")
+@RequiredArgsConstructor
 public class MypageController {
-
-
-    @Autowired
-    private ProfileLogicService profileLogicService;
-    @Autowired
-    private ProfileRepository profileRepository;
-    @Autowired
-    private PaginationService paginationService;
-    @Autowired
-    private BistroSaveRepository bistroSaveRepository;
-    @Autowired
-    private TimeLineService timeLineService;
-    @Autowired
-    private SnsRepository snsRepository;
+    private final ProfileService profileService;
+    private final PaginationService paginationService;
+    private final TimeLineService timeLineService;
+    private final SnsRepository snsRepository;
 
 
     // 마이페이지 헤더
-    public TimeLineResponse header(Long prIdx) {
-        TimeLineResponse response = timeLineService.getHeader(prIdx);
+    public ProfileResponse header(Long prIdx) {
+        ProfileResponse response = timeLineService.getHeader(prIdx);
         return response;
     }
 
@@ -65,27 +54,27 @@ public class MypageController {
     @GetMapping("")
     public ModelAndView myMain(@AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if (catchPrincipal == null) {
-            ModelAndView modelAndView = new ModelAndView("/login");
+            ModelAndView modelAndView = new ModelAndView("login");
             return modelAndView;
         }
         boolean isSnsAddr = false;
         Long prIdx = catchPrincipal.prIdx();
-        TimeLineResponse header = header(prIdx);
-        for(int i=0; i < header.snsList().size(); i++){
-            if(!header.snsList().get(i).snsAddr().isBlank()){
+        ProfileResponse header = header(prIdx);
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (!header.snsList().get(i).snsAddr().isBlank()) {
                 isSnsAddr = false;
                 break;
-            }else{
+            } else {
                 isSnsAddr = true;
             }
         }
-        if(header.snsList().isEmpty()){
+        if (header.snsList().isEmpty()) {
             isSnsAddr = true;
         }
 
         System.out.println(catchPrincipal.prIdx());
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
-        ModelAndView modelAndView = new ModelAndView("/mypage/mypage_main");
+        ProfileDto profile = profileService.getProfileElements(prIdx);
+        ModelAndView modelAndView = new ModelAndView("mypage/mypage_main");
         modelAndView.addObject("profile", profile);
         modelAndView.addObject("header", header);
         modelAndView.addObject("isSnsAddr", isSnsAddr);
@@ -96,11 +85,11 @@ public class MypageController {
     // 비밀번호 확인
     @PostMapping("/")
     public String collectionJoin(String prHp, String prUserpw) {
-        boolean isTrue = profileLogicService.login(prHp, prUserpw);
+        boolean isTrue = profileService.login(prHp, prUserpw);
         if (isTrue) {
-            return "redirect:mypage/modify";
+            return "redirect:/mypage/modify";
         } else {
-            return "redirect:mypage";
+            return "redirect:/mypage";
         }
     }
 
@@ -108,18 +97,16 @@ public class MypageController {
     @GetMapping("/modify")
     public ModelAndView myMainModify(@AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         Long prIdx = catchPrincipal.prIdx();
-        TimeLineResponse header = header(prIdx);
+        ProfileResponse header = header(prIdx);
         System.out.println(catchPrincipal.prIdx());
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
-        ModelAndView modelAndView = new ModelAndView("/mypage/mypage_main_modify");
+        ProfileDto profile = profileService.getProfileElements(prIdx);
+        ModelAndView modelAndView = new ModelAndView("mypage/mypage_main_modify");
         modelAndView.addObject("profile", profile);
-//        if(profile.prBirth()!=null || profile.prBirth() != ""){
         String[] arr = profile.prBirth().split(",");
         modelAndView.addObject("header", header);
         modelAndView.addObject("birth0", arr[0]);
         modelAndView.addObject("birth1", arr[1]);
         modelAndView.addObject("birth2", arr[2]);
-//        }
         return modelAndView;
     }
 
@@ -127,7 +114,7 @@ public class MypageController {
     @PostMapping("/modify")
     public String updateProfile(@AuthenticationPrincipal CatchPrincipal catchPrincipal, ProfileRequest request) {
         Long prIdx = catchPrincipal.prIdx();
-        profileLogicService.updateProfile(prIdx, request.toDto());
+        profileService.updateProfile(prIdx, request.toDto());
         return "redirect:/mypage";
     }
 
@@ -136,45 +123,45 @@ public class MypageController {
     public ModelAndView SNS(@AuthenticationPrincipal CatchPrincipal catchPrincipal,
                             Model model) {
         Long prIdx = catchPrincipal.prIdx();
-        TimeLineResponse header = header(prIdx);
+        ProfileResponse header = header(prIdx);
 
         String insAddr;
         String twtAddr;
         String youtubeAddr;
         String blogAddr;
 
-        for(int i=0;i<header.snsList().size();i++){
-            if(header.snsList().get(i).snsType().equals("INSTAGRAM")){
-                insAddr=header.snsList().get(i).snsAddr();
-                model.addAttribute("insAddr",insAddr);
-            }else if(header.snsList().get(i).snsType().equals("TWITTER")){
-                twtAddr=header.snsList().get(i).snsAddr();
-                model.addAttribute("twtAddr",twtAddr);
-            }else if(header.snsList().get(i).snsType().equals("YOUTUBE")){
-                youtubeAddr=header.snsList().get(i).snsAddr();
-                model.addAttribute("youtubeAddr",youtubeAddr);
-            }else if(header.snsList().get(i).snsType().equals("BLOG")){
-                blogAddr=header.snsList().get(i).snsAddr();
-                model.addAttribute("blogAddr",blogAddr);
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (header.snsList().get(i).snsType().equals("INSTAGRAM")) {
+                insAddr = header.snsList().get(i).snsAddr();
+                model.addAttribute("insAddr", insAddr);
+            } else if (header.snsList().get(i).snsType().equals("TWITTER")) {
+                twtAddr = header.snsList().get(i).snsAddr();
+                model.addAttribute("twtAddr", twtAddr);
+            } else if (header.snsList().get(i).snsType().equals("YOUTUBE")) {
+                youtubeAddr = header.snsList().get(i).snsAddr();
+                model.addAttribute("youtubeAddr", youtubeAddr);
+            } else if (header.snsList().get(i).snsType().equals("BLOG")) {
+                blogAddr = header.snsList().get(i).snsAddr();
+                model.addAttribute("blogAddr", blogAddr);
             }
         }
 
         boolean isSnsAddr = false;
-        for(int i=0; i < header.snsList().size(); i++){
-            if(header.snsList().get(i).snsAddr().isBlank()){
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (header.snsList().get(i).snsAddr().isBlank()) {
                 isSnsAddr = true;
             }
         }
-        if(header.snsList().isEmpty()){
+        if (header.snsList().isEmpty()) {
             isSnsAddr = true;
         }
 
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
+        ProfileDto profile = profileService.getProfileElements(prIdx);
         model.addAttribute("prIdx", prIdx);
         model.addAttribute("header", header);
         model.addAttribute("profile", profile);
         model.addAttribute("isSnsAddr", isSnsAddr);
-        return new ModelAndView("/mypage/newSNS");
+        return new ModelAndView("mypage/newSNS");
     }
 
     // sns 추가 및 업데이트
@@ -184,48 +171,48 @@ public class MypageController {
                           HttpServletResponse response
     ) {
         Long prIdx = catchPrincipal.prIdx();
-        TimeLineResponse header = header(prIdx);
+        ProfileResponse header = header(prIdx);
 
         String[] arr1;
         String[] arr2;
         System.out.println(request.snsAddr());
-        arr1 = request.snsAddr().split(",",-1);
+        arr1 = request.snsAddr().split(",", -1);
         arr2 = request.snsType().split(",");
 
-        for(int i = 0; i<arr1.length; i++){
-            Optional<Sns> sns= snsRepository.findByProfile_PrIdxAndSnsType(prIdx,arr2[i]);
-            if(sns.isEmpty()){
-                profileLogicService.saveSNS(request, prIdx, arr1[i], arr2[i]);
-            }else{
-                profileLogicService.snsUpdate(prIdx,arr2[i],arr1[i]);
+        for (int i = 0; i < arr1.length; i++) {
+            Optional<Sns> sns = snsRepository.findByProfile_PrIdxAndSnsType(prIdx, arr2[i]);
+            if (sns.isEmpty()) {
+                profileService.saveSNS(request, prIdx, arr1[i], arr2[i]);
+            } else {
+                profileService.snsUpdate(prIdx, arr2[i], arr1[i]);
             }
         }
 
-        return "redirect:mypage";
+        return "redirect:/mypage";
     }
 
     // 내 리뷰 보기
     @GetMapping("/review")
     public String myReview(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal,
-                                 @PageableDefault(size = 10, sort = "revIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map) {
-        if(catchPrincipal == null) {
-            return "redirect:login";
+                           @PageableDefault(size = 10, sort = "revIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map) {
+        if (catchPrincipal == null) {
+            return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
-        TimeLineResponse header = header(prIdx);
+        ProfileResponse header = header(prIdx);
         boolean isSnsAddr = false;
-        for(int i=0; i < header.snsList().size(); i++){
-            if(header.snsList().get(i).snsAddr().isBlank()){
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (header.snsList().get(i).snsAddr().isBlank()) {
                 isSnsAddr = true;
             }
         }
-        if(header.snsList().isEmpty()){
+        if (header.snsList().isEmpty()) {
             isSnsAddr = true;
         }
 
-        Page<ReviewResponse> reviews = profileLogicService.getReview(prIdx, pageable);
+        Page<ReviewResponse> reviews = profileService.getReview(prIdx, pageable);
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), reviews.getTotalPages());
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
+        ProfileDto profile = profileService.getProfileElements(prIdx);
 
         map.addAttribute("reviews", reviews);
         map.addAttribute("prIdx", prIdx);
@@ -233,25 +220,25 @@ public class MypageController {
         map.addAttribute("profile", profile);
         map.addAttribute("header", header);
         map.addAttribute("isSnsAddr", isSnsAddr);
-        return "/mypage/myReview";
+        return "mypage/myReview";
     }
 
     // 내 컬렉션 보기
     @GetMapping("/collection")
     public ModelAndView myCollection(@AuthenticationPrincipal CatchPrincipal catchPrincipal, Model model) {
         Long prIdx = catchPrincipal.prIdx();
-        TimeLineResponse header = header(prIdx);
+        ProfileResponse header = header(prIdx);
         boolean isSnsAddr = false;
-        for(int i=0; i < header.snsList().size(); i++){
-            if(header.snsList().get(i).snsAddr().isBlank()){
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (header.snsList().get(i).snsAddr().isBlank()) {
                 isSnsAddr = true;
             }
         }
-        if(header.snsList().isEmpty()){
+        if (header.snsList().isEmpty()) {
             isSnsAddr = true;
         }
-        List<MyCollectionDto> MyCollections = profileLogicService.getColList(prIdx);
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
+        List<MyCollectionDto> MyCollections = profileService.getColList(prIdx);
+        ProfileDto profile = profileService.getProfileElements(prIdx);
         model.addAttribute("profile", profile);
         model.addAttribute("list", MyCollections);
         model.addAttribute("header", header);
@@ -266,26 +253,26 @@ public class MypageController {
     @GetMapping("/collection/detail/{colIdx}")
     public ModelAndView myCollectionDetail(@PathVariable Long colIdx, @AuthenticationPrincipal CatchPrincipal catchPrincipal, Model model) {
         Long prIdx = catchPrincipal.prIdx();
-        TimeLineResponse header = header(prIdx);
+        ProfileResponse header = header(prIdx);
         boolean isSnsAddr = false;
-        for(int i=0; i < header.snsList().size(); i++){
-            if(header.snsList().get(i).snsAddr().isBlank()){
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (header.snsList().get(i).snsAddr().isBlank()) {
                 isSnsAddr = true;
             }
         }
-        if(header.snsList().isEmpty()){
+        if (header.snsList().isEmpty()) {
             isSnsAddr = true;
         }
-        List<BistroSaveDto> bistroSaves = profileLogicService.getSaveList(colIdx);
+        List<BistroSaveDto> bistroSaves = profileService.getSaveList(colIdx);
         System.out.println(catchPrincipal.prIdx());
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
-        MyCollectionDto myCollection = profileLogicService.getMyCollectionElements(colIdx);
-//        model.addAttribute("list",sav)
+        ProfileDto profile = profileService.getProfileElements(prIdx);
+        MyCollectionDto myCollection = profileService.getMyCollectionElements(colIdx);
         ModelAndView modelAndView = new ModelAndView("mypage/mycollectionDetail");
         modelAndView.addObject("profile", profile);
         modelAndView.addObject("header", header);
         modelAndView.addObject("list", bistroSaves);
         modelAndView.addObject("myCollection", myCollection);
+        System.out.println("컬렉션 디테일 : " + myCollection);
         modelAndView.addObject("isSnsAddr", isSnsAddr);
         return modelAndView;
     }
@@ -295,7 +282,7 @@ public class MypageController {
     @ResponseBody
     public String myCollectionDelRes(@RequestBody BistroSaveDto request) {
         Long saveIdx = request.saveIdx();
-        profileLogicService.delCollectionSave(saveIdx);
+        profileService.delCollectionSave(saveIdx);
         return "ok";
     }
 
@@ -305,7 +292,7 @@ public class MypageController {
     @ResponseBody
     public String delMyCollection(@RequestBody MyCollectionRequest request) {
         Long colIdx = request.colIdx();
-        profileLogicService.delMyCollection(colIdx);
+        profileService.delMyCollection(colIdx);
         return "ok";
     }
 
@@ -313,21 +300,21 @@ public class MypageController {
     @GetMapping("/collection/detail/{colIdx}/modify")
     public ModelAndView myCollectionModify(@PathVariable Long colIdx, @AuthenticationPrincipal CatchPrincipal catchPrincipal, Model model) {
         Long prIdx = catchPrincipal.prIdx();
-        TimeLineResponse header = header(prIdx);
+        ProfileResponse header = header(prIdx);
         boolean isSnsAddr = false;
-        for(int i=0; i < header.snsList().size(); i++){
-            if(header.snsList().get(i).snsAddr().isBlank()){
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (header.snsList().get(i).snsAddr().isBlank()) {
                 isSnsAddr = true;
             }
         }
-        if(header.snsList().isEmpty()){
+        if (header.snsList().isEmpty()) {
             isSnsAddr = true;
         }
         System.out.println(catchPrincipal.prIdx());
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
-        MyCollectionDto myCollection = profileLogicService.getMyCollectionElements(colIdx);
+        ProfileDto profile = profileService.getProfileElements(prIdx);
+        MyCollectionDto myCollection = profileService.getMyCollectionElements(colIdx);
 //        model.addAttribute("list",sav)
-        ModelAndView modelAndView = new ModelAndView("/mypage/mycollection_modify");
+        ModelAndView modelAndView = new ModelAndView("mypage/mycollection_modify");
         modelAndView.addObject("profile", profile);
         modelAndView.addObject("header", header);
         modelAndView.addObject("myCollection", myCollection);
@@ -343,8 +330,8 @@ public class MypageController {
         Long colIdx = request.colIdx();
         System.out.println("들어오나?");
         System.out.println("🥩" + request);
-        MyCollectionDto myCollection = profileLogicService.getMyCollectionElements(colIdx);
-        profileLogicService.updateMyCollection(colIdx, request.toDto());
+        MyCollectionDto myCollection = profileService.getMyCollectionElements(colIdx);
+        profileService.updateMyCollection(colIdx, request.toDto());
 //        model.addAttribute("list",sav)
         ModelAndView modelAndView = new ModelAndView("mypage/mycollection_modify");
         return "ok";
@@ -355,18 +342,18 @@ public class MypageController {
     @GetMapping("/collection/new")
     public ModelAndView myCollectionNew(@AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         Long prIdx = catchPrincipal.prIdx();
-        TimeLineResponse header = header(prIdx);
+        ProfileResponse header = header(prIdx);
         boolean isSnsAddr = false;
-        for(int i=0; i < header.snsList().size(); i++){
-            if(header.snsList().get(i).snsAddr().isBlank()){
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (header.snsList().get(i).snsAddr().isBlank()) {
                 isSnsAddr = true;
             }
         }
-        if(header.snsList().isEmpty()){
+        if (header.snsList().isEmpty()) {
             isSnsAddr = true;
         }
         System.out.println("🥩🥩" + prIdx);
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
+        ProfileDto profile = profileService.getProfileElements(prIdx);
         ModelAndView modelAndView = new ModelAndView("mypage/new_mycollection");
         modelAndView.addObject("profile", profile);
         modelAndView.addObject("header", header);
@@ -379,32 +366,32 @@ public class MypageController {
     @ResponseBody
     public String createCollection(@RequestBody MyCollectionRequest request) {
         System.out.println(request);
-        profileLogicService.createCollection(request);
+        profileService.createCollection(request);
         return "ok";
     }
 
     // 컬렉션 레스토랑추가 > 저장된 식당 리스트
     @GetMapping("/collection/saveList/{prIdx}/{colIdx}")
     public ModelAndView addColSaveList(@PathVariable Long prIdx, Model model, @PathVariable Long colIdx) {
-        List<BistroSaveDto> bistroSaves = profileLogicService.getList(prIdx);
-        TimeLineResponse header = header(prIdx);
+        List<BistroSaveDto> bistroSaves = profileService.getList(prIdx);
+        ProfileResponse header = header(prIdx);
         boolean isSnsAddr = false;
-        for(int i=0; i < header.snsList().size(); i++){
-            if(header.snsList().get(i).snsAddr().isBlank()){
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (header.snsList().get(i).snsAddr().isBlank()) {
                 isSnsAddr = true;
             }
         }
-        if(header.snsList().isEmpty()){
+        if (header.snsList().isEmpty()) {
             isSnsAddr = true;
         }
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
+        ProfileDto profile = profileService.getProfileElements(prIdx);
         model.addAttribute("profile", profile);
         model.addAttribute("list", bistroSaves);
         model.addAttribute("colIdx", colIdx);
         model.addAttribute("header", header);
         model.addAttribute("isSnsAddr", isSnsAddr);
         System.out.println(bistroSaves);
-        ModelAndView modelAndView = new ModelAndView("/mypage/myCollection_save_restaurant");
+        ModelAndView modelAndView = new ModelAndView("mypage/myCollection_save_restaurant");
         return modelAndView;
     }
 
@@ -415,31 +402,30 @@ public class MypageController {
         Long prIdx = catchPrincipal.prIdx();
         System.out.println("🤍" + bisNames);
         System.out.println("💕" + colIdx);
-        profileLogicService.updateMyCollectionSave(colIdx, bisNames);
-        profileLogicService.updateBistroSave(colIdx, bisNames, prIdx);
-        return "redirect:mypage/collection/detail/" + colIdx;
+        profileService.updateMyCollectionSave(colIdx, bisNames);
+        profileService.updateBistroSave(colIdx, bisNames, prIdx);
+        return "redirect:/mypage/collection/detail/" + colIdx;
     }
 
     //  저장된 식당 리스트 보기
     @GetMapping("/saveList/{prIdx}")
     public ModelAndView myList(@PathVariable Long prIdx, Model model) {
-        List<BistroSaveDto> bistroSaves = profileLogicService.getList(prIdx);
-        TimeLineResponse header = header(prIdx);
+        List<BistroSaveDto> bistroSaves = profileService.getList(prIdx);
+        ProfileResponse header = header(prIdx);
         boolean isSnsAddr = false;
-        for(int i=0; i < header.snsList().size(); i++){
-            if(header.snsList().get(i).snsAddr().isBlank()){
+        for (int i = 0; i < header.snsList().size(); i++) {
+            if (header.snsList().get(i).snsAddr().isBlank()) {
                 isSnsAddr = true;
             }
         }
-        if(header.snsList().isEmpty()){
+        if (header.snsList().isEmpty()) {
             isSnsAddr = true;
         }
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
+        ProfileDto profile = profileService.getProfileElements(prIdx);
         model.addAttribute("profile", profile);
         model.addAttribute("list", bistroSaves);
         model.addAttribute("header", header);
         model.addAttribute("isSnsAddr", isSnsAddr);
-        System.out.println(bistroSaves);
         ModelAndView modelAndView = new ModelAndView("mypage/save_restaurant");
         return modelAndView;
     }
@@ -449,7 +435,7 @@ public class MypageController {
     @ResponseBody
     public String delRes(@PathVariable Long saveIdx) {
         System.out.println(saveIdx);
-        profileLogicService.delRes(saveIdx);
+        profileService.delRes(saveIdx);
         return "OK";
     }
 
@@ -461,6 +447,6 @@ public class MypageController {
         session.invalidate();
         // 시큐리티 인증정보 없애기
         SecurityContextHolder.getContext().setAuthentication(null);
-        profileLogicService.delete(prIdx);
+        profileService.delete(prIdx);
     }
 }

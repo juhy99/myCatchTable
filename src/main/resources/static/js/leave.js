@@ -10,7 +10,7 @@ function sendit(){
         const prIdx = document.getElementById("prIdx").innerText;
         console.log(prIdx)
 
-        fetch('http://localhost:8888/mypage/' + prIdx, {
+        fetch('http://52.79.146.68:8888/mypage/' + prIdx, {
             method: 'DELETE',
         })
             .then((res) => {

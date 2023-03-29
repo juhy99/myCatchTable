@@ -10,6 +10,5 @@ import java.util.Optional;
 @RepositoryRestResource
 public interface ShopResTableRepository extends JpaRepository<ShopResTable,Long> {
     Optional<ShopResTable> findByTotalTable_TotTableIdAndShopResMonthAndShopResDayAndShopResTime(Long totalTableId, String month, String day, String time);
-
     List<ShopResTable> findByTotalTable_TotTableIdAndShopResMonthAndShopResDayAndShopResStatus(Long totalTableId, String month, String day,boolean resStatus);
 }

@@ -2,11 +2,11 @@ package com.catchmind.catchtable.service;
 
 import com.catchmind.catchtable.domain.*;
 import com.catchmind.catchtable.dto.*;
-import com.catchmind.catchtable.dto.network.request.CommentHeartRequest;
+import com.catchmind.catchtable.dto.network.request.CommentRequest;
 import com.catchmind.catchtable.dto.network.request.FollowRequest;
 import com.catchmind.catchtable.dto.network.request.ReviewHeartRequest;
+import com.catchmind.catchtable.dto.network.response.ProfileResponse;
 import com.catchmind.catchtable.dto.network.response.ReviewResponse;
-import com.catchmind.catchtable.dto.network.response.TimeLineResponse;
 import com.catchmind.catchtable.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -28,7 +28,6 @@ public class TimeLineService {
     private final SnsRepository snsRepository;
     private final ReviewRepository reviewRepository;
     private final ReviewHeartRepository reviewHeartRepository;
-    private final CommentHeartRepository commentHeartRepository;
     private final FollowRepository followRepository;
     private final CommentRepository commentRepository;
     private final MyCollectionRepository collectionRepository;
@@ -39,7 +38,7 @@ public class TimeLineService {
 
     // 타임라인 헤더
     @Transactional
-    public TimeLineResponse getHeader(Long prIdx) {
+    public ProfileResponse getHeader(Long prIdx) {
         ProfileDto profileDto = profileRepository.findById(prIdx).map(ProfileDto::from).orElseThrow();
         List<SnsDto> snsList = snsRepository.findAllByProfile_PrIdx(prIdx).stream().map(SnsDto::from).toList();
         System.out.println("❌" + snsList);
@@ -64,7 +63,7 @@ public class TimeLineService {
             avgScore = totalScore / reviewDtos.size();
         }
 
-        TimeLineResponse timeLineResponse = new TimeLineResponse(prName, prNick, prRegion, prIntro, followingNum, followerNum, snsList, Math.round(avgScore));
+        ProfileResponse timeLineResponse = new ProfileResponse(prName, prNick, prRegion, prIntro, followingNum, followerNum, snsList, Math.round(avgScore));
 
         return timeLineResponse;
     }
@@ -268,12 +267,6 @@ public class TimeLineService {
         return heartDtos;
     }
 
-    //로그인한 회원의 댓글 좋아요 리스트
-    public List<CommentHeartDto> getComHeart(Long prIdx) {
-        List<CommentHeartDto> commentHeartDtos = commentHeartRepository.findAllByProfile_PrIdx(prIdx).stream().map(CommentHeartDto::from).toList();
-        return commentHeartDtos;
-    }
-
     // 팔로우 기능
     public Follow follow(FollowRequest request) {
         Long followerIdx = request.follower();       // 팔로우 하는 회원의 idx
@@ -322,7 +315,7 @@ public class TimeLineService {
     }
 
     // 댓글 등록
-    public Long newComment(CommentHeartRequest request) {
+    public Long newComment(CommentRequest request) {
         Long revIdx = request.revIdx();
         Long revCom = reviewRepository.findById(revIdx).get().getRevComm();
         Review findReview = reviewRepository.findById(revIdx).orElse(null);
@@ -348,37 +341,6 @@ public class TimeLineService {
         return com;
     }
 
-    // 댓글 좋아요
-    public Long newComHeart(CommentHeartRequest request) {
-        Long comIdx = request.comIdx();
-        Long comLike = request.comLike();
-        Comment findComment = commentRepository.findById(comIdx).orElse(null);
-        findComment.setComLike(comLike + 1);
-        Long newLike = commentRepository.save(findComment).getComLike();
-        System.out.println("❤️" + newLike);
-        CommentHeart newHeart = new CommentHeart(Profile.ofIdx(request.prIdx()), Review.ofIdx(request.revIdx()), Comment.ofIdx(request.comIdx()));
-        commentHeartRepository.save(newHeart);
-        return newLike;
-    }
-
-    // 댓글 좋아요 삭제
-    @Transactional
-    public Long delComHeart(CommentHeartRequest request) {
-        Long comIdx = request.comIdx();
-        Long prIdx = request.prIdx();
-        Long comLike = request.comLike();
-
-        Long findLike = commentRepository.findById(comIdx).get().getComLike();
-        Comment findComment = commentRepository.findById(comIdx).orElseThrow();
-        System.out.println("디비에서 찾은 좋아요 개수 :" + findLike);
-        findComment.setComLike(findLike - 1);
-
-        Long newLike = commentRepository.save(findComment).getComLike();
-        System.out.println("삭제 후 좋아요 수 💙" + newLike);
-        commentHeartRepository.deleteByProfile_PrIdxAndComment_comIdx(prIdx, comIdx);
-        return newLike;
-    }
-
     @Transactional
     public void delReview(Long revIdx, Long resIdx, Long prIdx) {
         Profile findProfile = profileRepository.findById(prIdx).orElse(null);
@@ -397,5 +359,7 @@ public class TimeLineService {
             e.printStackTrace();
         }
     }
+
+
 
 }

@@ -5,7 +5,8 @@ import com.catchmind.catchtable.domain.Profile;
 import com.catchmind.catchtable.dto.PendingDto;
 import com.catchmind.catchtable.dto.network.request.ProfileRequest;
 import com.catchmind.catchtable.dto.network.response.IndexResponse;
-import com.catchmind.catchtable.service.*;
+import com.catchmind.catchtable.service.MainService;
+import com.catchmind.catchtable.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,19 +22,14 @@ import java.util.Optional;
 @Controller
 @RequestMapping("")
 public class PageController {
-
     private final PasswordEncoder passwordEncoder;
-    private final ProfileLogicService profileLogicService;
-    private final TimeLineService timeLineService;
-    private final PendingService pendingService;
-
-    private final ReviewLogicService reviewLogicService;
-    private final BistroDetailLogicService bistroDetailLogicService;
+    private final ProfileService profileService;
+    private final MainService mainService;
 
     @GetMapping("")
     public String index(Model model) {
-        List<IndexResponse> list = reviewLogicService.indexReviewList();
-        List<BistroDetail> bisList = bistroDetailLogicService.indexList();
+        List<IndexResponse> list = mainService.indexReviewList();
+        List<BistroDetail> bisList = mainService.indexList();
         System.out.println(list);
         System.out.println("aaaaaaaaaaaaaaaa"+bisList);
         model.addAttribute("list",list);
@@ -64,7 +60,7 @@ public class PageController {
         }
         try{
             Profile profile = Profile.createMember(request, passwordEncoder);
-            profileLogicService.saveMember(profile);
+            profileService.saveMember(profile);
         }catch (IllegalStateException e){
             model.addAttribute("errorMessage",e.getMessage());
             return "join";
@@ -75,7 +71,7 @@ public class PageController {
     @PostMapping("/idCheck")
     @ResponseBody
     public boolean nickCheck(@RequestParam("prNick")String prNick){
-        Optional<Profile> profile = profileLogicService.checkNick(prNick);
+        Optional<Profile> profile = profileService.checkNick(prNick);
         if (profile.isEmpty()){
             return true;
         }else {
@@ -93,7 +89,7 @@ public class PageController {
     @PostMapping("/pending")
     public String inquiry (PendingDto pendingDto){
         System.out.println(pendingDto);
-        pendingService.createResAdmin(pendingDto);
+        mainService.createResAdmin(pendingDto);
         return "redirect:/";
     }
 
@@ -101,23 +97,24 @@ public class PageController {
     public ModelAndView findPw () {
         return new ModelAndView("findPw");
     }
+
     @PostMapping("/findPassword")
     @ResponseBody
     public Optional<Profile> findPassword (@RequestParam("prHp")String prHp,
                                            @RequestParam("prName")String prName) {
-        Optional<Profile> profile = profileLogicService.findPw(prHp,prName);
+        Optional<Profile> profile = profileService.findPw(prHp,prName);
         return profile;
     }
     @GetMapping("/resetPassword/{prHp}")
     public ModelAndView resetPw (@PathVariable String prHp, Model model){
         model.addAttribute("prHp",prHp);
-        return new ModelAndView("resetPassword");
+        return new ModelAndView("/resetPassword");
     }
     @PostMapping("/resetPassword")
     public String resetPassword (@RequestParam("prHp")String prHp,
                                  ProfileRequest request){
         System.out.println("🐓🐓🐓🐓🐓🐓🐓🐓🐓  "+request.prHp());
-        profileLogicService.updatePassword(prHp, request.toDto());
+        profileService.updatePassword(prHp, request.toDto());
         return "login";
     }
 

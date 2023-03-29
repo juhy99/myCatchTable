@@ -28,9 +28,9 @@ public class KaKaoPayLogicService {
         parameters.add("quantity", "1");
         parameters.add("total_amount", request.total_amount());
         parameters.add("tax_free_amount", "0");
-        parameters.add("approval_url", "http://localhost:8888/reservation/pay/completed"); // 결제승인시 넘어갈 url
-        parameters.add("cancel_url", "http://localhost:8888/reservation/pay/cancel"); // 결제취소시 넘어갈 url
-        parameters.add("fail_url", "http://localhost:8888/reservation/pay/fail"); // 결제 실패시 넘어갈 url
+        parameters.add("approval_url", "http://52.79.146.68:8888/reservation/pay/completed"); // 결제승인시 넘어갈 url
+        parameters.add("cancel_url", "http://52.79.146.68:8888/reservation/pay/cancel"); // 결제취소시 넘어갈 url
+        parameters.add("fail_url", "http://52.79.146.68:8888/reservation/pay/fail"); // 결제 실패시 넘어갈 url
 
         log.info("파트너주문아이디:"+ parameters.get("partner_order_id")) ;
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());

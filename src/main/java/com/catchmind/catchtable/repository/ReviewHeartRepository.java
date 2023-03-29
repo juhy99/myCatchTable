@@ -10,6 +10,5 @@ import java.util.Optional;
 @RepositoryRestResource
 public interface ReviewHeartRepository extends JpaRepository<ReviewHeart,Long> {
     List<ReviewHeart> findAllByProfile_prIdx(Long prIdx);
-    Long countByReview_revIdx(Long revIdx);
     Optional<ReviewHeart> deleteByProfile_PrIdxAndReview_RevIdx(Long prIdx, Long revIdx);
 }

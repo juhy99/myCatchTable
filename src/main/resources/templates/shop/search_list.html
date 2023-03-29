@@ -135,15 +135,17 @@
                                                         </div>
                                                         <div class="restaurant-meta">
                                                             <div class="__d-flex mb-6">
-                                                                <!--                                                            <div class="rating">-->
-                                                                <!--                                                                <span class="star">4.6</span>&nbsp;-->
-                                                                <!--                                                                <span class="count">(580)</span>-->
-                                                                <!--                                                            </div>-->
                                                             </div>
                                                             <span class="tags"
                                                                   th:text=" ${list.bisCategory}">한식 • 이태원</span>
-                                                            <span class="price"
-                                                                  th:text="|${list.bisLunch} • ${list.bisDinner}|"></span>
+                                                            <th:block
+                                                                    th:if="${list.bisLunch} != null and ${list.bisDinner} != null">
+                                                                <span class="price"
+                                                                    th:text="|${list.bisLunch} · ${list.bisDinner}|"></span>
+                                                            </th:block>
+                                                            <th:block
+                                                                    th:if="${list.bisLunch} != null and ${list.bisDinner} != null">
+                                                            </th:block>
                                                         </div>
                                                     </div>
                                                 </div>
