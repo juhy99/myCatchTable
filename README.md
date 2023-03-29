@@ -104,6 +104,29 @@
    * 약관 및 정책 
 
 
+## 메인 화면
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/index.png?raw=true)
+
+## 레스토랑 LIST 화면
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/shoplist.png?raw=true)
+
+## 레스토랑 Detail 화면
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/shopdetail1.png?raw=true)
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/shopdetail2.png?raw=true)
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/shopdetail3.png?raw=true)
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/shopdetail4.png?raw=true)
+
+## 로그인 화면
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/login.png?raw=true)
+
+## 마이페이지 화면
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/mypage.png?raw=true)
+
+## 마이다이닝 화면
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/mydining.png?raw=true)
+
+## 예약 화면
+![image](https://github.com/ghdwhd0302/catchMind/blob/main/src/main/resources/static/images/reservation.png?raw=true)
 
 
 
